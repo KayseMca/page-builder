@@ -1,0 +1,9 @@
+h3{
+    margin: 5px !important;
+    display: flex;
+    justify-content: space-between;
+}
+.fa{
+    margin-top: 8px;
+}
+

@@ -9,6 +9,7 @@ export class SidenavComponent implements OnInit {
 
   constructor() { }
 
+  data = ['Home','Page2', 'Page3']
   ngOnInit(): void {
   }
 
