@@ -1,15 +1,27 @@
-<h2>Welcome Page Builder project</h2>
 
-<div class="container"> 
-  <p>     
-    <button class="btn btn-success">       
-      <i class="fa fa-floppy-o" aria-hidden="true"></i> 
-      Save     
-    </button> 
-    
-  </p> 
-  <button mat-raised-button color='warn'>       
-    <i class="fa fa-floppy-o" aria-hidden="true"></i> 
-    Save     
-  </button> 
-</div> 
+<div class="home">
+  <!-- head nav -->
+  <mat-toolbar color="primary">
+    <button mat-icon-button >
+      <mat-icon>menu</mat-icon>
+    </button>
+    Page Builder
+  </mat-toolbar>
+
+  <!-- sidebar nav  -->
+  <mat-sidenav-container > 
+    <mat-sidenav  mode='side' opened>
+      <app-sidenav></app-sidenav>
+    </mat-sidenav>
+
+
+    <!-- Main -->
+    <mat-sidenav-content>
+      <div class="content">
+        main Content 
+    </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  <!-- Footer -->
+</div>
