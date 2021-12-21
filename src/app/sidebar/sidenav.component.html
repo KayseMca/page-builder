@@ -1,6 +1,11 @@
 
-
-<h3 *ngFor="let item of data">
-    {{item}}
-    <i class="fa fa-ellipsis-h"></i>
-</h3>
+<div class="pages" *ngFor="let item of data">
+    <a href="#">
+        <h3 >
+            {{item}}
+        </h3>
+    </a>
+    <button mat-button>
+        <i class="fa fa-ellipsis-h"></i>
+    </button>
+</div>

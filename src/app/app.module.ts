@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
+
 import { MaterialModuleModule } from './shared/models/material-module.module';
 import { SidenavComponent } from './sidebar/sidenav.component';
 

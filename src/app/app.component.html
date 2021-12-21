@@ -2,15 +2,16 @@
 <div class="home">
   <!-- head nav -->
   <mat-toolbar color="primary">
-    <button mat-icon-button >
-      <mat-icon>menu</mat-icon>
+    <button mat-icon-button   (click)='sidenav.toggle()'>
+      <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+      <mat-icon *ngIf="sidenav.opened ">close</mat-icon>
     </button>
     Page Builder
   </mat-toolbar>
 
   <!-- sidebar nav  -->
   <mat-sidenav-container > 
-    <mat-sidenav  mode='side' opened>
+    <mat-sidenav  #sidenav >
       <app-sidenav></app-sidenav>
     </mat-sidenav>
 

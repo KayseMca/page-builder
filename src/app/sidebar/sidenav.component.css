@@ -1,9 +1,20 @@
 h3{
-    margin: 5px !important;
+    margin: 5px !important;    
+}
+.fa{
+    margin-top: 3px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.pages{
     display: flex;
     justify-content: space-between;
 }
-.fa{
-    margin-top: 8px;
+button{
+    float: right;
+    text-align: right;
 }
-
