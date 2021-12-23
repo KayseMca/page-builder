@@ -41,6 +41,7 @@ mat-sidenav{
     /* height: calc(100vh-98px); */
     margin:8px 8px 8px 32px;
     border-radius: 10px;
+
 }
 
 
@@ -103,7 +104,7 @@ mat-sidenav-container{
     padding: 12px 16px;
     left: 195px;
     top: 10px;
-    z-index: 5;
+
     color: black;
   
   }
@@ -113,4 +114,28 @@ mat-sidenav-container{
 
   .dropdown-content button{
       display: block;
+  }
+
+  .page-info{
+    position: relative;
+    display: block;
+ 
+  }
+
+  .page-info-active {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    left: 295px;
+    top: 10px;
+
+    color: black;
+  
+  }
+  .page-info-none{
+      display: none;
   }
