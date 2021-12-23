@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-sidenav',
@@ -9,7 +9,7 @@ export class SidenavComponent implements OnInit {
 
   constructor() { }
 
-  data = ['Home','Page2', 'Page3']
+
   ngOnInit(): void {
   }
 

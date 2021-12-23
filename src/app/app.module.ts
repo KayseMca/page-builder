@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModuleModule } from './shared/models/material-module.module';
 import { SidenavComponent } from './sidebar/sidenav.component';
+import { PagePropertiesComponent } from './shared/components/page-properties.component';
+
 
 
 
@@ -16,6 +18,8 @@ import { SidenavComponent } from './sidebar/sidenav.component';
   declarations: [
     AppComponent,
     SidenavComponent,
+    PagePropertiesComponent,
+    
   ],
   imports: [
     BrowserModule,

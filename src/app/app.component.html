@@ -2,17 +2,33 @@
 <div class="home">
   <!-- head nav -->
   <mat-toolbar color="primary">
-    <button mat-icon-button   (click)='sidenav.toggle()'>
+    <button mat-icon-button *ngIf="sidenav.mode=='side'"   (click)='sidenav.toggle()'>
       <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
-      <mat-icon *ngIf="sidenav.opened ">close</mat-icon>
+      <mat-icon *ngIf="sidenav.opened">close</mat-icon>
     </button>
     Page Builder
   </mat-toolbar>
 
   <!-- sidebar nav  -->
   <mat-sidenav-container > 
-    <mat-sidenav  #sidenav >
-      <app-sidenav></app-sidenav>
+    <mat-sidenav  #sidenav class="sidenav">
+      <div class="pages" *ngFor="let page of data; let i = index">
+        <a href="#">
+          <h3>
+            {{ page.name }}
+          </h3>
+        </a>
+        <span>
+          
+        </span>
+        <div class="dropdown">
+          <i class="fa fa-ellipsis-h "  (click)='showData(i)'></i>
+          <div [ngClass]="openDropdown == true ? 'dropdown-content-active' : 'dropdown-content-none'">
+          <button mat-button *ngFor="let setting of settingType" value="setting" (click)='settings(setting)' >{{setting}}</button>
+          </div>
+        </div>
+      </div>
+      
     </mat-sidenav>
 
 
