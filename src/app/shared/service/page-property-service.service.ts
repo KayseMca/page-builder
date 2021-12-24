@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { PageData } from 'src/app/_interfaces/_page';
 import { data } from './data';
 @Injectable({
   providedIn: 'root'
@@ -8,10 +9,16 @@ export class PagePropertyServiceService {
 
   constructor() { }
 
-  pageData:Observable<any> = new BehaviorSubject<any>(data)
+  closeTab= new Subject<Boolean>();
+  pageData:Observable<PageData[]> = new BehaviorSubject<any>(data)
   
 
-  getData():Observable<any>{
+  getData():Observable<PageData[]>{
     return this.pageData
+  }
+
+  closeComponentsTab(event:Boolean):Observable<Boolean>{
+    this.closeTab.next(event)
+    return this.closeTab
   }
 }

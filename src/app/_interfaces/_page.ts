@@ -5,9 +5,11 @@ interface Permisions{
     members_type?:string,
     selected_members?:Array<string>
 }
+
 interface SEO{
     data:string
 }
+
 
 interface PageInfo{
     page_name: string
@@ -18,7 +20,7 @@ interface PageSettings{
     permissions:Permisions
 }
 
-export interface PageData{
-    name:string,
-    page_settings:PageSettings
+export class PageData{
+    name!:string 
+    page_settings!:PageSettings
 }

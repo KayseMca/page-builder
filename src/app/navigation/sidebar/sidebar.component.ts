@@ -15,7 +15,7 @@ export class SidebarComponent implements OnInit {
   pageData!:PageData[]
 
 
-  openTabs:boolean = false
+  openTabs:Boolean = false
 
   @HostListener('window:mousedown', ['$event'])
   onMouseUp(event: any) {
@@ -36,7 +36,7 @@ export class SidebarComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private pageProperties:PagePropertyServiceService
     ) { 
-      this.pageProperties.getData().subscribe(res=>{
+      this.pageProperties.getData().subscribe((res:PageData[])=>{
         this.pageData = res
         })
     }
@@ -60,10 +60,12 @@ export class SidebarComponent implements OnInit {
   }
 
   settings(event:any){
-    console.log("clicked")
     this.openDropdown = !this.openDropdown
     this.openTabs = true
-    console.log(this.openTabs)
+    this.pageProperties.closeComponentsTab(this.openTabs).subscribe(res=>{
+      this.openTabs = res
+    })
+    console.log(event)
     // this.openDropdown = !this.openDropdown
     // e.preventDefault();
   }

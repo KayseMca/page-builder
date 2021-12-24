@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PagePropertyServiceService } from '../service/page-property-service.service';
 
 @Component({
   selector: 'app-page-properties',
@@ -7,17 +8,16 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class PagePropertiesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private pageService:PagePropertyServiceService) { }
 
-  @Input() close!:Boolean
-  @Output() closeTab = new EventEmitter()
+  closeTab!:Boolean
   ngOnInit(): void {
 
   }
 
 
   closeTabs(){
-    this.close = !this.close
-    this.closeTab.emit(this.close)
+    this.closeTab = false
+    this.pageService.closeComponentsTab(this.closeTab).subscribe(res=>console.log(res))
   }
 }
