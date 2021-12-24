@@ -1,0 +1,15 @@
+.pageInfo{
+    display: flex;
+    justify-content: space-between;
+}
+.pageHead{
+    font-size: 34px;
+}
+
+.closePage{
+    display: none;
+}
+
+::ng-deep.mat-tab-link,  ::ng-deep.mat-tab-label, ::ng-deep.mat-tab-label-active{
+    min-width: 100px!important;
+}

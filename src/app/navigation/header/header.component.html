@@ -1,0 +1,9 @@
+<mat-toolbar color="primary" >
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon *ngIf="!sidenavOpened">menu</mat-icon>
+      <mat-icon *ngIf="sidenavOpened">close</mat-icon>
+      <!-- *ngIf="sidenav.mode=='side'" *ngIf="toggleService.mode()=='side'"   (click)='toggle()' -->
+      <!-- *ngIf="!sidenav.opened" -->
+    </button>
+    Page Builder
+  </mat-toolbar>

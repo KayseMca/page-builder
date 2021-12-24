@@ -7,9 +7,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
+
 import { MaterialModuleModule } from './shared/models/material-module.module';
-import { SidenavComponent } from './sidebar/sidenav.component';
+
 import { PagePropertiesComponent } from './shared/components/page-properties.component';
+import { PagePropertyServiceService } from './shared/service/page-property-service.service';
+import { MainModuleModule } from './main/main-module.module';
+import { SidebarComponent } from './navigation/sidebar/sidebar.component';
+import { HeaderComponent } from './navigation/header/header.component';
+
 
 
 
@@ -17,17 +23,21 @@ import { PagePropertiesComponent } from './shared/components/page-properties.com
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavComponent,
+
     PagePropertiesComponent,
+    SidebarComponent,
+    HeaderComponent,
+    
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModuleModule
+    MaterialModuleModule,
+    MainModuleModule
   ],
-  providers: [],
+  providers: [PagePropertyServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
