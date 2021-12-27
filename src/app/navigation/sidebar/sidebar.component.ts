@@ -1,5 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, EventEmitter, HostListener, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { PagePropertyServiceService } from 'src/app/shared/service/page-property-service.service';
 import { PageData } from 'src/app/_interfaces/_page';
 
@@ -8,14 +9,14 @@ import { PageData } from 'src/app/_interfaces/_page';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
   previousIndex!:number
   openDropdown:Boolean = false
   settingType!: string[]
   allPagesData!:PageData[]
 
   pageSelected!:PageData
-
+  allSubscripitons!:Subscription
   choosedTab:Boolean =false
   openComponentTabs:Boolean = false
 
@@ -38,16 +39,18 @@ export class SidebarComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private pageProperties:PagePropertyServiceService
     ) { 
-      this.pageProperties.getAllPageData().subscribe((res:PageData[])=>{
+      this.allSubscripitons.add(this.pageProperties.getAllPageData().subscribe((res:PageData[])=>{
         this.allPagesData = res
         console.log(this.allPagesData)
         })
+      )
     }
 
   ngOnInit(): void {
-    this.pageProperties.createdPage.subscribe(res=>{
+    this.allSubscripitons.add(this.pageProperties.createdPage.subscribe(res=>{
       console.log(res)
     })
+    )
   }
 
 
@@ -75,19 +78,27 @@ export class SidebarComponent implements OnInit {
     // emit the page choosed
     this.choosedTab = true
    
-    this.pageProperties.singlePAgeChoose(this.pageSelected, setting).subscribe(res=>{
+    this.allSubscripitons.add(this.pageProperties.singlePAgeChoose(this.pageSelected, setting).subscribe(res=>{
       console.log(res)
     })
+    )
   
     // set dropdown true or false when it clicked
     this.openDropdown = !this.openDropdown
 
     //for tab components set true when it choosed one
     this.openComponentTabs = true
-    this.pageProperties.closeComponentsTab(this.openComponentTabs).subscribe(res=>{
+    this.allSubscripitons.add(this.pageProperties.closeComponentsTab(this.openComponentTabs).subscribe(res=>{
       this.openComponentTabs = res
     })
+    )
     
   }
 
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.allSubscripitons.unsubscribe()
+    
+  }
 }
