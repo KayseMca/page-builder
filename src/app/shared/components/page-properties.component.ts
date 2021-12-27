@@ -26,7 +26,7 @@ export class PagePropertiesComponent implements OnInit {
 
   
   ngOnInit(): void {
-    this.pageService.createdPage.pipe(take(1)).subscribe(res=>{
+    this.pageService.createdPage.subscribe(res=>{
       this.selectedPageData = res
       // console.log(res)
        this.allTabs = Object.keys(this.selectedPageData.page['page_settings'])
