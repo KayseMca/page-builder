@@ -17,7 +17,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   pageSelected!:PageData
   allSubscripitons!:Subscription
-  choosedTab:Boolean =false
   openComponentTabs:Boolean = false
 
   @HostListener('window:mousedown', ['$event'])
@@ -76,7 +75,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   settings(setting:number){
 
     // emit the page choosed
-    this.choosedTab = true
+  
    
     this.pageProperties.singlePAgeChoose(this.pageSelected, setting).pipe(take(1)).subscribe(res=>{
       console.log(res)
