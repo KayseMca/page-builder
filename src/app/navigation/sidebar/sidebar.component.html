@@ -1,5 +1,5 @@
 <mat-nav-list>
-    <div   class="pages" *ngFor="let page of pageData; let i = index">
+    <div   class="pages" *ngFor="let page of allPagesData; let i = index">
         <!-- class="pages" *ngFor="let page of pageData; let i = index" -->
         <a mat-list-item href="#" style="color: white;">
           <h3>
@@ -9,8 +9,8 @@
         <div class="dropdown" style="z-index: 1">
             <i class="fa fa-ellipsis-h "(click)='showData(i)'></i>
           
-          <div [ngClass]="openDropdown == true ? 'dropdown-content-active' : 'dropdown-content-none'">
-          <button mat-button *ngFor="let setting of settingType" (click)='settings(setting)' >{{setting}}</button>
+          <div *ngIf="openDropdown" class="dropdown-content-active">
+          <button mat-button *ngFor="let setting of settingType; let tabIndex = index " (click)='settings(tabIndex)' >{{setting}}</button>
           </div>
         </div>
       </div>
@@ -18,9 +18,9 @@
       <!-- Settings compponents -->
       <div >
         <!-- class="page-info" -->
-        <!-- <i class="fa fa-ellipsis-h "  ></i> -->
-        <div [class]="openTabs == true ? 'page-info-active' : 'page-info-none'" >
-          <app-page-properties ></app-page-properties>
+        <!-- <i class="fa fa-ellipsis-h "  class]="openTabs == true ? 'page-info-active' : 'page-info-none'"></i> -->
+        <div class="page-info-active" *ngIf="choosedTab" >
+          <app-page-properties  ></app-page-properties>
         </div>
       </div>
 
