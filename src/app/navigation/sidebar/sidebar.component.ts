@@ -1,7 +1,8 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, EventEmitter, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, take } from 'rxjs';
-import { PagePropertyServiceService } from 'src/app/shared/service/page-property-service.service';
+import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service';
+import { PageDataService } from 'src/app/shared/services/page-data-service/page-data.service';
 import { PageData } from 'src/app/_interfaces/_page';
 
 @Component({
@@ -12,7 +13,7 @@ import { PageData } from 'src/app/_interfaces/_page';
 export class SidebarComponent implements OnInit, OnDestroy {
   previousIndex!:number
   openDropdown:Boolean = false
-  settingType!: string[]
+  settingType!: any
   allPagesData!:PageData[]
 
   pageSelected!:PageData
@@ -36,18 +37,19 @@ export class SidebarComponent implements OnInit, OnDestroy {
   // constructor
   constructor(private observer:BreakpointObserver,
     private cdr: ChangeDetectorRef,
-    private pageProperties:PagePropertyServiceService
+    private pageProperties:PagePropertyServiceService,
+    private pageData:PageDataService
     ) { 
-      this.pageProperties.getAllPageData().pipe(take(1)).subscribe((res:PageData[])=>{
+      this.pageData.allPagesData.pipe(take(1)).subscribe((res:PageData[])=>{
         this.allPagesData = res
-        console.log(this.allPagesData)
+        console.log('reading data')
         })
       
     }
 
   ngOnInit(): void {
     this.pageProperties.createdPage.pipe(take(1)).subscribe(res=>{
-      console.log(res)
+      console.log('reding data createdpage')
     })
     
   }
@@ -55,13 +57,22 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
 
   showData(index:number){
+    this.openComponentTabs = false
+    this.pageProperties.closeComponentsTab(this.openComponentTabs).pipe(take(1)).subscribe(res=>{
+      this.openComponentTabs = res
+      
+  })
+
     console.log(index, this.previousIndex)
     if(index!==this.previousIndex){
       this.previousIndex = index
       this.openDropdown =true
       this.pageSelected = this.allPagesData[index]
+      // this.pageProperties.createdPage.next({page:this.pageSelected,tab:setting})
+      //settings
+      this.settingType = this.allPagesData[index].settings
     // console.log(this.pageIndex)
-    this.settingType = Object.keys(this.pageSelected['page_settings'])
+    // this.settingType = Object.keys(this.pageSelected['page_settings'])
 
     }
     else{
@@ -72,25 +83,34 @@ export class SidebarComponent implements OnInit, OnDestroy {
     
   }
 
-  settings(setting:number){
+  settings(setting:string){
 
     // emit the page choosed
-  
+    console.log(this.openComponentTabs)
+    this.openComponentTabs = true
+    console.log(this.openComponentTabs)
    
-    this.pageProperties.singlePAgeChoose(this.pageSelected, setting).pipe(take(1)).subscribe(res=>{
-      console.log(res)
-    })
-    
+    let editableSettings = ['SEO Basics','Social Share','Settings']
+
+    // not need to open tab components if these settings not choose
+    if(editableSettings.includes(setting)){
+      //for tab components set true when it choosed one
+      this.openComponentTabs = true
+      this.pageProperties.createdPage.next({page:this.pageSelected,tab:setting})
+      // this.pageProperties.singlePageChoose(this.pageSelected, setting)
+    }else{
+      this.openComponentTabs = false
+    }
+
+    this.pageProperties.closeComponentsTab(this.openComponentTabs).pipe(take(1)).subscribe(res=>{
+      this.openComponentTabs = res
+  })
   
     // set dropdown true or false when it clicked
     this.openDropdown = !this.openDropdown
 
-    //for tab components set true when it choosed one
-    this.openComponentTabs = true
-    this.pageProperties.closeComponentsTab(this.openComponentTabs).pipe(take(1)).subscribe(res=>{
-      this.openComponentTabs = res
-    })
     
+    //TODO use redirect for choosed tab page
     
   }
 

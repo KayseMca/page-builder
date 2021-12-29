@@ -1,0 +1,40 @@
+
+.page-info{
+    margin-top: 16px;
+    padding: 4px;
+}
+
+.set-home-page{
+    display: flex;
+    justify-content: space-between;
+    margin: 15px;
+    padding-top:15px ;
+    height: 46px;
+}
+
+.set-home-page .txt{
+    padding:5px ;
+}
+
+.home-page{
+    margin-top: 12px;
+    display: flex;
+    justify-content: flex-start;
+    
+
+}
+.home-page .fa{
+    margin: 3px;
+}
+
+.btn{
+    line-height: 1;
+}
+
+p{
+    size: 17px;
+}
+
+.form-control{
+    padding:6px
+}

@@ -1,6 +1,17 @@
 export let data = [
     {
+        "id" :1,
         "name": "Home",
+        "home_page":true,
+        "settings":[
+            'Settings',
+            'SEO Basics',
+            'Social Share',
+            'Rename',
+            'Dublicate',
+            'Edit Page',
+            'Delete'
+        ],
         "page_settings": {
             "page_info": {
                 "page_name": "Homepage",
@@ -14,11 +25,25 @@ export let data = [
             },
             "seo_basics": {
                 "data":"Basic Seo"
+            },
+            "social_share": {
+                "data":"Social Share"
             }
         }
     },
     {
+        "id":15,
         "name": "Page 2",
+        "home_page":false,
+        "settings":[
+            'Settings',
+            'SEO Basics',
+            'Social Share',
+            'Rename',
+            'Dublicate',
+            'Edit Page',
+            'Delete'
+        ],
         "page_settings": {
             "page_info": {
                 "page_name": "Page 2",
@@ -32,6 +57,9 @@ export let data = [
             },
             "seo_basics": {
                 "data":"Basic Seo"
+            },
+            "social_share": {
+                "data":"Social Share"
             }
         }
     }

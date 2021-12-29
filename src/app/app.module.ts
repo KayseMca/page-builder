@@ -10,11 +10,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModuleModule } from './shared/models/material-module.module';
 
-import { PagePropertiesComponent } from './shared/components/page-properties.component';
-import { PagePropertyServiceService } from './shared/service/page-property-service.service';
+
+import { PagePropertyServiceService } from './shared/services/page-property/page-property-service.service';
+import { PageDataService } from './shared/services/page-data-service/page-data.service';
 import { MainModuleModule } from './main/main-module.module';
 import { SidebarComponent } from './navigation/sidebar/sidebar.component';
 import { HeaderComponent } from './navigation/header/header.component';
+import { PagePropertiesModule } from './shared/components/page-properties.module';
+
+
+
 
 
 
@@ -24,20 +29,20 @@ import { HeaderComponent } from './navigation/header/header.component';
   declarations: [
     AppComponent,
 
-    PagePropertiesComponent,
     SidebarComponent,
     HeaderComponent,
-    
-    
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModuleModule,
-    MainModuleModule
+    MainModuleModule,
+    PagePropertiesModule
+    
   ],
-  providers: [PagePropertyServiceService],
+  providers: [PagePropertyServiceService,PageDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,60 @@
+mat-button-toggle-group {
+    box-shadow: none;
+    
+    border:0;
+    display: flex;
+    justify-content:space-evenly;
+
+    flex-basis: 0;
+    flex: 1 1 0;
+  }
+
+ 
+  .form-control{
+    padding:6px
+}
+.button-toggles{
+    margin: 24px;
+}
+
+.members{
+    margin: 10px 4px 20px 10px;
+}
+
+.set-password{
+    margin: 10px 4px 20px 10px;
+}
+  mat-button-toggle {
+      border: 1px rgba(0,0,0,0) solid !important;
+      margin: 5px !important;
+      padding: 0 5px !important;
+      z-index: 3 !important;
+      width: 140px;
+      
+      align-items:center;
+  }
+  
+  mat-button-toggle:hover {
+      border: 1px #000 solid !important;
+      background-color: #FFF !important;
+      border-radius: 5px !important;
+  }
+  
+  .mat-button-toggle-checked {
+        /* box-shadow: 0 0 30px #000 !important; */
+      border: 1px #000 solid rgb(10, 14, 243) !important;
+      border-radius: 5px !important;
+
+  }
+
+
+  .example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+  }
+  
+  .example-radio-button {
+    margin: 5px 0 5px 10px;
+  }
+  

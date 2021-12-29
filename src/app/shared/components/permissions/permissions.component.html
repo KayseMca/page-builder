@@ -1,0 +1,71 @@
+
+<div class="button-toggles">
+    <p style="margin-left: 4px;">Who can view this page?</p>
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [formControl]="permissions_view_type">
+        <mat-button-toggle value="everyone">Everyone</mat-button-toggle>
+        <mat-button-toggle value="password">Password Holders</mat-button-toggle>
+        <mat-button-toggle value="Members Only">Members Only</mat-button-toggle>
+      </mat-button-toggle-group>
+</div>
+  <mat-divider></mat-divider>
+
+  <p *ngIf="value=='everyone'" style="margin: 10px 0 17px 5px;">
+    Everyone can access this page!
+  </p>
+
+
+  <!-- for password set -->
+  <div class="set-password" *ngIf="value=='password'">
+    <form>
+
+        <div class="form-group">
+            <p 
+            id="emailHelp" 
+            class="form-text text-muted">
+            What's page's password?
+        </p>
+    
+          <input 
+          type="text" 
+          class="form-control shadow-none" 
+          id="siteName" 
+          [formControl]="permissions_set_password"
+          aria-describedby="emailHelp" 
+         >
+          
+        </div>
+    
+      </form>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div *ngIf="value=='Members Only'">
+    <!-- <fieldset [formControl] = "permissions_members_selected" >
+      <p>Which members can access this pages</p>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+        <label class="form-check-label" for="flexRadioDefault1">
+          All Members
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+        <label class="form-check-label" for="flexRadioDefault2">
+            Only selected members or paying
+        </label>
+      </div>
+    </fieldset> -->
+
+    <mat-radio-group aria-label="Select an option" class="example-radio-group"    [formControl] = "permissions_members_selected">
+      <mat-radio-button class="example-radio-button" value="All Members">
+        All Members
+      </mat-radio-button>
+
+      <mat-radio-button class="example-radio-button" value="selected_members">
+         Only selected members or paying
+      </mat-radio-button>
+    </mat-radio-group>
+      
+  </div>
+  

@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
-import { Subject, Subscription, take } from 'rxjs';
-import { PageData, PageSettings } from 'src/app/_interfaces/_page';
-import { PagePropertyServiceService } from '../service/page-property-service.service';
+import { startWith, Subject, Subscription, take } from 'rxjs';
+import { PageData } from 'src/app/_interfaces/_page';
+
+import { PagePropertyServiceService } from '../services/page-property/page-property-service.service';
 
 @Component({
   selector: 'app-page-properties',
@@ -13,10 +14,13 @@ export class PagePropertiesComponent implements OnInit {
 
   closeTab!:Boolean
   pageTabOpen!:{}
-  selectedPageData!:{page:any,tab:number}
+  selectedPageData!:{page:any,tab:string}
 
-  allTabs!:string[]
+  // @Input() pageSelected!:PageData
+  homepage:Boolean = false
+  // allTabs!:string[]
   selectedIndex:number=0
+  allTabs = ['Page Info','SEO Basics','Permissions','Social Share']
 
 
   constructor(private pageService:PagePropertyServiceService) {
@@ -24,16 +28,36 @@ export class PagePropertiesComponent implements OnInit {
    }
 
 
+   ngOnChanges(changes: SimpleChanges): void {
+     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+     //Add '${implements OnChanges}' to the class.
+     if(changes['pageSelected'].currentValue){
+       console.log(changes)
+     }
+   }
   
   ngOnInit(): void {
+    console.log('page property')
+
     this.pageService.createdPage.subscribe(res=>{
       this.selectedPageData = res
-      // console.log(res)
-       this.allTabs = Object.keys(this.selectedPageData.page['page_settings'])
-       this.selectedIndex = this.selectedPageData.tab
+      console.log(this.selectedPageData)
+      this.homepage = this.selectedPageData.page['home_page']
+      // set dynamically tab selected
+      if(this.selectedPageData.tab==='Settings') {
+        this.selectedIndex=0
+      }else{
+        for (let index = 0; index < this.allTabs.length; index++) {
+          if(this.allTabs[index]===this.selectedPageData.tab){
+            this.selectedIndex = index
+            break
+          }
+        }
+
+      }
+      //  this.selectedIndex = this.selectedPageDatka.tab
        
     })
-    
     
   }
 
@@ -47,7 +71,7 @@ export class PagePropertiesComponent implements OnInit {
 
   closeTabs(){
     this.closeTab = false
-    this.pageService.closeComponentsTab(this.closeTab).subscribe(res=>console.log(res))
+    this.pageService.closeComponentsTab(this.closeTab).pipe(take(1)).subscribe(res=>console.log(res))
     
   }
 

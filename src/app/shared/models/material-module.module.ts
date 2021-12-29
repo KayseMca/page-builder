@@ -6,6 +6,12 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatListModule } from '@angular/material/list';
+import {MatInputModule} from '@angular/material/input';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 
 
@@ -17,7 +23,13 @@ const materialModuels = [
   MatToolbarModule,
   MatIconModule,
   MatTabsModule,
-  MatListModule
+  MatListModule,
+  MatInputModule,
+  MatDividerModule,
+  MatButtonToggleModule,
+  FormsModule,
+  ReactiveFormsModule,
+  MatRadioModule
 ]
 
 @NgModule({

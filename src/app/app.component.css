@@ -24,11 +24,11 @@ mat-toolbar{
 }
 mat-sidenav{
     margin: 18px 8px 8px 8px;
-    width: 180px ;
+    width: 230px ;
     border-right: none;
     /* background:rgba(0,0,0,0.2); */
-    background: #385d91;
-    color:white;
+    background: #fafafa;
+    color:rgb(44, 10, 240);
     border-radius: 10px;
     padding: 12px;
     z-index: 2;

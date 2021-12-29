@@ -1,0 +1,37 @@
+
+<div class="page-info" *ngIf="selectedPageData?.page">
+    <form>
+
+        <div class="form-group">
+            <small 
+            id="emailHelp" 
+            class="form-text text-muted">
+            what's this page's name?(To change the page)
+        </small>
+
+          <input 
+          type="text" 
+          class="form-control shadow-none" 
+          id="siteName" 
+          [formControl]="page_info"
+          aria-describedby="emailHelp" 
+         >
+          
+        </div>
+
+      </form>
+      <div class="set-home-page" *ngIf="!newPageData.home_page" >
+        <!-- <i class="fa fa-home"></i>
+        <p>This is Your HomePage</p> -->
+        <p class="txt">Make this Home Page</p>
+        <button class="btn btn-primary" (click)='setHomePage()'>
+            <i class="fa fa-home"></i>
+            Set
+        </button>
+    </div>
+    <div class="home-page" *ngIf="newPageData.home_page" >
+        <p> <i class="fa fa-home"></i> This is Your HomePage</p>
+    
+    </div>
+</div>
+  

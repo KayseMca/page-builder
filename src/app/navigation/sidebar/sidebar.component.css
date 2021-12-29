@@ -2,6 +2,17 @@
 .pages{
     display: flex;
     justify-content: space-between;
+    flex-grow: 1;
+    margin-top:7px;
+    padding: 5px;
+}
+
+
+
+.form-control{
+  margin: 4px 0 3px 4px;
+  line-height: 1;
+  width: 200px;
 }
 
 .dropdown {
@@ -34,10 +45,14 @@
 
   
   .fa{
-    display: none;
-    padding-top:13px;
+    /* display: none; */
+    padding-top:8px;
+    margin-right: 8px;
 }
-  .pages:hover .fa {
+.fa-ellipsis-h{
+  display: none;
+}
+  .pages:hover .fa-ellipsis-h {
     display: inline;
 }
 
