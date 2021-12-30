@@ -4,15 +4,7 @@
     /* padding-left: 8px; */
     /* position: relative; */
 }
-mat-toolbar{
-    /* background:rgba(0,0,0,0.2); */
-    color: white;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    /* margin:  10px; */
-    
-}
+
 
 .fa{
     display: none;
@@ -41,8 +33,9 @@ mat-sidenav{
 .content{
 
     /* height: calc(100vh-98px); */
-    margin:8px 8px 8px 32px;
+    margin:86px 8px 8px 32px;
     border-radius: 10px;
+    
 
 }
 

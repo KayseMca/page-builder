@@ -17,6 +17,7 @@ import { MainModuleModule } from './main/main-module.module';
 import { SidebarComponent } from './navigation/sidebar/sidebar.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { PagePropertiesModule } from './shared/components/page-properties.module';
+import { SearchPagePipe } from './shared/pipe/seach-page.pipe';
 
 
 
@@ -31,6 +32,7 @@ import { PagePropertiesModule } from './shared/components/page-properties.module
 
     SidebarComponent,
     HeaderComponent,
+    SearchPagePipe,
 
   ],
   imports: [
