@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  FormControl} from '@angular/forms';
+import { debounce, debounceTime } from 'rxjs';
 import { PageData, PageSettings, Permisions } from 'src/app/_interfaces/_page';
 import { PageDataService } from '../../services/page-data-service/page-data.service';
 import { PagePropertyServiceService } from '../../services/page-property/page-property-service.service';
@@ -35,26 +36,35 @@ export class PermissionsComponent implements OnInit {
     this.permissions_members_selected= new FormControl('')
    }
 
+   /**
+    * @retunr
+    */
+
   ngOnInit(): void {
     console.log(this.permissions_view_type.value)
     this.saveTypeData()
     this.saveMembers()
     this.savePassword()
 
-
-
-    // type?:string,
-    // password?:string,
-    // members_type?:string,
-    // selected_members?:Array<string>
     
   }
 
+
+  /**
+    * @return permision view form data
+    */
   get value(){
     this.permission_data.type = this.permissions_view_type.value
     return this.permissions_view_type.value
   }
 
+
+
+  /**
+   * * checking every time form status changed and passing data to saving fucntion
+    * @return permision view form data
+    */
+  
   saveTypeData(){
   
       this.permissions_view_type.statusChanges.subscribe(res=>{
@@ -92,20 +102,28 @@ export class PermissionsComponent implements OnInit {
     }
 
 
+    /**
+     * listening set password form event then passing the data to savAllData after every 2000 second
+     */
     savePassword(){
-      this.permissions_set_password.statusChanges.subscribe(res=>{
+      this.permissions_set_password.statusChanges.pipe(
+        debounceTime(200)
+      ).subscribe(res=>{
         if(res==='VALID'){
           let data = this.permissions_set_password.value
           if(!(data==='') )
-          console.log(this.permission_data)
           this.permission_data.password = data
-          console.log(this.permission_data)
+          this.saveAllData()
         }
       })
     }
-    saveAllData(){
+
+
+    /**
+     * 
+     */
+    saveAllData(): void{
       
-      console.log(this.permission_data)
       this.savingData.page_settings = {permissions:this.permission_data}
       // this.savingData['page_settings']['permissions'] = {...this.permission_data }
       this.pageDataService.updatePageData(this.savingData)

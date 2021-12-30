@@ -16,7 +16,8 @@ interface Settings{
     rename?:string
 }
 interface SEO{
-    data?:string
+    page_title?:string
+    meta_description?:string
 }
 
 interface socialShare{

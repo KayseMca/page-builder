@@ -24,7 +24,8 @@ export let data = [
                 "selected_members": ["cigognini.matteo@gmail.com","andre.scaglia@hotmail.it"]
             },
             "seo_basics": {
-                "data":"Basic Seo"
+                "page_title":"string",
+                "meta_description":"string"
             },
             "social_share": {
                 "data":"Social Share"
@@ -56,7 +57,8 @@ export let data = [
                 "selected_members": ["cigognini.matteo@gmail.com","andre.scaglia@hotmail.it"]
             },
             "seo_basics": {
-                "data":"Basic Seo"
+                "page_title":"string",
+                "meta_description":"string"
             },
             "social_share": {
                 "data":"Social Share"

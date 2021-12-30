@@ -1,8 +1,5 @@
 <h3 *ngFor="let item of data">
-    {{item.name}}
-    {{item.home_page}}
-    {{item.page_settings.permissions?.type}}
-    {{item.page_settings.permissions?.selected_members}}
+    <pre>{{item | json}}</pre>
 
 </h3>
 
