@@ -12,6 +12,12 @@ export class AdvancedSeoComponent implements OnInit {
   panelOpenState:Boolean = false
   constructor() { }
 
+  tagsSearch:any = [
+    {name:'Canonical', value:'https://www.mywebsite.com'},
+    {name:'og:site_name', value:'mywebsite'},
+    {name:'og:type', value:'website'},
+    {name:'og:url', value:'https://www.mywebsite.com'}
+  ]
   ngOnInit(): void {
   }
 

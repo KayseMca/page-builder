@@ -29,12 +29,8 @@ export class PageDataService {
 
   updatePageData(data: PageData) {
 
-
     let oldData: any[] = this.dataSource.value
     let id;
-    console.log(data)
-    console.log("update datasource")
-    console.log(this.dataSource)
 
     oldData.forEach((item: PageData) => {
       id = item.id === data.id ? true : false
@@ -47,12 +43,18 @@ export class PageDataService {
           console.log(item)
         }
       }else{
+
+        // spreading object data to sourceData
+        // and checking which page data modifying
         if(id){
-          item.page_settings.permissions = data.page_settings.permissions
+          item.page_settings.permissions = {...item.page_settings.permissions ,...data.page_settings.permissions}
+          item.page_settings.seo_basics = {...item.page_settings.seo_basics ,...data.page_settings.seo_basics}
+          item.page_settings.social_share = {...item.page_settings.social_share,...data.page_settings.social_share}
+          item.page_settings.additional_seo = {...item.page_settings.additional_seo,...data.page_settings.additional_seo}
         }
       }
-
-
     })
+
+    // this.dataSource.next(oldData)
   }
 }

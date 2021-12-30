@@ -26,15 +26,23 @@
 
     <form class="title">
         <div >
-            <label for="title" style="padding: 4px;">What is your page's title tag(title in search)?</label>
-            <input type="text" class="form-control shadow-none" name="title" id="title" placeholder="New Page | mysite">
+            <label for="title" style="padding: 4px;">What is your page's og:title tag(title on Social media)?</label>
+            <input 
+            type="text" 
+            class="form-control shadow-none" 
+            name="title" id="title" 
+            [formControl]='social_page_title'
+            placeholder="New Page | mysite"
+            >
         </div>
 
         <div >
-            <label for="" style="padding: 4px;">What is the page's met descriptions?</label>
+            <label for="" style="padding: 4px;">What is the page's meta og:descriptions(Description on Social media)?</label>
            
             <textarea  
-            class="form-control shadow-none" name="title"
+            class="form-control shadow-none" 
+            name="title"
+            [formControl]='social_meta_description'
             placeholder="what makes this page unique? describe your business and the content of this page"
             ></textarea>
         </div>

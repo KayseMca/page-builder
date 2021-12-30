@@ -17,7 +17,12 @@
     <form class="title">
         <div >
             <label for="title" style="padding: 4px;">What is your page's title tag(title in search)?</label>
-            <input type="text" class="form-control shadow-none" name="title" id="title" placeholder="New Page | mysite">
+            <input 
+            type="text" 
+            class="form-control shadow-none" 
+            name="title" id="title" 
+            [formControl]='seo_page_title'
+            placeholder="New Page | mysite">
         </div>
 
         <div >
@@ -25,6 +30,7 @@
            
             <textarea  
             class="form-control shadow-none" name="title"
+            [formControl] = 'seo_meta_description'
             placeholder="what makes this page unique? describe your business and the content of this page"
             ></textarea>
         </div>

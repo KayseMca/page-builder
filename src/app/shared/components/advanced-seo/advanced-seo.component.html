@@ -36,17 +36,23 @@
         <p>
           These tags give search engines important info about your site pages.
         </p>
-        <section class="example-section">
-          <div class="meta-data">
+        <section class="example-section" *ngFor="let tags of tagsSearch">
+          <div class="meta-data" >
             <div class="additional">
-              <p class="meta item" style="color: honeydew;">Clonical</p>
-              <p class="url">https://mywebsite.com</p>
+              <p class="meta item" style="color: rgb(197, 228, 230);">{{tags.name}}</p>
+              <p class="url">{{tags.value}}</p>
               <p>
                   <i class="fa fa-ellipsis-h item"></i>
               </p>
             </div>
           </div>
         </section>
+        <section class="example-section">
+            
+            <button mat-button>
+                Add new Tag
+            </button>
+          </section>
       </ng-container>
     </mat-expansion-panel>
   </mat-accordion>

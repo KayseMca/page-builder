@@ -1,9 +1,9 @@
 
 export class Permisions{
-    type!:string
-    password!:string
-    members_type!:string
-    selected_members!:Array<string>
+    type?:string
+    password?:string
+    members_type?:string
+    selected_members?:Array<string>
 }
 
 interface Settings{
@@ -15,24 +15,30 @@ interface Settings{
     delete?:string,
     rename?:string
 }
-interface SEO{
+export class SEO{
     page_title?:string
     meta_description?:string
 }
-
-interface socialShare{
+export class AdditionalSEO{
     data?:string
+}
+
+export class SocialShare{
+    og_title?:string
+    og_description?:string
 }
 
 
 interface PageInfo{
     page_name?: string
 }
+
 export class PageSettings{
     page_info?:PageInfo
     seo_basics?:SEO
     permissions?:Permisions
-    social_share?:socialShare
+    social_share?:SocialShare
+    additional_seo?:AdditionalSEO
 }
 
 export class PageData{
