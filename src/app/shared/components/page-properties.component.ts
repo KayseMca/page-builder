@@ -20,7 +20,7 @@ export class PagePropertiesComponent implements OnInit {
   homepage:Boolean = false
   // allTabs!:string[]
   selectedIndex:number=0
-  allTabs = ['Page Info','SEO Basics','Permissions','Social Share']
+  allTabs = ['Page Info','SEO Basics','Permissions','Social Share', 'Advanced SEO']
 
 
   constructor(private pageService:PagePropertyServiceService) {

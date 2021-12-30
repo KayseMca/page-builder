@@ -6,7 +6,7 @@
     border: 1px solid rgba(35, 35, 39, 0.2);
     padding: 3px ;
 }
-.preview h4{
+.card-body h4{
     margin: 3px 0 0 3px;
     color: rgb(45, 47, 223);
     padding:2px;
@@ -22,4 +22,14 @@
     margin: 0;
     padding:5px ;
 }
+.homepage h3{
+    font-size: 16px;
+    font-weight: 600;
+}
 
+
+
+
+input[text='file']{
+    padding:40px ;
+}

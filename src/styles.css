@@ -3,6 +3,5 @@
 @import "~bootstrap/dist/css/bootstrap.css"; 
 @import "~font-awesome/css/font-awesome.css"; 
 
-
-html, body { height: 100%; position: relative; }
+html, body { height: 100%; position: relative; overflow:auto;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

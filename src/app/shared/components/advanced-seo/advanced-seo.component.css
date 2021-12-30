@@ -1,0 +1,59 @@
+
+.expand-panel{
+    margin-top: 15px;
+    padding: 5px;
+}
+
+.mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+
+  .mat-expansion-panel{
+      margin: 5px;
+  }
+
+  .example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 45px;
+    cursor: pointer;
+    
+  }
+  
+  .example-margin {
+    margin: 0 10px;
+
+  }
+
+  .additional{
+    margin-top: 7px;
+    display: flex;
+    background: rgba(137, 149, 160,0.4);
+    padding:9px 30px 4px 20px;
+    border-radius: 5px;
+    justify-content: space-between;
+    gap: 10px;
+    flex: 1 1 0px
+  }
+
+  .meta-data{
+
+      width: 100%;
+  }
+
+  .url{
+      flex-grow: 2;
+  }
+  .item{
+      flex-grow: 1;
+  }
+
+  .fa{
+      display: none;
+      padding-top: 5px;
+  }
+  .additional:hover .fa{
+      display: block;
+  }
+  

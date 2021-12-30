@@ -1,0 +1,53 @@
+<div class="expand-panel">
+  <mat-accordion>
+    <!-- robots meta tags -->
+    <mat-expansion-panel
+      *ngFor="let pageTag of pageTags"
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ pageTag }}
+        </mat-panel-title>
+        <mat-panel-description>
+          <!-- Currently I am {{ panelOpenState ? "open" : "closed" }} -->
+          <!-- <i class="fa fa-digital-tachograph"></i> -->
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <!-- Content -->
+
+      <ng-container class="content" *ngIf="pageTag === 'Robots Meta Tags'">
+        <p>
+          Select the relevant instuctions, so bots know what info to display
+          after crawling this page.
+        </p>
+        <section
+          class="example-section"
+          *ngFor="let item of robotsMetaDataList"
+        >
+          <mat-checkbox class="example-margin">{{ item }}</mat-checkbox>
+        </section>
+      </ng-container>
+
+      <!-- additional tags -->
+      <ng-container class="content" *ngIf="pageTag === 'Additional Tags'">
+        <p>
+          These tags give search engines important info about your site pages.
+        </p>
+        <section class="example-section">
+          <div class="meta-data">
+            <div class="additional">
+              <p class="meta item" style="color: honeydew;">Clonical</p>
+              <p class="url">https://mywebsite.com</p>
+              <p>
+                  <i class="fa fa-ellipsis-h item"></i>
+              </p>
+            </div>
+          </div>
+        </section>
+      </ng-container>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

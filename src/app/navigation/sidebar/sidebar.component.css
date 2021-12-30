@@ -5,6 +5,7 @@
     flex-grow: 1;
     margin-top:7px;
     padding: 5px;
+    
 }
 
 
@@ -61,7 +62,7 @@
 .page-info{
   position: relative;
   display: block;
-
+  
 }
 
 .page-info-active {
@@ -74,6 +75,9 @@
   padding: 12px 16px;
   left: 265px;
   top: 10px;
+  bottom: 1px;
+  overflow: scroll;
+
 
   color: black;
 

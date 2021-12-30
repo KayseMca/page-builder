@@ -13,11 +13,14 @@
         <div *ngIf="tabname==='Page Info'">
           <app-page-info  ></app-page-info>
         </div>
-        <div *ngIf="tabname==='Social Share'">
-          <app-seo-basics></app-seo-basics>
-        </div>
         <div *ngIf="tabname==='Permissions'">
           <app-permissions></app-permissions>
+        </div>
+        <div *ngIf="tabname==='Social Share'">
+          <app-social-share> </app-social-share>
+        </div>
+        <div *ngIf="tabname==='Advanced SEO'">
+          <app-advanced-seo> </app-advanced-seo>
         </div>
       </mat-tab>
     </mat-tab-group>
