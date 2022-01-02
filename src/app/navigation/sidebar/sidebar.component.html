@@ -4,10 +4,11 @@
 
     <div class="form-group">
       <input 
-      #search
+      [(ngModel)]="search"
       type="text" 
       class="form-control shadow-none" 
       id="siteName" 
+      name='search'
       aria-describedby="siteSearch" 
       placeholder="search all pages"
      >
@@ -18,20 +19,24 @@
 
 
     
-  <div *ngFor="let page of allPagesData; let i = index">
+  <div *ngFor="let page of allPagesData| searchPage:search; let i = index" >
         <!-- class="pages" *ngFor="let page of pageData; let i = index" -->
         <a class="pages"  href="#" style="color: rgb(3, 0, 0);">
           <h3 class="item">
             {{page.name}}
+            
           </h3>
           <span>
             <i *ngIf="page.home_page" class="fa fa-home"></i>
             <i class="fa fa-ellipsis-h"(click)='showData(i)'></i>
           </span>
         </a>
-        <div class="dropdown" style="z-index: 1">
+        <div class="dropdown" style="z-index: 99">
           <div *ngIf="openDropdown" class="dropdown-content-active">
-          <button mat-button *ngFor="let setting of settingType; let tabIndex = index " (click)='settings(setting)' >{{setting}}</button>
+          <button mat-button *ngFor="let setting of settingType;let even=even; let tabIndex = index " (click)='settings(setting)' >
+            {{setting}}
+            <hr *ngIf="even ">
+          </button>
           </div>
         </div>
       </div>

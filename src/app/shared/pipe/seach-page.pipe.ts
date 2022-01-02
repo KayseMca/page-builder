@@ -7,11 +7,12 @@ import { PageData } from 'src/app/_interfaces/_page';
 export class SearchPagePipe implements PipeTransform {
 
   
-  transform(pagesData: PageData[], page:string): unknown {
-    page = page ? page.toLocaleLowerCase():''
-    return page ? pagesData.filter(data=>{
-      data.name.toLocaleLowerCase().includes(page)
-    }): pagesData
+  transform(pagesData: PageData[], page:string) {
+    // return either nor value pagesData or nor pagesData to null
+    if(!pagesData) return null
+    if(!page) return pagesData
+    // return if value exists the pagesdata name
+    return pagesData.filter(data=>data.name.toLocaleLowerCase().includes(page.toLocaleLowerCase()))
   }
 
 }

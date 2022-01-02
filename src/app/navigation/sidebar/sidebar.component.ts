@@ -11,6 +11,7 @@ import { PageData } from 'src/app/_interfaces/_page';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit, OnDestroy {
+
   previousIndex!:number
   openDropdown:Boolean = false
   settingType!: any
@@ -19,6 +20,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
   pageSelected!:PageData
   allSubscripitons!:Subscription
   openComponentTabs:Boolean = false
+
+  // search specific page
+  search:string =''
 
   @HostListener('window:mousedown', ['$event'])
   onMouseUp(event: any) {

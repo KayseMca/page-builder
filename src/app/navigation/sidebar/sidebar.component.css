@@ -17,7 +17,7 @@
 }
 
 .dropdown {
-    position: relative;
+    position: absolute;
     display: block;
     margin-top: 5px;
   }

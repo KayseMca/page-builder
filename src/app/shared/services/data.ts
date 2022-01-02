@@ -10,7 +10,8 @@ export let data = [
             'Rename',
             'Dublicate',
             'Edit Page',
-            'Delete'
+            'Hide',
+            'Delete',
         ],
         "page_settings": {
             "page_info": {
@@ -43,6 +44,7 @@ export let data = [
             'Rename',
             'Dublicate',
             'Edit Page',
+            'Hide',
             'Delete'
         ],
         "page_settings": {

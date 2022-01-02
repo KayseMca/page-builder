@@ -1,8 +1,7 @@
 
 .home{
     margin: 0;
-    /* padding-left: 8px; */
-    /* position: relative; */
+
 }
 
 
@@ -23,9 +22,9 @@ mat-sidenav{
     color:rgb(44, 10, 240);
     border-radius: 10px;
     padding: 12px;
-    z-index: 2;
+    /* z-index: 2; */
     position: fixed;
-    top: 50px;
+    top: 72px;
     bottom: 50px;
 
 }
@@ -33,7 +32,7 @@ mat-sidenav{
 .content{
 
     /* height: calc(100vh-98px); */
-    margin:86px 8px 8px 32px;
+    margin:109px 8px 8px 32px;
     border-radius: 10px;
     
 
@@ -46,7 +45,9 @@ mat-sidenav-container{
     overflow: auto;
 
 }
-
+.mat-drawer-container{
+    position: static;
+  }
 /* 
 .properties{
     inset: auto auto 0px 0px; 
