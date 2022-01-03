@@ -33,5 +33,14 @@
         <p> <i class="fa fa-home"></i> This is Your HomePage</p>
     
     </div>
+
+    <div class="hiding-page">
+        <p>click the right button for hidding this page</p>
+        <label class="switch">
+            <input type="checkbox" value='checked_button' (click)='checkedButton($event)' [checked]='!button_checked'>
+            <span class="slider round"></span>
+          </label>
+    </div>
+    
 </div>
   

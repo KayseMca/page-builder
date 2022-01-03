@@ -3,8 +3,12 @@
 }
 
 .preview{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
     border: 1px solid rgba(35, 35, 39, 0.2);
     padding: 3px ;
+    max-width:400px
 }
 .preview h4{
     margin: 3px 0 0 3px;

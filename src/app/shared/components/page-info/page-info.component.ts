@@ -15,7 +15,7 @@ import { PagePropertyServiceService } from '../../services/page-property/page-pr
 export class PageInfoComponent implements OnInit {
 
   page_info!:FormControl
-
+  button_checked:Boolean = false
 
   newPageData!:PageData
   selectedPageData!:{page:PageData,tab:string}
@@ -26,6 +26,7 @@ export class PageInfoComponent implements OnInit {
     ) { 
       this.selectedPageData =this.pagePropertyService.createdPage.getValue()
       this.newPageData = this.selectedPageData.page
+      this.button_checked = this.newPageData.hide
       
     }
 
@@ -35,6 +36,7 @@ export class PageInfoComponent implements OnInit {
     this.page_info = new FormControl(''||this.selectedPageData.page.name)
     this.saveData()
 
+    console.log(this.button_checked)
   }
 
   
@@ -77,6 +79,10 @@ saveData(){
     
 //   })
 // }
+
+checkedButton(event:any){
+  console.log(event)
+}
 }
 
 

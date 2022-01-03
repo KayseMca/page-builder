@@ -12,6 +12,7 @@ import { PageData } from 'src/app/_interfaces/_page';
 })
 export class SidebarComponent implements OnInit, OnDestroy {
 
+  panelOpenState:Boolean = true
   previousIndex!:number
   openDropdown:Boolean = false
   settingType!: any
@@ -23,9 +24,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   // search specific page
   search:string =''
+  //todo create a directive for hover
+  hoverPage:any = {}
 
   @HostListener('window:mousedown', ['$event'])
   onMouseUp(event: any) {
+
     let target = ['fa fa-ellipsis-h','mat-button-wrapper','mat-focus-indicator mat-button mat-button-base ng-star-inserted','dropdown-content-active']
     // let list = event.target.classList
     // let value = (event.target as Element).className
@@ -35,6 +39,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     if(!target.includes(value)) {
       // this.openTabs = false
       this.openDropdown=false
+      
     }
   }
 
@@ -59,9 +64,11 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
 
+ 
 
   showData(index:number){
     this.openComponentTabs = false
+    this.hoverPage[index] = true
     this.pageProperties.closeComponentsTab(this.openComponentTabs).pipe(take(1)).subscribe(res=>{
       this.openComponentTabs = res
       
@@ -71,6 +78,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     if(index!==this.previousIndex){
       this.previousIndex = index
       this.openDropdown =true
+      // this.hoverPage[index] = tkrue
       this.pageSelected = this.allPagesData[index]
       // this.pageProperties.createdPage.next({page:this.pageSelected,tab:setting})
       //settings
@@ -89,10 +97,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   settings(setting:string){
 
+    this.onPageModify(setting)
     // emit the page choosed
-    console.log(this.openComponentTabs)
     this.openComponentTabs = true
-    console.log(this.openComponentTabs)
    
     let editableSettings = ['SEO Basics','Social Share','Settings']
 
@@ -118,6 +125,29 @@ export class SidebarComponent implements OnInit, OnDestroy {
     
   }
 
+  onPageModify(settingType:string){
+    if(settingType==='Rename'){
+      console.log("Rename")
+    }else if(settingType==='Duplicate'){
+      console.log("Dubl")
+    }else if(settingType==='edit Page'){
+      console.log("Edit")
+      
+    }else if(settingType==='Hide'){
+      console.log("Hide")
+      
+    }else if(settingType==='Delete'){
+      console.log("Delete")
+      
+    }
+  }
+
+
+  open(){
+    let newPage:PageData = new PageData()
+    newPage.name = 'New Page'
+    this.pageData.creatNewPage(newPage)
+  }
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.

@@ -13,7 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 
@@ -32,7 +32,9 @@ const materialModuels = [
   ReactiveFormsModule,
   MatRadioModule,
   MatExpansionModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatTooltipModule
+
 ]
 
 @NgModule({

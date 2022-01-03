@@ -18,6 +18,7 @@ interface Settings{
 export class SEO{
     page_title?:string
     meta_description?:string
+    url?:string
 }
 export class AdditionalSEO{
     data?:string
@@ -26,6 +27,7 @@ export class AdditionalSEO{
 export class SocialShare{
     og_title?:string
     og_description?:string
+    url?:string
 }
 
 
@@ -45,6 +47,8 @@ export class PageData{
     id!:number
     name!:string 
     home_page?:Boolean
+    hide!:Boolean
+    base_url?:string
     settings!:Array<string>
     page_settings!:PageSettings
 }

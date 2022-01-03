@@ -2,37 +2,70 @@
 <div class="seo-page">
     <p>preview on Google</p>
     <div class="preview">
-        <h4>New Page| mysite</h4>
-        <p style="margin-top:1px; color:green"> link url </p>
+        <h4>{{selected_page?.page_settings?.seo_basics?.page_title}}| mysite</h4>
+        <p style="margin-top:1px; color:green"> 
+            {{selected_page?.base_url}}{{selected_page?.page_settings?.seo_basics?.url}}
+         </p>
+         <p>
+             {{selected_page?.page_settings?.seo_basics?.meta_description}}
+         </p>
     </div>
 
     <hr>
     <div class="homepage">
-        <h3>Homepage Url</h3>
+        <h3>{{selected_page?.base_url}}</h3>
         <p> this is your homepage and the URl is your domain name.</p>
     </div>
 
     <hr>
 
-    <form class="title">
+    <form class="title" style="margin-bottom: 10px;">
         <div >
-            <label for="title" style="padding: 4px;">What is your page's title tag(title in search)?</label>
-            <input 
+            <label for="title" style="padding: 4px;">What is your page's title tag(title in search)?
+            </label>
+            <span style="float: right;margin-top: 3px;" #tooltip="matTooltip" [matTooltip]="desc"
+            [matTooltipPosition]="'above'"
+            (click)="$event.stopPropagation();"
+            aria-label="Button that displays a tooltip that hides when scrolled out of the container">
+            <i class="fa fa-info-circle"></i>
+            </span>
+            <input #title
             type="text" 
             class="form-control shadow-none" 
             name="title" id="title" 
             [formControl]='seo_page_title'
             placeholder="New Page | mysite">
+              <mat-error *ngIf="seo_page_title.hasError('maxlength')">
+                the Title can't be more than 200 characters
+              </mat-error>
+              <mat-hint style="float: right;" align="end">{{seo_page_title.value.length}} / 200</mat-hint>
+        </div>
+        <div >
+            <label for="title" style="padding: 4px;">What's your page URL?</label>
+            <input 
+            type="text" 
+            class="form-control shadow-none" 
+            name="title" id="title" 
+            [formControl]='seo_page_url'
+            placeholder="/blank">
+            <mat-error *ngIf="seo_page_url.hasError('maxlength')">
+                the url can't be more than 20 characters
+              </mat-error>
+              <mat-hint style="float: right;" align="end">{{seo_page_url.value.length}} / 20</mat-hint>
         </div>
 
         <div >
             <label for="" style="padding: 4px;">What is the page's met descriptions?</label>
            
             <textarea  
-            class="form-control shadow-none" name="title"
+            class="form-control shadow-none" name="description"
             [formControl] = 'seo_meta_description'
             placeholder="what makes this page unique? describe your business and the content of this page"
             ></textarea>
+            <mat-error *ngIf="seo_meta_description.hasError('maxlength')">
+                the page meta description can't be more than 500 characters
+              </mat-error>
+              <mat-hint style="float: right;" align="end">{{seo_meta_description.value.length}} / 500</mat-hint>
         </div>
     </form>
     <hr>

@@ -16,8 +16,10 @@
 
         <input class="card-img-top" type="file" id="image">
         <div class="card-body preview">
-            <h4>New Page| mysite</h4>
-            <p style="margin-top:1px; color:green" class="card-text"> link url </p>
+            <h4>{{selected_page?.page_settings?.social_share?.og_title}}| mysite</h4>
+            <p style="margin-top:1px; color:green" class="card-text"> 
+                {{selected_page?.base_url}}{{selected_page?.page_settings?.social_share?.url}} </p>
+            <p>{{selected_page?.page_settings?.social_share?.og_description}}</p>
         </div>
       </div>
    
@@ -34,6 +36,24 @@
             [formControl]='social_page_title'
             placeholder="New Page | mysite"
             >
+            <mat-error *ngIf="social_page_title.hasError('maxlength')">
+                the Title can't be more than 200 characters
+              </mat-error>
+              <mat-hint style="float: right;" align="end">{{social_page_title.value.length}} / 200</mat-hint>
+        </div>
+        <div >
+            <label for="url" style="padding: 4px;">what's your page URL?</label>
+            <input 
+            type="text" 
+            class="form-control shadow-none" 
+            name="url" id="url" 
+            [formControl]='social_url'
+            placeholder="/blank"
+            >
+            <mat-error *ngIf="social_url.hasError('maxlength')">
+                the URL can't be more than 20 characters
+              </mat-error>
+              <mat-hint style="float: right;" align="end">{{social_url.value.length}} / 200</mat-hint>
         </div>
 
         <div >
@@ -41,10 +61,14 @@
            
             <textarea  
             class="form-control shadow-none" 
-            name="title"
+            name="meta"
             [formControl]='social_meta_description'
             placeholder="what makes this page unique? describe your business and the content of this page"
             ></textarea>
+            <mat-error *ngIf="social_meta_description.hasError('maxlength')">
+                the meta description can't be more than 500 characters
+              </mat-error>
+              <mat-hint style="float: right;" align="end">{{social_meta_description.value.length}} / 500</mat-hint>
         </div>
     </form>
     <hr>
