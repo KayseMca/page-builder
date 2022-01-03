@@ -17,32 +17,36 @@
 
   <mat-accordion class="example-headers-align">
     <!-- robots meta tags -->
-    <mat-expansion-panel class="grow-item" 
-    (opened)="panelOpenState "
+    <mat-expansion-panel
+      class="grow-item"
+      (opened)="(panelOpenState)"
       (closed)="panelOpenState = false"
       [expanded]="true"
-       hideToggle
-       >
+      hideToggle
+    >
       <mat-expansion-panel-header>
         <mat-panel-title>
           <i class="fa fa-angle-down"></i>
-           <h3 style="margin: 4px 0 0 7px; font-weight: 700;">Pages</h3> 
+          <h4 style="margin: 4px 0 0 7px; font-weight: 500"> Pages</h4>
         </mat-panel-title>
         <mat-panel-description>
-          
           <!-- <span class="more-page"><i class="fa fa-plus fa-lg"></i></span> -->
-          <button mat-button class="add-button" #tooltip="matTooltip" matTooltip="Add new Page"
-          [matTooltipPosition]="'above'"
-          (click)="$event.stopPropagation();open()"
-          aria-label="Button that displays a tooltip that hides when scrolled out of the container">
+          <button
+            mat-button
+            class="add-button"
+            #tooltip="matTooltip"
+            matTooltip="Add new Page"
+            [matTooltipPosition]="'above'"
+            (click)="$event.stopPropagation(); open()"
+            aria-label="Button that displays a tooltip that hides when scrolled out of the container"
+          >
             <span class="more-page"><mat-icon>add</mat-icon></span>
-
           </button>
         </mat-panel-description>
       </mat-expansion-panel-header>
 
       <!-- Content -->
-      <ng-container style="width: 100%;">
+      <ng-container style="width: 100%">
         <div
           *ngFor="let page of allPagesData | searchPage: search; let i = index"
           (mouseenter)="hoverPage[i] = true"
@@ -55,15 +59,32 @@
             style="color: rgb(3, 0, 0)"
             [ngClass]="{ 'pages-hover': hoverPage[i] }"
           >
-
-          <!-- pages listing here -->
-            <h3 class="item">
+            <!-- pages listing here -->
+            
+            <h3 *ngIf="!editable[i] " class="item">
               {{ page.name }}
-              <i *ngIf="page.hide" style="margin-left: 4px;" class="fa fa-eye-slash"></i>
+              <i
+                *ngIf="page.hide"
+                style="margin-left: 4px"
+                class="fa fa-eye-slash"
+              ></i>
             </h3>
-            <span style="padding-top: 6px;">
-              <i *ngIf="page.home_page" class="fa fa-home"></i>
-              <i class="fa fa-ellipsis-h" (click)="showData(i)"></i>
+            <!-- edit page name if user clicked edit Button -->
+            <input *ngIf="editable[i] "
+              type="text"
+              (keyup.enter)="onEnter()"
+              [formControl]='editPageValue'
+              class="form-control shadow-none"
+              id="pageEdit"
+              name="edit"
+              aria-describedby="siteSearch"
+              [value]="page.name"
+            />
+
+            <!-- side dots -->
+            <span style="padding-top: 6px">
+              <i *ngIf="page.home_page && !editable[i]" class="fa fa-home"></i>
+              <i *ngIf="!editable[i]" class="fa fa-ellipsis-h" (click)="showData(i)"></i>
             </span>
           </a>
           <div class="dropdown" style="z-index: 99">
@@ -71,7 +92,7 @@
               <ng-container
                 *ngFor="let setting of settingType; let tabIndex = index"
               >
-                <button mat-button (click)="settings(setting)">
+                <button mat-button (click)="settings(setting,i)">
                   {{ setting }}
                 </button>
                 <hr *ngIf="tabIndex === 2" />
@@ -91,6 +112,8 @@
   <div>
     <!-- class="page-info" -->
     <!-- <i class="fa fa-ellipsis-h "  class]="openTabs == true ? 'page-info-active' : 'page-info-none'"></i> -->
+    
+    <!-- page open components-->
     <div
       class="page-info-active"
       style="bottom: 1px"

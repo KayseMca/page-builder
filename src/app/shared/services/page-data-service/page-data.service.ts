@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, from, Observable, of } from 'rxjs';
 import { PageData } from 'src/app/_interfaces/_page';
 import { data } from '../data';
 
@@ -9,7 +9,7 @@ import { data } from '../data';
 export class PageDataService {
 
 
-  private dataSource = new BehaviorSubject<any>(data)
+  private dataSource =  new BehaviorSubject<PageData[]>(data)
   readonly allPagesData: Observable<PageData[]> = this.dataSource.asObservable()
 
   constructor() {
@@ -36,27 +36,26 @@ export class PageDataService {
 
     oldData.forEach((item: PageData) => {
       id = item.id === data.id ? true : false
-
       // check and change  the other items home_page value 
       if (data.home_page) {
         if (item.home_page && !id) {
-          console.log(item)
           item.home_page = false
-          console.log(item)
         }
       }else{
-
         // spreading object data to sourceData
         // and checking which page data modifying
         if(id){
-          item.page_settings.permissions = {...item.page_settings.permissions ,...data.page_settings.permissions}
-          item.page_settings.seo_basics = {...item.page_settings.seo_basics ,...data.page_settings.seo_basics}
-          item.page_settings.social_share = {...item.page_settings.social_share,...data.page_settings.social_share}
-          item.page_settings.additional_seo = {...item.page_settings.additional_seo,...data.page_settings.additional_seo}
+          console.log(data)
+          item.page_settings.permissions = {...item.page_settings?.permissions ,...data?.page_settings?.permissions}
+          item.page_settings.seo_basics = {...item.page_settings.seo_basics ,...data?.page_settings?.seo_basics}
+          item.page_settings.social_share = {...item.page_settings.social_share,...data?.page_settings?.social_share}
+          item.page_settings.additional_seo = {...item.page_settings.additional_seo,...data?.page_settings?.additional_seo}
+          item.name = data.name
         }
       }
     })
 
+    console.log(oldData)
     // this.dataSource.next(oldData)
   }
 }

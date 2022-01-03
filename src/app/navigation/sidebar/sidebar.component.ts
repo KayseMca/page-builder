@@ -4,6 +4,7 @@ import { Subscription, take } from 'rxjs';
 import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service';
 import { PageDataService } from 'src/app/shared/services/page-data-service/page-data.service';
 import { PageData } from 'src/app/_interfaces/_page';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-sidebar',
@@ -26,6 +27,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
   search:string =''
   //todo create a directive for hover
   hoverPage:any = {}
+  index!:number
+  editable:any = {}
+  editPageValue!:FormControl
+  savingData:PageData= new PageData()
 
   @HostListener('window:mousedown', ['$event'])
   onMouseUp(event: any) {
@@ -49,11 +54,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
     private pageProperties:PagePropertyServiceService,
     private pageData:PageDataService
     ) { 
+      this.editPageValue = new FormControl('')
       this.pageData.allPagesData.pipe(take(1)).subscribe((res:PageData[])=>{
         this.allPagesData = res
         console.log('reading data')
         })
-      
+        
     }
 
   ngOnInit(): void {
@@ -67,12 +73,15 @@ export class SidebarComponent implements OnInit, OnDestroy {
  
 
   showData(index:number){
+    this.editable = {}
+    this.index = index
     this.openComponentTabs = false
     this.hoverPage[index] = true
     this.pageProperties.closeComponentsTab(this.openComponentTabs).pipe(take(1)).subscribe(res=>{
       this.openComponentTabs = res
       
   })
+
 
     console.log(index, this.previousIndex)
     if(index!==this.previousIndex){
@@ -95,9 +104,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
     
   }
 
-  settings(setting:string){
-
-    this.onPageModify(setting)
+  settings(setting:string, index:number){
+    console.log(setting,index)
+    this.onPageModify(setting, index)
     // emit the page choosed
     this.openComponentTabs = true
    
@@ -125,13 +134,16 @@ export class SidebarComponent implements OnInit, OnDestroy {
     
   }
 
-  onPageModify(settingType:string){
+  onPageModify(settingType:string, index:number){
+    console.log(index)
     if(settingType==='Rename'){
-      console.log("Rename")
+      this.editPageValue.setValue(this.allPagesData[this.index].name)
+      this.editable[this.index] = true
+
     }else if(settingType==='Duplicate'){
+
       console.log("Dubl")
-    }else if(settingType==='edit Page'){
-      console.log("Edit")
+    }else if(settingType==='Edit Page'){
       
     }else if(settingType==='Hide'){
       console.log("Hide")
@@ -148,6 +160,23 @@ export class SidebarComponent implements OnInit, OnDestroy {
     newPage.name = 'New Page'
     this.pageData.creatNewPage(newPage)
   }
+
+  onEnter(){
+    console.log(this.editPageValue.value)
+    let data = this.editPageValue.value
+    if(data!=='' && this.editPageValue.valid){
+      console.log(data)
+      this.savingData.name = data
+      this.savingData.id = this.allPagesData[this.index].id
+      console.log(this.savingData)
+      this.pageData.updatePageData(this.savingData)
+      
+    }
+    this.editable[this.index] = false
+    
+  }
+
+
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
