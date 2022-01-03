@@ -87,13 +87,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
     if(index!==this.previousIndex){
       this.previousIndex = index
       this.openDropdown =true
-      // this.hoverPage[index] = tkrue
       this.pageSelected = this.allPagesData[index]
-      // this.pageProperties.createdPage.next({page:this.pageSelected,tab:setting})
-      //settings
       this.settingType = this.allPagesData[index].settings
-    // console.log(this.pageIndex)
-    // this.settingType = Object.keys(this.pageSelected['page_settings'])
+
 
     }
     else{
@@ -114,10 +110,11 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
     // not need to open tab components if these settings not choose
     if(editableSettings.includes(setting)){
+
       //for tab components set true when it choosed one
       this.openComponentTabs = true
       this.pageProperties.createdPage.next({page:this.pageSelected,tab:setting})
-      // this.pageProperties.singlePageChoose(this.pageSelected, setting)
+ 
     }else{
       this.openComponentTabs = false
     }
@@ -140,9 +137,16 @@ export class SidebarComponent implements OnInit, OnDestroy {
       this.editPageValue.setValue(this.allPagesData[this.index].name)
       this.editable[this.index] = true
 
-    }else if(settingType==='Duplicate'){
-
-      console.log("Dubl")
+    }else if(settingType==='Dublicate'){
+      console.log("inside dublicae")
+      let id = this.allPagesData.length +1
+      let  dublicatePage:PageData = new PageData()
+      dublicatePage =  {...this.allPagesData[this.index] }
+      dublicatePage.id = id
+      dublicatePage.name = 'Copy of '+dublicatePage.name
+      dublicatePage.home_page = false
+      this.pageData.creatNewPage(dublicatePage)
+      this.index = NaN
     }else if(settingType==='Edit Page'){
       
     }else if(settingType==='Hide'){
