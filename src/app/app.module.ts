@@ -18,6 +18,7 @@ import { SidebarComponent } from './navigation/sidebar/sidebar.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { PagePropertiesModule } from './shared/components/page-properties.module';
 import { SearchPagePipe } from './shared/pipe/seach-page.pipe';
+import { DeleteDialogComponent } from './dialog/delete-dialog.component';
 
 
 
@@ -33,6 +34,7 @@ import { SearchPagePipe } from './shared/pipe/seach-page.pipe';
     SidebarComponent,
     HeaderComponent,
     SearchPagePipe,
+    DeleteDialogComponent,
 
   ],
   imports: [
@@ -44,6 +46,7 @@ import { SearchPagePipe } from './shared/pipe/seach-page.pipe';
     PagePropertiesModule
     
   ],
+  // entryComponents:[DeleteDialogComponent],
   providers: [PagePropertyServiceService,PageDataService],
   bootstrap: [AppComponent]
 })

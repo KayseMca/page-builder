@@ -37,7 +37,7 @@
             #tooltip="matTooltip"
             matTooltip="Add new Page"
             [matTooltipPosition]="'above'"
-            (click)="$event.stopPropagation(); open()"
+            (click)="$event.stopPropagation(); createNewPage()"
             aria-label="Button that displays a tooltip that hides when scrolled out of the container"
           >
             <span class="more-page"><mat-icon>add</mat-icon></span>
@@ -46,7 +46,7 @@
       </mat-expansion-panel-header>
 
       <!-- Content -->
-      <ng-container style="width: 100%">
+      <ng-container >
         <div
           *ngFor="let page of allPagesData | searchPage: search; let i = index"
           (mouseenter)="hoverPage[i] = true"
@@ -57,24 +57,30 @@
             class="pages"
             href="#"
             style="color: rgb(3, 0, 0)"
-            [ngClass]="{ 'pages-hover': hoverPage[i] }"
+            [ngClass]="{ 'pages-hover': hoverPage[i] && !editable[i] }"
           >
             <!-- pages listing here -->
             
-            <h3 *ngIf="!editable[i] " class="item">
-              {{ page.name }}
+            <!-- <h3 *ngIf="!editable[i] " class="min-page overme item"> -->
+              <ul >
+                <li *ngIf="!editable[i] " class="min-page item" >
+                  <h4 class="overme" >
+                   <span >{{page.name}}</span> 
+                </h4>
+                </li>
+              </ul>
               <i
-                *ngIf="page.hide"
-                style="margin-left: 4px"
-                class="fa fa-eye-slash"
-              ></i>
-            </h3>
+                    *ngIf="page.hide"
+                    style="margin:auto 4px"
+                    class="fa fa-eye-slash"
+                  ></i>
+            <!-- </h3> -->
             <!-- edit page name if user clicked edit Button -->
             <input *ngIf="editable[i] "
               type="text"
               (keyup.enter)="onEnter()"
               [formControl]='editPageValue'
-              class="form-control shadow-none"
+              class="form-control edit-form shadow-none"
               id="pageEdit"
               name="edit"
               aria-describedby="siteSearch"
@@ -83,8 +89,8 @@
 
             <!-- side dots -->
             <span style="padding-top: 6px">
-              <i *ngIf="page.home_page && !editable[i]" class="fa fa-home"></i>
-              <i *ngIf="!editable[i]" class="fa fa-ellipsis-h" (click)="showData(i)"></i>
+              <i *ngIf="page.home_page && !editable[i]" class=" min-page fa fa-home"></i>
+              <i *ngIf="!editable[i]" class="min-page fa fa-ellipsis-h" (click)="showData(i)"></i>
             </span>
           </a>
           <div class="dropdown" style="z-index: 99">

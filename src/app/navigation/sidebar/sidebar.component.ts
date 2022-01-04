@@ -1,10 +1,14 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, EventEmitter, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
+import { ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, take } from 'rxjs';
+
 import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service';
 import { PageDataService } from 'src/app/shared/services/page-data-service/page-data.service';
 import { PageData } from 'src/app/_interfaces/_page';
 import { FormControl } from '@angular/forms';
+import { DeleteDialogComponent } from 'src/app/dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -16,7 +20,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   panelOpenState:Boolean = true
   previousIndex!:number
   openDropdown:Boolean = false
-  settingType!: any
+  settingType!: any[]
   allPagesData!:PageData[]
 
   pageSelected!:PageData
@@ -48,14 +52,17 @@ export class SidebarComponent implements OnInit, OnDestroy {
     }
   }
 
-  // constructor
+  //! constructor
   constructor(private observer:BreakpointObserver,
-    private cdr: ChangeDetectorRef,
+    // private cdr: ChangeDetectorRef,
     private pageProperties:PagePropertyServiceService,
-    private pageData:PageDataService
+    private pageData:PageDataService,
+    private dialog:MatDialog
     ) { 
       this.editPageValue = new FormControl('')
-      this.pageData.allPagesData.pipe(take(1)).subscribe((res:PageData[])=>{
+      this.pageData.allPagesData.pipe(
+        take(1)
+        ).subscribe((res:PageData[])=>{
         this.allPagesData = res
         console.log('reading data')
         })
@@ -83,14 +90,20 @@ export class SidebarComponent implements OnInit, OnDestroy {
   })
 
 
-    console.log(index, this.previousIndex)
     if(index!==this.previousIndex){
       this.previousIndex = index
       this.openDropdown =true
+      //get selected page
       this.pageSelected = this.allPagesData[index]
+
+      // get all setting of this page 
       this.settingType = this.allPagesData[index].settings
-
-
+      if(this.allPagesData[this.index].hide) {
+        this.settingType[6] = 'Show'   
+      }
+      if(this.allPagesData[this.index].home_page){
+        this.settingType.splice(7,1)
+      }
     }
     else{
        this.openDropdown = true
@@ -102,12 +115,11 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   settings(setting:string, index:number){
     console.log(setting,index)
-    this.onPageModify(setting, index)
+    this.onPageModify(setting)
     // emit the page choosed
     this.openComponentTabs = true
    
     let editableSettings = ['SEO Basics','Social Share','Settings']
-
     // not need to open tab components if these settings not choose
     if(editableSettings.includes(setting)){
 
@@ -131,14 +143,13 @@ export class SidebarComponent implements OnInit, OnDestroy {
     
   }
 
-  onPageModify(settingType:string, index:number){
-    console.log(index)
+  onPageModify(settingType:string){
+
     if(settingType==='Rename'){
       this.editPageValue.setValue(this.allPagesData[this.index].name)
       this.editable[this.index] = true
 
     }else if(settingType==='Dublicate'){
-      console.log("inside dublicae")
       let id = this.allPagesData.length +1
       let  dublicatePage:PageData = new PageData()
       dublicatePage =  {...this.allPagesData[this.index] }
@@ -146,27 +157,47 @@ export class SidebarComponent implements OnInit, OnDestroy {
       dublicatePage.name = 'Copy of '+dublicatePage.name
       dublicatePage.home_page = false
       this.pageData.creatNewPage(dublicatePage)
+      // clear the id
       this.index = NaN
     }else if(settingType==='Edit Page'){
       
-    }else if(settingType==='Hide'){
-      console.log("Hide")
+    }else if(settingType==='Show'){
+      console.log(settingType)
+      this.allPagesData[this.index].hide = false
+      this.settingType[6] = 'Hide'
+      this.index = NaN
       
+    }else if(settingType==='Hide'){
+      console.log(settingType)
+      this.allPagesData[this.index].hide = true
+      this.settingType[6] = 'Show'
+      this.index = NaN
+      
+    }else if(settingType==='Set as HomePage'){
+      this.savingData.home_page = true
+      let id = this.allPagesData[this.index].id
+      this.savingData.id = id  
+      this.pageData.updatePageData(this.savingData)    
     }else if(settingType==='Delete'){
-      console.log("Delete")
+     this.deleteDialog()
       
     }
   }
 
-
-  open(){
+/**
+ * Create new Page from + icon
+ */
+  createNewPage(){
     let newPage:PageData = new PageData()
     newPage.name = 'New Page'
     this.pageData.creatNewPage(newPage)
   }
 
+  /**
+   * clicked Enter in the Edit form
+   */
   onEnter(){
-    console.log(this.editPageValue.value)
+
     let data = this.editPageValue.value
     if(data!=='' && this.editPageValue.valid){
       console.log(data)
@@ -180,6 +211,21 @@ export class SidebarComponent implements OnInit, OnDestroy {
     
   }
 
+  /**
+   * Delete Pop up window
+   */
+
+  deleteDialog(){
+    let page = this.allPagesData[this.index]
+    let dialogRef = this.dialog.open(DeleteDialogComponent, {data:{page}})
+
+    dialogRef.afterClosed().subscribe(res=>{
+      if(res==='true'){
+        console.log(res)
+        this.pageData.deletePage(page.id)
+      }
+    })
+  }
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.

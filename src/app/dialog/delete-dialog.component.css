@@ -1,0 +1,38 @@
+
+
+.mat-dialog-content{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.delete-container{
+    position: relative!important;
+  }
+
+  .close.mat-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 2px;
+  }
+
+  
+.mat-dialog-actions{
+    justify-content: flex-end;
+}
+img{
+    width: 100px;
+    height: 75px;
+    border-radius: 6px;
+}
+
+.delete{
+    background: red;
+    color: whitesmoke;
+}
+.text{
+    margin-left: 14px;
+    width: 290px;
+    font-size: 16px;
+    
+}

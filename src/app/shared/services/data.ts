@@ -74,6 +74,9 @@ export let data = [
                 "og_title":"Page 2",
                 "og_description":"string",
                 "url":"page2"
+            },
+            "advanced_seo":{
+
             }
         }
     }

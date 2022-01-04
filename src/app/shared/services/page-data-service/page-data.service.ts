@@ -31,13 +31,14 @@ export class PageDataService {
 
   updatePageData(data: PageData) {
 
-    let oldData: any[] = this.dataSource.value
+    let oldData: any[] = [...this.dataSource.value]
     let id;
 
     oldData.forEach((item: PageData) => {
       id = item.id === data.id ? true : false
       // check and change  the other items home_page value 
       if (data.home_page) {
+       
         if (item.home_page && !id) {
           item.home_page = false
         }
@@ -50,12 +51,23 @@ export class PageDataService {
           item.page_settings.seo_basics = {...item.page_settings.seo_basics ,...data?.page_settings?.seo_basics}
           item.page_settings.social_share = {...item.page_settings.social_share,...data?.page_settings?.social_share}
           item.page_settings.additional_seo = {...item.page_settings.additional_seo,...data?.page_settings?.additional_seo}
-          item.name = data.name
+          item.name = data.name ? data.name:item.name
+          // item.home_page = data.home_page ? data.home_page:item.home_page
         }
       }
     })
 
-    console.log(oldData)
+  
     // this.dataSource.next(oldData)
+    this.dataSource.next(oldData)
+  }
+
+  deletePage(id:number){
+    let data = this.dataSource.getValue()
+
+    let pageId = data.findIndex(res=> res.id === id)
+    data.splice(pageId,1)
+
+    this.dataSource.next(data)
   }
 }

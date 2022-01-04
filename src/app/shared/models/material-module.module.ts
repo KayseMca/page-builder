@@ -14,6 +14,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -33,7 +34,8 @@ const materialModuels = [
   MatRadioModule,
   MatExpansionModule,
   MatCheckboxModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatDialogModule
 
 ]
 

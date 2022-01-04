@@ -3,18 +3,21 @@
     display: flex;
     justify-content: space-between;
     flex-grow: 1;
-    margin-top:7px;
+    margin-top:4px;
+    margin-left:-17px;
     padding: 9px;
     height: 45px;
-    width: 100%;
+    width: 240px;
+  /* height: 57px; */
 }
 
 
 
-.form-control{
+.form-control .edit-form {
   margin: 4px 0 3px 1px;
   line-height: 1;
   width: 200px;
+  padding: 18px;
 }
 
 .dropdown {
@@ -147,4 +150,19 @@ button.mat-button:hover {
 
 .add-button{
   margin-top: 8px;
+}
+
+.overme {
+  width: 125px;
+  overflow:hidden; 
+  white-space:nowrap; 
+  text-overflow: ellipsis;
+}
+
+.min-page{
+  min-width: 0;
+}
+
+ul {
+  list-style-type: none;
 }

@@ -6,7 +6,7 @@ export class Permisions{
     selected_members?:Array<string>
 }
 
-interface Settings{
+export interface Settings{
     settings?:string,
     seo_basics?:string,
     social_share?:string,
