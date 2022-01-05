@@ -1,12 +1,32 @@
-mat-toolbar{
+mat-toolbar {
     /* background:rgba(0,0,0,0.2); */
     color: white;
-
     /* margin:  10px; */
     position: fixed;
     top: 0;
     /* width: 500px; */
     left: 0;
     z-index: 2;
-    
+}
+
+.header-layout {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    height: 35px
+}
+
+.medias {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 2;
+    margin-top: 25px;
+}
+
+ul li {
+    margin-left: 3px;
+}
+
+ul {
+    list-style-type: none;
 }
