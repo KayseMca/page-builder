@@ -1,21 +1,20 @@
-
 <div class="delete-container">
     <button class="close" mat-button mat-dialog-close='false'>X</button>
     <h2 mat-dialog-title>Wait! Are You Sure?</h2>
     <hr>
     <mat-dialog-content>
         <div class="image">
-            <img src="../../assets/images/delete2.png" alt="">
+            <img src="assets/images/delete2.png" alt="">
         </div>
         <div class="content">
             <p class="text">
-    
-              When you delete  <strong>{{data.page.name}}</strong>  this also will be permanently deleted
+
+                When you delete <strong>{{data.page.name}}</strong> this also will be permanently deleted
             </p>
         </div>
     </mat-dialog-content>
     <mat-dialog-actions>
         <button mat-button mat-dialog-close='false'>Cancel</button>
-        <button mat-button mat-dialog-close = 'true' class="delete">Delete</button>
+        <button mat-button mat-dialog-close='true' class="delete">Delete</button>
     </mat-dialog-actions>
 </div>

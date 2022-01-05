@@ -1,9 +1,36 @@
-<mat-toolbar color="primary" >
-    <button mat-icon-button (click)="onToggleSidenav()">
+<mat-toolbar color="primary" class='header-layout'>
+    <div class="sidenavs">
+        <button mat-icon-button (click)="onToggleSidenav()">
       <mat-icon *ngIf="!sidenavOpened">menu</mat-icon>
       <mat-icon *ngIf="sidenavOpened">close</mat-icon>
       <!-- *ngIf="sidenav.mode=='side'" *ngIf="toggleService.mode()=='side'"   (click)='toggle()' -->
       <!-- *ngIf="!sidenav.opened" -->
     </button>
-    Page Builder
-  </mat-toolbar>
+        <!-- <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon *ngIf="!sidenavOpened">menu</mat-icon>
+      <mat-icon *ngIf="sidenavOpened">close</mat-icon>
+    </button> -->
+    </div>
+
+    <div class="breakpoints">
+        <ul class='medias'>
+            <li>
+                <p>Window</p>
+            </li>
+            <li>
+                <p>Tablet</p>
+            </li>
+            <li>
+                <p>Phone</p>
+            </li>
+            <li>
+                <p>Custom</p>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="publish">
+        <button mat-button>Publish</button>
+    </div>
+</mat-toolbar>

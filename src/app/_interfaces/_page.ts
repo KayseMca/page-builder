@@ -21,7 +21,9 @@ export class SEO{
     url?:string
 }
 export class AdditionalSEO{
-    data?:string
+    robots_meta_tags?:Array<Object>
+    additional_tags?:Array<Object>
+
 }
 
 export class SocialShare{
@@ -40,7 +42,7 @@ export class PageSettings{
     seo_basics?:SEO
     permissions?:Permisions
     social_share?:SocialShare
-    additional_seo?:AdditionalSEO
+    advanced_seo?:AdditionalSEO
 }
 
 export class PageData{

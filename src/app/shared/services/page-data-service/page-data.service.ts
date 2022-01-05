@@ -18,11 +18,6 @@ export class PageDataService {
   }
 
 
-  // getAllPageData():Observable<PageData[]>{
-
-  //   return this.allPagesData
-  // }
-
 
   creatNewPage(page:PageData){
     let pages:any[] = this.dataSource.getValue()
@@ -50,15 +45,15 @@ export class PageDataService {
           item.page_settings.permissions = {...item.page_settings?.permissions ,...data?.page_settings?.permissions}
           item.page_settings.seo_basics = {...item.page_settings.seo_basics ,...data?.page_settings?.seo_basics}
           item.page_settings.social_share = {...item.page_settings.social_share,...data?.page_settings?.social_share}
-          item.page_settings.additional_seo = {...item.page_settings.additional_seo,...data?.page_settings?.additional_seo}
-          item.name = data.name ? data.name:item.name
+          item.page_settings.advanced_seo = {...item.page_settings.advanced_seo,...data?.page_settings?.advanced_seo}
+          item.name = data.name ? data.name:item.name 
           // item.home_page = data.home_page ? data.home_page:item.home_page
         }
       }
     })
 
-  
-    // this.dataSource.next(oldData)
+
+    console.log(oldData)
     this.dataSource.next(oldData)
   }
 

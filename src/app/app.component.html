@@ -1,20 +1,19 @@
-
 <div class="home">
-  <app-header [sidenavOpened]='sidenav.opened' (sidenavToggle)="sidenav.toggle()"></app-header>
-  <!-- sidebar nav  -->
-  <mat-sidenav-container  > 
-    <mat-sidenav  #sidenav mode='over' opened=true style="border-right: none;">
-      <app-sidebar ></app-sidebar>
-    </mat-sidenav>
+    <app-header [sidenavOpened]='sidenav.opened' (sidenavToggle)="sidenav.toggle()"></app-header>
+    <!-- sidebar nav  -->
+    <mat-sidenav-container>
+        <mat-sidenav #sidenav mode='over' opened=false style="border-right: none;">
+            <app-sidebar></app-sidebar>
+        </mat-sidenav>
 
-    <!-- Main -->
-    <mat-sidenav-content>
-  
-      <div class="content">
-        <app-main-content></app-main-content>    
-      </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+        <!-- Main -->
+        <mat-sidenav-content>
 
-  <!-- Footer -->
-</div> 
+            <div class="content">
+                <app-main-content></app-main-content>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+
+    <!-- Footer -->
+</div>
