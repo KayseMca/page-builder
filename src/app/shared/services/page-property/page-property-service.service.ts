@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { BehaviorSubject, filter, map, Observable, of, Subject } from 'rxjs';
 import { PageData } from 'src/app/_interfaces/_page';
 
@@ -10,7 +11,7 @@ export class PagePropertyServiceService {
   constructor() { }
 
   private closeTab= new Subject<Boolean>(); 
-
+  private sidenav!: MatSidenav ;
   createdPage = new BehaviorSubject({page: new PageData(), tab:''})
   
 
@@ -26,13 +27,27 @@ export class PagePropertyServiceService {
   singlePageChoose(page:PageData, tab:string) {
     this.createdPage.next({page,tab});
 }
-  
-  // singlePAgeChoose(index:number):Observable<Boolean>{
-  //   this.createdPage.next()
-  //   return this.closeTab
-  // }
 
 
+public setSidenav(sidenav: MatSidenav) {
+    this.sidenav = sidenav;
+}
+
+public open() {
+    return this.sidenav.open();
+}
+
+// public opened(){
+//   return this.sidenav.opened
+// }
+
+public close() {
+    return this.sidenav.close();
+}
+
+public toggle(): void {
+this.sidenav.toggle();
+}
 
 
 

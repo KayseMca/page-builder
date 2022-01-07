@@ -9,6 +9,7 @@ import { PageDataService } from 'src/app/shared/services/page-data-service/page-
 import { PageData } from 'src/app/_interfaces/_page';
 import { FormControl } from '@angular/forms';
 import { DeleteDialogComponent } from 'src/app/dialog/delete-dialog.component';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-sidebar',
@@ -23,6 +24,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   settingType!: any[]
   allPagesData!: PageData[]
 
+  
   pageSelected!: PageData
   allSubscripitons!: Subscription
   openComponentTabs: Boolean = false
@@ -73,6 +75,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.pageProperties.createdPage.pipe(take(1)).subscribe(res => {
       console.log('reding data createdpage')
     })
+
 
   }
 

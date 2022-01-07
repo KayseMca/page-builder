@@ -1,6 +1,7 @@
 
 .home{
     margin: 0;
+    position:relative;
 
 }
 
@@ -13,6 +14,25 @@
     border:none;
 
 }
+
+.mat-drawer-backdrop.mat-drawer-shown {
+  background-color: transparent !important;
+}
+.mat-drawer-transition .mat-drawer-content {
+  transition-duration: 0s !important;
+  position: none;
+  }
+mat-sidenav .topy{
+  position: fixed;
+  left: 0;
+}
+
+
+.sidenanToggle{
+position: fixed;
+top: 41px;
+z-index: 9999;
+}
 mat-sidenav{
     margin: 3px 8px 8px 8px;
     width: 285px ;
@@ -24,6 +44,7 @@ mat-sidenav{
     /* z-index: 2; */
     position: fixed;
     top: 72px;
+    left: 0;
     bottom: 50px;
 
 }

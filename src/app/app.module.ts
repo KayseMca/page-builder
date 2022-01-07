@@ -27,6 +27,7 @@ import { DeleteDialogComponent } from './dialog/delete-dialog.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,7 @@ import { DeleteDialogComponent } from './dialog/delete-dialog.component';
     BrowserAnimationsModule,
     MaterialModuleModule,
     MainModuleModule,
-    PagePropertiesModule
+    PagePropertiesModule,
     
   ],
   // entryComponents:[DeleteDialogComponent],

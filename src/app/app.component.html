@@ -1,12 +1,38 @@
+
 <div class="home">
-    <app-header [sidenavOpened]='sidenav.opened' (sidenavToggle)="sidenav.toggle()"></app-header>
+    <!-- [sidenavOpened]='sidenav.opened' -->
+    <!-- <app-header   [sidenavOpened]='sidenav.opened'  (sidenavToggle)="sidenav.toggle()"></app-header> -->
     <!-- sidebar nav  -->
-    <mat-sidenav-container>
+    <!-- <mat-sidenav-container>
         <mat-sidenav #sidenav mode='over' opened=false style="border-right: none;">
             <app-sidebar></app-sidebar>
-        </mat-sidenav>
-
+        </mat-sidenav> -->
+       
         <!-- Main -->
+        <!-- <mat-sidenav-content>
+
+            <div class="content">
+                <app-main-content></app-main-content>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container> -->
+
+    <!-- Footer -->
+    <app-header   [sidenavOpened]='sidenav?.opened'  (sidenavToggle)="sidenav.toggle()"></app-header>
+    <mat-sidenav-container>
+        <mat-sidenav #sidenav1 position='start' mode='over' >
+            <app-sidebar></app-sidebar>
+         </mat-sidenav>
+        <mat-sidenav class="topy" #sidenav2 position='end' mode='over' >
+            Start Sidenav2.
+         </mat-sidenav>
+    
+         <div class="sidenanToggle">
+             <button  mat-button *ngIf="!sidenav?.opened" (click)="onToggleSidenav(sidenav1)">right</button>
+             <button mat-button *ngIf="!sidenav?.opened" (click)="onToggleSidenav(sidenav2)">left</button> 
+
+         </div>
+          <!-- Main -->
         <mat-sidenav-content>
 
             <div class="content">
@@ -14,6 +40,10 @@
             </div>
         </mat-sidenav-content>
     </mat-sidenav-container>
-
-    <!-- Footer -->
 </div>
+
+
+ <!-- <button mat-button (click)='setSidenav(sidenav1)'>Pages</button>
+ <button mat-button (click)='setSidenav(sidenav2)'>topography</button>
+ -->
+ 

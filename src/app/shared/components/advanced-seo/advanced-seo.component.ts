@@ -93,7 +93,4 @@ onChanges(i:number){
 }
 
 
-addNewTag(){
-  
-}
 }
