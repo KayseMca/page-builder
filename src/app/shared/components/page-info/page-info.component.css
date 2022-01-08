@@ -44,6 +44,11 @@ p{
     justify-content: space-between;
     margin-top: 14px;
 }
+
+.hiding-page .hidde-show{
+  font-size: 30px;
+  margin-top: -8px;
+}
 .switch {
     position: relative;
     display: inline-block;

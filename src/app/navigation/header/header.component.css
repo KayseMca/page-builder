@@ -6,7 +6,7 @@ mat-toolbar {
     top: 0;
     /* width: 500px; */
     left: 0;
-    z-index: 2;
+    /* z-index: 2; */
     
 }
 
@@ -48,7 +48,7 @@ img{
     display: flex;
     /* justify-content: space-evenly; */
     margin-left:130px ;
-    margin-top: 16px;
+    margin-top: 6px;
 }
 
 ul li {

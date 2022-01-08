@@ -7,12 +7,16 @@
 
 
 .fa{
-    display: none;
+    display: inline;
     padding-top:13px;
 }
 .mat-drawer-side {
     border:none;
 
+}
+
+.mat-sidenav-content{
+  z-index: -1;
 }
 
 .mat-drawer-backdrop.mat-drawer-shown {
@@ -21,7 +25,10 @@
 .mat-drawer-transition .mat-drawer-content {
   transition-duration: 0s !important;
   position: none;
+  z-index: 2;
   }
+
+  
 mat-sidenav .topy{
   position: fixed;
   left: 0;
@@ -30,8 +37,16 @@ mat-sidenav .topy{
 
 .sidenanToggle{
 position: fixed;
-top: 41px;
+top: 32px;
 z-index: 9999;
+margin-left: 20px;
+color: black;
+}
+
+.sidenanToggle .fa{
+  font-size: 18px;
+  padding: 12px;
+ 
 }
 mat-sidenav{
     margin: 3px 8px 8px 8px;
