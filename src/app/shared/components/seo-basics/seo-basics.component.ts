@@ -25,7 +25,7 @@ export class SeoBasicsComponent implements OnInit {
     private pageProperty:PagePropertyServiceService
     ) {
 
-      this.pageProperty.createdPage.subscribe(res=>{
+      this.pageProperty.selectedPage.subscribe(res=>{
         this.id = res.page.id
         this.selected_page = res.page
       })

@@ -21,7 +21,7 @@
     [sidenavOpened]="sidenav?.opened"
     (sidenavToggle)="sidenav.toggle()"
   ></app-header>
-  <mat-sidenav-container>
+  <mat-sidenav-container >
     <mat-sidenav #sidenav1 position="start" mode="over">
       <app-sidebar></app-sidebar>
     </mat-sidenav>
@@ -53,7 +53,9 @@
 
       <!-- Main content -->
       <div class="content">
-        <app-main-content></app-main-content>
+          <app-nav></app-nav>
+        <!-- <app-main-content></app-main-content> -->
+        <router-outlet></router-outlet>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>

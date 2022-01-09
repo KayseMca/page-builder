@@ -1,4 +1,4 @@
-<mat-toolbar  class='header-layout'>
+<mat-toolbar  class='header-layout header '>
    
     <ng-container class="sidenavs item">
         <mat-toolbar-row>
@@ -16,16 +16,16 @@
         <div style="width: 40%;" >
             <ul class='medias'>
                 <li>
-                    <img src="assets/images/Desktop.svg" alt="" (click)='toggleUnderline("desktop")'>
+                    <img src="assets/images/Desktop.svg" [ngClass]="{'fill-blue': toggleLine==='desktop'}" alt="" (click)='toggleUnderline("desktop")'>
                     <div *ngIf="toggleLine==='desktop'" class="underline"></div>
                 </li>
                 
                 <li>
-                    <img src="assets/images/Tablet.svg" alt="" (click)='toggleUnderline("tablet")'>
+                    <img src="assets/images/Tablet.svg" [ngClass]="{'fill-blue': toggleLine==='tablet'}" alt="" (click)='toggleUnderline("tablet")'>
                     <div *ngIf="toggleLine==='tablet'" class="underline"></div>
                 </li>
                 <li >
-                    <img src="assets/images/mobile.svg" alt="" (click)='toggleUnderline("mobile")'>
+                    <img src="assets/images/mobile.svg" [ngClass]="{'fill-blue': toggleLine==='mobile'}" alt="" (click)='toggleUnderline("mobile")'>
                     <div *ngIf="toggleLine==='mobile'" class="underline"></div>
                 </li>
                 

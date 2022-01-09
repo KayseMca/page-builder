@@ -50,6 +50,7 @@ export class PageData{
     name!:string 
     home_page?:Boolean
     hide!:Boolean
+    page_url?:string
     base_url?:string
     settings!:Array<string>
     page_settings!:PageSettings

@@ -1,14 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
+
 import { MainContentComponent } from './main-content.component';
-import { Routes } from '@angular/router';
+import { HomeComponent } from './pages/home/home.component';
 
 
+
+const appRoutes:Routes  = [
+
+  {path:'home', component:HomeComponent}
+]
 
 @NgModule({
-  declarations: [MainContentComponent],
+  declarations: [MainContentComponent, HomeComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forChild(appRoutes)
   ],
   exports:[MainContentComponent]
 })

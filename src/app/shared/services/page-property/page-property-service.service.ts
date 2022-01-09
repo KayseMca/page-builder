@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { BehaviorSubject, filter, map, Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { PageData } from 'src/app/_interfaces/_page';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class PagePropertyServiceService {
 
   private closeTab= new Subject<Boolean>(); 
   private sidenav!: MatSidenav ;
-  createdPage = new BehaviorSubject({page: new PageData(), tab:''})
+  selectedPage = new BehaviorSubject({page: new PageData(), tab:''})
   
 
 
@@ -25,7 +25,7 @@ export class PagePropertyServiceService {
 
   
   singlePageChoose(page:PageData, tab:string) {
-    this.createdPage.next({page,tab});
+    this.selectedPage.next({page,tab});
 }
 
 

@@ -27,7 +27,7 @@ export class PermissionsComponent implements OnInit {
     private pageProperty:PagePropertyServiceService,
     private pageDataService:PageDataService
     ) {
-    this.selectedPageData = this.pageProperty.createdPage.getValue()
+    this.selectedPageData = this.pageProperty.selectedPage.getValue()
     this.newPageData = this.selectedPageData.page
     this.savingData.id = this.selectedPageData.page.id
 

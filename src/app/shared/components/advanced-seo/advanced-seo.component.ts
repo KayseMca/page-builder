@@ -24,7 +24,7 @@ export class AdvancedSeoComponent implements OnInit {
     private pageProperty: PagePropertyServiceService, 
     private _fb:FormBuilder,
     private pageData:PageDataService) {
-    this.pageProperty.createdPage.subscribe(res => {
+    this.pageProperty.selectedPage.subscribe(res => {
 
       this.selected_page = res.page
       this.robotsMetaDataList = this.selected_page.page_settings.advanced_seo?.robots_meta_tags

@@ -29,7 +29,9 @@ export class AppComponent implements OnInit  {
   }
 
   onToggleSidenav(event:MatSidenav){
+   
     this.sidenav = event
+
     
     return this.sidenav.toggle()
   }

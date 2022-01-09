@@ -39,7 +39,7 @@ export class PagePropertiesComponent implements OnInit {
   ngOnInit(): void {
     console.log('page property')
 
-    this.pageService.createdPage.subscribe(res=>{
+    this.pageService.selectedPage.subscribe(res=>{
       this.selectedPageData = res
       console.log(this.selectedPageData)
       this.homepage = this.selectedPageData.page['home_page']

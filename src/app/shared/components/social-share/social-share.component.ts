@@ -26,7 +26,7 @@ export class SocialShareComponent implements OnInit {
     private pageProperty:PagePropertyServiceService
     ) {
 
-      this.pageProperty.createdPage.subscribe(res=>{
+      this.pageProperty.selectedPage.subscribe(res=>{
         this.selected_page  = res.page
         this.id = res.page.id
       })

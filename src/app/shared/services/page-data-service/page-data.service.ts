@@ -22,6 +22,7 @@ export class PageDataService {
   creatNewPage(page:PageData){
     let pages:any[] = this.dataSource.getValue()
     pages.push(page)
+    this.dataSource.next(pages)
   }
 
   updatePageData(data: PageData) {

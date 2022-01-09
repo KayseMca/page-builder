@@ -10,16 +10,38 @@ mat-toolbar {
     
 }
 
+
+  .header::after {
+    bottom: 0;
+    box-shadow: 0 0.0625em 0.5em rgba(0, 0, 0, 0.3);
+    content: '';
+    left: 0;
+    opacity: 1;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity 0.3s;
+    z-index: -1;
+  }
+  
 .header-layout {
     display: inline-flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 8px;
-    height: 35px
+    height: 35px;
+    /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px; */
 }
 img{
     height: 33px;
+    
+   
 }
+
+.fill-blue{
+    filter: invert(42%) sepia(93%) saturate(4152%) hue-rotate(185deg) brightness(79%) contrast(139%); 
+}
+
 .header-layout .item {
     width: 44px;
   }

@@ -3,6 +3,7 @@ export let data = [
         "id": 1,
         "name": "Home",
         "hide": false,
+        "page_url":"home",
         "home_page": true,
         "base_url": "https://ciaone-1.editorx.io/mysite/",
         "settings": [
@@ -59,6 +60,7 @@ export let data = [
         "id": 15,
         "name": "Page 2",
         "hide": true,
+        "page_url":"page2",
         "home_page": false,
         "base_url": "https://ciaone-1.editorx.io/mysite/",
         "settings": [

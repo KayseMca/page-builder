@@ -6,5 +6,5 @@
 *{
     box-sizing: none;
 }
-html, body { height: 100%; position: relative; overflow:auto;}
+html, body { height: 100%; position: relative;   overflow-y: hidden;} 
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

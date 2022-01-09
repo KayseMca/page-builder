@@ -24,7 +24,7 @@ export class PageInfoComponent implements OnInit {
     private pagePropertyService:PagePropertyServiceService,
     private pageDataService:PageDataService
     ) { 
-      this.selectedPageData =this.pagePropertyService.createdPage.getValue()
+      this.selectedPageData =this.pagePropertyService.selectedPage.getValue()
       this.newPageData = this.selectedPageData.page
       this.button_checked = this.newPageData.hide
       

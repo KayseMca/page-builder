@@ -72,7 +72,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.pageProperties.createdPage.pipe(take(1)).subscribe(res => {
+    this.pageProperties.selectedPage.pipe(take(1)).subscribe(res => {
       console.log('reding data createdpage')
     })
 
@@ -128,7 +128,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
       //for tab components set true when it choosed one
       this.openComponentTabs = true
-      this.pageProperties.createdPage.next({ page: this.pageSelected, tab: setting })
+      this.pageProperties.selectedPage.next({ page: this.pageSelected, tab: setting })
 
     } else {
       this.openComponentTabs = false
@@ -203,7 +203,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     
     newPage.settings = settings
     newPage.home_page = false
-    console.log(newPage)
+    newPage.page_url = 'newpage'+this.allPagesData.length
     this.pageData.creatNewPage(newPage)
   }
 
