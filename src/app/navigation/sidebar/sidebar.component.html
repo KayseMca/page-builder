@@ -1,81 +1,138 @@
 <mat-nav-list>
-    <form>
-        <div class="form-group">
-            <input [(ngModel)]="search" type="text" class="form-control shadow-none" id="siteName" name="search" aria-describedby="siteSearch" placeholder="search all pages" />
-        </div>
+  <form>
+    <div class="form-group">
+      <input
+        [(ngModel)]="search"
+        type="text"
+        class="form-control shadow-none"
+        id="siteName"
+        name="search"
+        aria-describedby="siteSearch"
+        placeholder="search all pages"
+      />
+    </div>
 
-        <!-- {{search.target.value}} -->
-    </form>
+    <!-- {{search.target.value}} -->
+  </form>
 
-    <mat-accordion class="example-headers-align">
-        <mat-expansion-panel class="grow-item" (opened)="(panelOpenState)" (closed)="panelOpenState = false" [expanded]="true" hideToggle>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <i class="fa fa-angle-down"></i>
-                    <h4 style="margin: 4px 0 0 7px; font-weight: 500"> Pages</h4>
-                </mat-panel-title>
-                <mat-panel-description>
-
-                    <!-- * adding new page icon -->
-                    <button mat-button class="add-button" #tooltip="matTooltip" matTooltip="Add new Page" [matTooltipPosition]="'above'" (click)="$event.stopPropagation(); createNewPage()" aria-label="Button that displays a tooltip that hides when scrolled out of the container">
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel
+      class="grow-item"
+      (opened)="(panelOpenState)"
+      (closed)="panelOpenState = false"
+      [expanded]="true"
+      hideToggle
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <i class="fa fa-angle-down"></i>
+          <h4 style="margin: 4px 0 0 7px; font-weight: 500">Pages</h4>
+        </mat-panel-title>
+        <mat-panel-description>
+          <!-- * adding new page icon -->
+          <button
+            mat-button
+            class="add-button"
+            #tooltip="matTooltip"
+            matTooltip="Add new Page"
+            [matTooltipPosition]="'above'"
+            (click)="$event.stopPropagation(); createNewPage()"
+            aria-label="Button that displays a tooltip that hides when scrolled out of the container"
+          >
             <span class="more-page"><mat-icon>add</mat-icon></span>
           </button>
-                </mat-panel-description>
-            </mat-expansion-panel-header>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
 
-            <!-- *  in sidenav all pages listed -->
-            <ng-container>
-                <div *ngFor="let page of allPagesData | searchPage: search; let i = index" (mouseenter)="hoverPage[i] = true" (mouseleave)="hoverPage[i] = false">
-                    <!-- class="pages" *ngFor="let page of pageData; let i = index" -->
-                    <a class="pages" href="#" style="color: rgb(3, 0, 0)" [ngClass]="{ 'pages-hover': hoverPage[i] && !editable[i] }">
-                        <!-- pages listing here -->
+      <!-- *  in sidenav all pages listed -->
+      <ng-container>
+        <div
+          *ngFor="let page of allPagesData | searchPage: search; let i = index"
+          (mouseenter)="hoverPage[i] = true"
+          (mouseleave)="hoverPage[i] = false"
+        >
+          <!-- class="pages" *ngFor="let page of pageData; let i = index" -->
+          <a
+            class="pages"
+           
+            style="color: rgb(3, 0, 0)"
+            [ngClass]="{ 'pages-hover': hoverPage[i] && !editable[i] }"
+          >
+            <!-- pages listing here -->
 
-                        <ul>
-                            <li *ngIf="!editable[i] " class="min-page item">
-                                <h4 class="overme">
-                                    <span>{{page.name}}</span>
-                                </h4>
-                            </li>
-                        </ul>
-                        <i *ngIf="page.hide" style="margin:auto 4px" class="fa fa-eye-slash"></i>
-                        <!-- </h3> -->
-                        <!-- * edit page name if user clicked edit Button -->
+            <ul>
+              <li *ngIf="!editable[i]" class="min-page item">
+                <h4 class="overme">
+                  <span>{{ page.name }}</span>
+                </h4>
+              </li>
+            </ul>
+            <i
+              *ngIf="page.hide"
+              style="margin: auto 4px"
+              class="fa fa-eye-slash"
+            ></i>
+            <!-- </h3> -->
+            <!-- * edit page name if user clicked edit Button -->
 
-                        <input *ngIf="editable[i] " type="text" (keyup.enter)="onEnter()" [formControl]='editPageValue' class="form-control edit-form shadow-none" id="pageEdit" name="edit" aria-describedby="siteSearch" [value]="page.name" />
+            <input
+              *ngIf="editable[i]"
+              type="text"
+              (keyup.enter)="onEnter()"
+              [formControl]="editPageValue"
+              class="form-control edit-form shadow-none"
+              id="pageEdit"
+              name="edit"
+              aria-describedby="siteSearch"
+              [value]="page.name"
+            />
 
-                        <!-- side dots -->
-                        <span style="padding-top: 6px">
-              <i *ngIf="page.home_page && !editable[i]" class=" min-page fa fa-home"></i>
-              <i *ngIf="!editable[i]" class="min-page fa fa-ellipsis-h" (click)="showData(i)"></i>
+            <!-- side dots -->
+            <span style="padding-top: 6px">
+              <i
+                *ngIf="page.home_page && !editable[i]"
+                class="min-page fa fa-home"
+              ></i>
+              <i
+                *ngIf="!editable[i]"
+                class="min-page fa fa-ellipsis-h"
+                (click)="showData(i)"
+              ></i>
             </span>
-                    </a>
-                    <div class="dropdown" style="z-index: 99">
-                        <div *ngIf="openDropdown" class="dropdown-content-active">
-                            <ng-container *ngFor="let setting of settingType; let tabIndex = index">
-                                <button mat-button (click)="settings(setting,i)">
+          </a>
+          <div class="dropdown" style="z-index: 99">
+            <div *ngIf="openDropdown" class="dropdown-content-active">
+              <ng-container
+                *ngFor="let setting of settingType; let tabIndex = index"
+              >
+                <button mat-button (click)="settings(setting, i)">
                   {{ setting }}
                 </button>
-                                <hr *ngIf="tabIndex === 2" />
-                            </ng-container>
-                        </div>
-                    </div>
-                </div>
-            </ng-container>
-        </mat-expansion-panel>
-
-        <!-- add more page -->
-        <!-- <i class="fa fa-plus fa-lg more-page"></i> -->
-    </mat-accordion>
-    <!-- All pages -->
-
-    <!-- Settings compponents -->
-    <div>
-        <!-- class="page-info" -->
-        <!-- <i class="fa fa-ellipsis-h "  class]="openTabs == true ? 'page-info-active' : 'page-info-none'"></i> -->
-
-        <!-- page open components-->
-        <div class="page-info-active" style="bottom: 1px" *ngIf="openComponentTabs && pageSelected">
-            <app-page-properties></app-page-properties>
+                <hr *ngIf="tabIndex === 2" />
+              </ng-container>
+            </div>
+          </div>
         </div>
+      </ng-container>
+    </mat-expansion-panel>
+
+    <!-- add more page -->
+    <!-- <i class="fa fa-plus fa-lg more-page"></i> -->
+  </mat-accordion>
+  <!-- All pages -->
+
+  <!-- Settings compponents -->
+  <div>
+    <!-- class="page-info" -->
+    <!-- <i class="fa fa-ellipsis-h "  class]="openTabs == true ? 'page-info-active' : 'page-info-none'"></i> -->
+
+    <!-- page open components-->
+    <div
+      class="page-info-active"
+      style="bottom: 1px"
+      *ngIf="openComponentTabs && pageSelected"
+    >
+      <app-page-properties></app-page-properties>
     </div>
+  </div>
 </mat-nav-list>

@@ -12,4 +12,7 @@ export class TypographyListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  openFont(){
+    console.log("open the fonts")
+  }
 }

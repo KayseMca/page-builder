@@ -1,0 +1,19 @@
+.side-typography{
+    position: fixed;
+    min-width: 300px;
+    top: 75px;
+    left: 168px;
+    bottom: 520px;
+    border-left: 1px solid rgba(20, 19, 19,0.3);
+    background: white;
+    height: 90vh;
+}
+.side-typography .head{
+    color: black;
+}
+.head h3{
+    font-family: sans-serif;
+    padding: 4px;
+    margin: 6px;
+    font-weight: 600;
+}

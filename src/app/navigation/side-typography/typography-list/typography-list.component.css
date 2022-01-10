@@ -1,0 +1,23 @@
+.example-card {
+    max-width: 400px;
+    margin-top: -13px;
+  }
+
+  .mat-card-title{
+      display: inline !important;
+  }
+  .mat-card-subtitle{
+
+    margin-top: 6px!important;
+}
+.fa-2x {
+    font-size: 1.5em;
+}
+
+  .example-card .fa{
+      float: right;
+     
+  }
+  .mat-card{
+      box-shadow: none !important;
+  }

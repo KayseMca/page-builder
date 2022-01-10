@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideTypographyComponent implements OnInit {
 
+  list = [1,3]
   constructor() { }
 
   ngOnInit(): void {

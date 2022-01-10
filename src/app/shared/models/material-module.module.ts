@@ -15,6 +15,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatCardModule} from '@angular/material/card';
 
 
 
@@ -35,7 +36,8 @@ const materialModuels = [
   MatExpansionModule,
   MatCheckboxModule,
   MatTooltipModule,
-  MatDialogModule
+  MatDialogModule,
+  MatCardModule
 
 ]
 
