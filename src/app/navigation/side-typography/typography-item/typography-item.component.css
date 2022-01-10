@@ -1,6 +1,70 @@
 .example-card {
-    max-width: 600px;
+    max-width: 526px;
     position: fixed;
     top: 131px;
-    left: 467px;
+    left: 40em;
+    height: 359px;
+    border-radius: 25px;
+  }
+
+  .mat-card-content{
+    height: 188px;
+    overflow: auto;
+  }
+
+  .mat-card-subtitle{
+    margin-top: 18px !important;
+  }
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .font-list{
+    display: flex;
+    margin-left: 2px;
+  }
+
+  .fonts{
+    flex:0 0 233px;
+  }
+
+  .form-control{
+    padding: 0.2em;
+    border-radius: 8px;
+  }
+
+  input[type="number"]{
+    padding:4px ;
+  }
+  .form-select-sm{
+    padding-top: 0.35rem;
+    border-radius: 0.5rem;
+  }
+
+  .item{
+    margin-left: 5px;
+  }
+  .font-type--style{
+    border: none;
+  }
+
+  .mat-button-toggle-group {
+    height: 32px;
+    align-items: center;
+    margin-left: 6px;
+  }
+
+  .color button{
+    margin-top: -2px;
+  }
+
+  .font-display-field{
+    height: 350px; 
+    overflow: auto;
   }

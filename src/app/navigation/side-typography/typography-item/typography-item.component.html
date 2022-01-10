@@ -1,13 +1,55 @@
 <mat-card class="example-card">
-    <mat-card-title>{{index}}</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    <mat-card-title>Edit{{index}}</mat-card-title>
+    <mat-card-subtitle>
+      <form class="example-form">
+        <div class="font-list" >
+          <!-- Fonts lists -->
+          <div class="fonts item"  matTooltip="Fonts"
+          matTooltipPosition="above">
+            <select class="form-select form-select-sm" aria-label="Default select example">
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+  
+          <!-- font size -->
+          <div class="font-size item"  matTooltip="Font size"
+          matTooltipPosition="above">
+            <input type="number" min="0" value="0" class="form-control item">
+          </div>
+
+          <div class="font-type item">
+            <mat-button-toggle-group name="fontStyle" class="font-type--style" aria-label="Font Style">
+              <mat-button-toggle matTooltip="Bold"
+              matTooltipPosition="above"
+              style="line-height: none;" value="bold">
+              Bold
+            </mat-button-toggle>
+              <mat-button-toggle matTooltip="Italic"
+              matTooltipPosition="above"
+               value="italic">
+               Italic
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+
+          <div class="color item">
+            <button mat-button matTooltip="Color"
+            matTooltipPosition="above"
+            >Color</button>
+          </div>
+        </div>
+      </form>
+      
+    </mat-card-subtitle>
     <mat-card-content>
-      <p>This card indeterminates progress bar.</p>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate laboriosam eum dicta aliquam ratione 
-          ipsa culpa iste maxime tempora ad recusandae sit odit, quaerat fugit necessitatibus, cumque a, veritatis pariatur?</p>
+      <div class="font-display-field">
+
+      </div>
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
+    <mat-card-actions style="float: right;">
+      <button mat-button>Cancel</button>
+      <button mat-button color='primary'>Apply</button>
     </mat-card-actions>
   </mat-card>

@@ -16,6 +16,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 
@@ -37,7 +38,8 @@ const materialModuels = [
   MatCheckboxModule,
   MatTooltipModule,
   MatDialogModule,
-  MatCardModule
+  MatCardModule,
+  MatFormFieldModule
 
 ]
 

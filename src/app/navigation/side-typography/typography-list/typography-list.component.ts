@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-typography-list',
@@ -10,23 +10,16 @@ export class TypographyListComponent implements OnInit {
   @Input() index!:number
   show:Boolean = false
   clicked = null
-  @HostListener('window:mousedown', ['$event'])
+  @HostListener('window:click', ['$event'])
   onMouseUp(event: any) {
-
-    let target = ['fa']
-    // let list = event.target.classList
-    // let value = (event.target as Element).className
-    // console.log(list)
-    // if(!target.includes(value)) this.openDropdown = false
-    let value = (event.target as Element).className
-    if (!target.includes(value)) {
-      // this.openTabs = false
+    if (!this.eRef.nativeElement.contains(event.target)) {
       this.show = false
 
     }
+    
   }
 
-  constructor() { }
+  constructor(private eRef: ElementRef) { }
 
   ngOnInit(): void {
   }
