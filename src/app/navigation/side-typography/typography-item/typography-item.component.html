@@ -1,4 +1,6 @@
 <mat-card class="example-card">
+  <div style="margin-left: 5px;">
+
     <mat-card-title>Edit{{index}}</mat-card-title>
     <mat-card-subtitle>
       <form class="example-form">
@@ -14,9 +16,9 @@
           </div>
   
           <!-- font size -->
-          <div class="font-size item"  matTooltip="Font size"
+          <div class="font-size item "  matTooltip="Font size"
           matTooltipPosition="above">
-            <input type="number" min="0" value="0" class="form-control item">
+            <input type="number" min="0" value="0" class="form-control">
           </div>
 
           <div class="font-type item">
@@ -45,11 +47,14 @@
     </mat-card-subtitle>
     <mat-card-content>
       <div class="font-display-field">
-
+        <div style="font-size: 89px;line-height: 2;opacity: 0.1;">
+          For Bold Creators
+      </div>
       </div>
     </mat-card-content>
     <mat-card-actions style="float: right;">
       <button mat-button>Cancel</button>
       <button mat-button color='primary'>Apply</button>
     </mat-card-actions>
+  </div>
   </mat-card>
