@@ -21,12 +21,12 @@
     [sidenavOpened]="sidenav?.opened"
     (sidenavToggle)="sidenav.toggle()"
   ></app-header>
-  <mat-sidenav-container >
-    <mat-sidenav #sidenav1 position="start" mode="over">
+  <mat-sidenav-container [hasBackdrop]="false" >
+    <mat-sidenav class="pages-side" #sidenav1 position="start" mode="over">
       <app-sidebar></app-sidebar>
     </mat-sidenav>
-    <mat-sidenav class="topy" #sidenav2 position="end" mode="over">
-      Start Sidenav2.
+    <mat-sidenav [@.disabled]="true" class="topy" style="width: 167px;" #sidenav2 position="end" mode="over">
+      <app-side-typography></app-side-typography>
     </mat-sidenav>
 
     <!-- Main -->

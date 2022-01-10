@@ -1,10 +1,17 @@
 <nav>
     <ul class="menu">
       <li class="logo" ><a style="width: 130px;" href="#">Page Builder</a></li>
-      <li *ngFor="let page of pages" class="item"><a [routerLink]="['/'+page.page_url]">{{page.name| titlecase}}</a></li>
+
+        <li *ngFor="let page of pages" class="item"><a [routerLink]="['/'+page.page_url]">{{page.name| titlecase}}</a></li>
     
-      <li class="item button"><a href="#">Log In</a></li>
-      <li class="item button secondary"><a href="#">Sign Up</a></li>
-      <li class="toggle"><a href="#"><i class="fas fa-bars"></i></a></li>
+        <li class="item button"><a href="#">Log In</a></li>
+        <li class="item button secondary"><a href="#">Sign Up</a></li>
+
+     
+      <li class="toggle">
+        <a href="#" data-toggle="collapse" data-target=''>
+          <i class="fa fa-bars"></i>
+        </a>
+      </li>
     </ul>
   </nav>

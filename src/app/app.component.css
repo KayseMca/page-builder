@@ -38,6 +38,7 @@
 mat-sidenav .topy{
   position: fixed;
   left: 0;
+  width: 100px;
 }
 
 
@@ -54,9 +55,9 @@ color: black;
   padding: 12px;
  
 }
+
 mat-sidenav{
     margin: 3px 8px 8px 8px;
-    width: 285px ;
     border-right: none;
     /* background: #ece9e9; */
     color:rgb(44, 10, 240);
@@ -68,6 +69,10 @@ mat-sidenav{
     left: 0;
     bottom: 50px;
 
+}
+
+mat-sidenav .pages-side{
+  width: 285px ;
 }
 
 

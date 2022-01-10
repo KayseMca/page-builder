@@ -17,6 +17,9 @@ import { PagePropertiesModule } from './shared/components/page-properties.module
 import { SearchPagePipe } from './shared/pipe/seach-page.pipe';
 import { DeleteDialogComponent } from './dialog/delete-dialog.component';
 import { NavComponent } from './navigation/nav/nav.component';
+import { SideTypographyComponent } from './navigation/side-typography/side-typography.component';
+import { TypographyListComponent } from './navigation/side-typography/typography-list/typography-list.component';
+import { TypographyItemComponent } from './navigation/side-typography/typography-item/typography-item.component';
 
 
 
@@ -31,6 +34,9 @@ import { NavComponent } from './navigation/nav/nav.component';
     SearchPagePipe,
     DeleteDialogComponent,
     NavComponent,
+    SideTypographyComponent,
+    TypographyListComponent,
+    TypographyItemComponent,
 
   ],
   imports: [

@@ -1,12 +1,4 @@
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-  }
-  body {
-    font-family: sans-serif;
-    font-size: 16px;
-  }
+
   nav {
     background: #545e5a;
     padding: 0 15px;

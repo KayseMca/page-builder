@@ -11,6 +11,7 @@ import { PageData } from 'src/app/_interfaces/_page';
 export class NavComponent implements OnInit {
 
   pages!:PageData[]
+  isCollapsed:Boolean = false
   constructor(private pageData:PageDataService) { }
 
   ngOnInit(): void {
