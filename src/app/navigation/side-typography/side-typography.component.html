@@ -1,9 +1,9 @@
 <mat-nav-list>
-    <mat-list-item >
+    <mat-list-item (click)='toggleDesign("typo")' >
       <p matLine >Typography</p>
  
     </mat-list-item>
-    <mat-list-item >
+    <mat-list-item (click)='toggleDesign("color")'>
         <p matLine >Background</p>
          <!-- <button mat-icon-button >
             <mat-icon>info</mat-icon>
@@ -19,6 +19,11 @@
       
       <hr>
 
-      <app-typography-list  *ngFor="let item of list; let i=index" [index]='i'></app-typography-list>
+      <ng-container *ngIf="toggleList['typo']" >
+        <app-typography-list  *ngFor="let item of list; let i=index" [index]='i'></app-typography-list>
+      </ng-container>
 
+      <ng-container *ngIf="toggleList['color']" >
+        <div>Hello the world</div>
+      </ng-container>
   </div>
