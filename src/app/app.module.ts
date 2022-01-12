@@ -25,6 +25,7 @@ import { TypographyItemComponent } from './navigation/side-typography/typography
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +47,7 @@ import { TypographyItemComponent } from './navigation/side-typography/typography
     MaterialModuleModule,
     MainModuleModule,
     PagePropertiesModule,
+
    
     
   ],

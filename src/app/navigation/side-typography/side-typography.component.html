@@ -19,11 +19,14 @@
       
       <hr>
 
+
+      <!-- fonts picker -->
       <ng-container *ngIf="toggleList['typo']" >
         <app-typography-list  *ngFor="let item of list; let i=index" [index]='i'></app-typography-list>
       </ng-container>
 
+      <!-- colors picker -->
       <ng-container *ngIf="toggleList['color']" >
-        <div>Hello the world</div>
+        <h2>color picker</h2>
       </ng-container>
   </div>

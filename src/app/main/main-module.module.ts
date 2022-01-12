@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainContentComponent } from './main-content.component';
 import { HomeComponent } from './pages/home/home.component';
 
+import { PagePropertiesModule } from '../shared/components/page-properties.module';
+
 
 
 const appRoutes:Routes  = [
@@ -17,7 +19,8 @@ const appRoutes:Routes  = [
   declarations: [MainContentComponent, HomeComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(appRoutes)
+    RouterModule.forChild(appRoutes),
+    PagePropertiesModule
   ],
   exports:[MainContentComponent]
 })
