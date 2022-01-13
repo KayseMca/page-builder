@@ -45,6 +45,25 @@ export class PageSettings{
     advanced_seo?:AdditionalSEO
 }
 
+export interface FontStyle{
+    name?:string
+    font?:string
+    size?:number
+    style?:string
+    color?:string
+}
+export interface Typography{
+
+    headers?:Array<FontStyle>
+    pragraphy?:Array<FontStyle>
+
+
+
+}
+export interface Style{
+    typography?:Typography
+    background_color?:string
+}
 export class PageData{
     id!:number
     name!:string 
@@ -54,5 +73,6 @@ export class PageData{
     base_url?:string
     settings!:Array<string>
     page_settings!:PageSettings
+    page_styles?:Style
 }
 

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ColorSketchModule } from 'ngx-color/sketch';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModuleModule } from './shared/models/material-module.module';
@@ -47,6 +48,7 @@ import { TypographyItemComponent } from './navigation/side-typography/typography
     MaterialModuleModule,
     MainModuleModule,
     PagePropertiesModule,
+    ColorSketchModule // picker color package
 
    
     

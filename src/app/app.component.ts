@@ -1,6 +1,8 @@
 import { AfterViewInit,ChangeDetectorRef, Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { take } from 'rxjs';
 import { PagePropertyServiceService } from './shared/services/page-property/page-property-service.service';
+import { PageData } from './_interfaces/_page';
 
 
 
@@ -14,30 +16,27 @@ export class AppComponent implements OnInit  {
    public sidenav!: MatSidenav 
 
   title = 'page-builder';
-  constructor(private sidenavService:PagePropertyServiceService){}
+  page_selected!:PageData
+  background_color!:string|undefined
+  constructor(private sidenavService:PagePropertyServiceService){
+    this.sidenavService.selectedPage.subscribe(res=>{
+      this.page_selected = res.page
+     this.background_color = this.page_selected.page_styles?.background_color
+    })
+  }
 
   
   ngOnInit(): void {
-    console.log("######")
+
+    console.log(this.background_color)
     
   }
   
-  ngAfterViewInit(): void {
-    this.sidenavService.setSidenav(this.sidenav);
-    console.log(this.sidenav)
-    
-  }
 
   onToggleSidenav(event:MatSidenav){
    
     this.sidenav = event
-
-    
     return this.sidenav.toggle()
   }
-  setSidenav(nav:MatSidenav){
-    this.sidenav = nav
-    nav.open()
-    this.sidenavService.setSidenav(nav)
-  }
+ 
 }

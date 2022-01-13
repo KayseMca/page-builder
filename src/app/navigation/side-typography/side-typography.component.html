@@ -1,9 +1,9 @@
 <mat-nav-list>
-    <mat-list-item (click)='toggleDesign("typo")' >
+    <mat-list-item  (click)='toggleDesign("typo")' >
       <p matLine >Typography</p>
  
     </mat-list-item>
-    <mat-list-item (click)='toggleDesign("color")'>
+    <mat-list-item (click)='toggleDesign("color")' >
         <p matLine >Background</p>
          <!-- <button mat-icon-button >
             <mat-icon>info</mat-icon>
@@ -14,7 +14,12 @@
 
   <div class="side-typography">
       <div class="head">
-        <h3>Site Typography Styles</h3>
+        <h3>
+          Page 
+          <span *ngIf="toggleList['typo']">Typography</span> 
+          <span *ngIf="toggleList['color']">Background</span> 
+          Styles
+        </h3>
       </div>
       
       <hr>
@@ -27,6 +32,9 @@
 
       <!-- colors picker -->
       <ng-container *ngIf="toggleList['color']" >
-        <h2>color picker</h2>
+        <div style="width: 18rem;">
+          <!-- (onChangeComplete)="changeComplete($event)" -->
+          <color-sketch (onChange)="handleChange($event)" ></color-sketch>
+        </div>
       </ng-container>
   </div>

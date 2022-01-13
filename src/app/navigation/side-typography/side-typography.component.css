@@ -18,3 +18,9 @@
     margin: 6px;
     font-weight: 600;
 }
+
+.sketch-picker{
+    box-shadow: none !important;
+    width: 20rem !important;
+    height: 40rem;
+}

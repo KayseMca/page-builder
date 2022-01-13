@@ -20,7 +20,8 @@ const appRoutes:Routes  = [
   imports: [
     CommonModule,
     RouterModule.forChild(appRoutes),
-    PagePropertiesModule
+    PagePropertiesModule,
+    
   ],
   exports:[MainContentComponent]
 })

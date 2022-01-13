@@ -72,7 +72,7 @@ export let data = [
             'Edit Page',
             'Hide',
             'Delete'
-        ],
+        ],  
         "page_settings": {
             "page_info": {
                 "page_name": "Page 2",

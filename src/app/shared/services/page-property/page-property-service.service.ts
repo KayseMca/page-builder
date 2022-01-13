@@ -11,12 +11,10 @@ export class PagePropertyServiceService {
   constructor() { }
 
   private closeTab= new Subject<Boolean>(); 
-  private sidenav!: MatSidenav ;
-  selectedPage = new BehaviorSubject({page: new PageData(), tab:''})
+
+  selectedPage = new BehaviorSubject({page: new PageData(), tab!:''})
   
 
-
-  
 
   closeComponentsTab(event:Boolean):Observable<Boolean>{
     this.closeTab.next(event)
@@ -24,31 +22,9 @@ export class PagePropertyServiceService {
   }
 
   
-  singlePageChoose(page:PageData, tab:string) {
-    this.selectedPage.next({page,tab});
+  singlePageChoose(page:PageData, tab?:string) {
+    this.selectedPage.next({page,tab:tab||''});
 }
-
-
-public setSidenav(sidenav: MatSidenav) {
-    this.sidenav = sidenav;
-}
-
-public open() {
-    return this.sidenav.open();
-}
-
-// public opened(){
-//   return this.sidenav.opened
-// }
-
-public close() {
-    return this.sidenav.close();
-}
-
-public toggle(): void {
-this.sidenav.toggle();
-}
-
 
 
 }
