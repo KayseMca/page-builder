@@ -59,7 +59,7 @@ export const typographs:Typograph[] = [
     // pragraphs
     ,
     {
-        style_type:"P 1",
+        style_type:"Pragraphy 1",
         font:"Oswaldo",
         size:90,
         style:"Bold",
@@ -67,7 +67,7 @@ export const typographs:Typograph[] = [
         example_text:"Pragraph example Font"
     },
     {
-        style_type:"P 2",
+        style_type:"Pragraphy 2",
         font:"Oswaldo",
         size:90,
         style:"Bold",
@@ -75,7 +75,7 @@ export const typographs:Typograph[] = [
         example_text:"Heading example Font"
     },
     {
-        style_type:"P 3",
+        style_type:"Pragraphy 3",
         font:"Oswaldo",
         size:90,
         style:"Bold",
