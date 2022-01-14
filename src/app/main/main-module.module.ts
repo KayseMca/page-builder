@@ -6,17 +6,19 @@ import { MainContentComponent } from './main-content.component';
 import { HomeComponent } from './pages/home/home.component';
 
 import { PagePropertiesModule } from '../shared/components/page-properties.module';
+import { Page2Component } from './pages/page2/page2.component';
 
 
 
 const appRoutes:Routes  = [
 
   {path:'',redirectTo:'/home', pathMatch:'full'},
-  {path:'home', component:HomeComponent}
+  {path:'home', component:HomeComponent},
+  {path:'page2', component:Page2Component}
 ]
 
 @NgModule({
-  declarations: [MainContentComponent, HomeComponent],
+  declarations: [MainContentComponent, HomeComponent, Page2Component],
   imports: [
     CommonModule,
     RouterModule.forChild(appRoutes),

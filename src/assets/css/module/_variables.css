@@ -1,0 +1,63 @@
+
+/**  These variables is assigning different class to separate them as there styles
+*/ 
+@import './_fonts.css';
+
+
+:root{
+    /*heading1*/
+    --heading1-font: "Oswaldo";
+    --heading1-size: 2em;
+    --heading1-style:bold;
+    --heading1-color:black;
+    
+
+
+     /*heading2*/
+     --heading2-font: "Roboto";
+     --heading2-size:1.5em;
+     --heading2-style:italic;
+     --heading2-color:black;
+      /*heading3*/
+    --heading3-font: "Lato";
+    --heading3-size:1.17em;
+    --heading3-style:bold;
+    --heading3-color:black;
+     /*heading4*/
+     --heading4-font: "Lato";
+     --heading4-size:1.33em;
+     --heading4-style:bold;
+     --heading4-color:black;
+      /*heading5*/
+    --heading5-font: "Lato";
+    --heading5-size:0.83em;
+    --heading5-style:bold;
+    --heading5-color:black;
+
+     /*heading6*/
+     --heading6-font: "Moon Dance";
+     --heading6-size:0.67em;
+     --heading6-style:bold;
+     --heading6-color:rgb(90, 27, 236);
+
+
+      /*p1*/
+    --p1-font: "Lato";
+    --p1-size:20px;
+    --p1-style:normal;
+    --p1-color:black;
+
+     /*p2*/
+     --p2-font: "Roboto";
+     --p2-size:15px;
+     --p2-style:normal;
+     --p2-color:black;
+      /*p3*/
+    --p3-font: "Moon Dance";
+    --p3-size:12px;
+    --p3-style:italic;
+    --p3-color:black;
+
+    
+}
+

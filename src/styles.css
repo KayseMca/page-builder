@@ -2,9 +2,104 @@
 
 @import "~bootstrap/dist/css/bootstrap.css"; 
 @import "~font-awesome/css/font-awesome.css"; 
+/* @import "./assets/css/module/_fonts.css"; */
+@import "./assets/css/module/_variables.css";
 
 *{
     box-sizing: none;
 }
 html, body { height: 100%; position: relative;   overflow-y: hidden;} 
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/*? heeading 1 */
+
+.heading1{
+    font-family: var(--heading1-font);
+    font-size:var(--heading1-size);
+    font-style: var(--heading1-style);
+    color: var(--heading1-color);
+    font-weight: 500;
+    display: block;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+/*? heeading 2 */
+.heading2{
+    font-family: var(--heading2-font);
+    font-size:var(--heading2-size);
+    font-style: var(--heading2-style);
+    color: var(--heading2-color);
+    display: block;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+/*? heeading 3 */
+.heading3{
+    font-family: var(--heading3-font);
+    font-size:var(--heading3-size);
+    font-style: var(--heading3-style);
+    color: var(--heading3-color);
+    font-weight: 700;
+
+}
+/*? heeading 4 */
+.heading4{
+    font-family: var(--heading4-font);
+    font-size:var(--heading4-size);
+    font-style: var(--heading4-style);
+    color: var(--heading4-color);
+    font-weight: 700;
+
+}
+/*? heeading 5 */
+.heading5{
+    font-family: var(--heading5-font);
+    font-size:var(--heading5-size);
+    font-style: var(--heading5-style);
+    color: var(--heading5-color);
+    font-weight: 700;
+
+}
+/*? heeading 6 */
+.heading6{
+    font-family: var(--heading6-font);
+    font-size:var(--heading6-size);
+    font-style: var(--heading6-style);
+    color: var(--heading6-color);
+    font-weight: 700;
+
+}
+
+
+
+/* * paragraph 1 */
+
+.p1{
+    font-family: var(--p1-font);
+    font-size:var(--p1-size);
+    font-style: var(--p1-style);
+    color: var(--p1-color);
+    font-weight: 700;
+
+}
+/* * paragraph 2 */
+
+.p2{
+    font-family: var(--p2-font);
+    font-size:var(--p2-size);
+    font-style: var(--p2-style);
+    color: var(--p2-color);
+
+}
+/* * paragraph 3 */
+
+.p3{
+    font-family: var(--p3-font);
+}
