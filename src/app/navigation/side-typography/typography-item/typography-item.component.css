@@ -30,13 +30,18 @@
     margin-left: 2px;
   }
 
+  .font-size{
+    display: flex;
+    padding: 0.2em;
+    border: 1px solid;
+    border-radius: 8px;
+  }
   .fonts{
-    flex:0 0 233px;
+    flex:0 0 216px;
   }
 
-  .form-control{
-    padding: 0.2em;
-    border-radius: 8px;
+ .form-control{
+    border: none;
   }
 
   input[type="number"]{

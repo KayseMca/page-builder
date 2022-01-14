@@ -1,11 +1,11 @@
-<mat-card class="example-card" style="cursor: pointer;"  (click)='openFont()'>
-    <mat-card-title>Heading 1</mat-card-title>
-    <i class="fa fa-pencil fa-2x" (click)='openFont()' aria-hidden="true"></i>
+<mat-card class="example-card" style="cursor: pointer;"  (click)='onSelectTypography()'>
+    <mat-card-title>{{typograph.style_type}}</mat-card-title>
+    <i class="fa fa-pencil fa-2x" (click)='onSelectTypography()' aria-hidden="true"></i>
  <!--    <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon> -->
-    <mat-card-subtitle>Barlow Medium, 90px</mat-card-subtitle>
+    <mat-card-subtitle>{{typograph.font}}, {{typograph.size}}px</mat-card-subtitle>
     <mat-card-content>
         <div class="font" style="font-size: 69px;line-height: 1;opacity: 0.1;">
-            For Bold Creators
+            {{typograph.font}}
         </div>
     </mat-card-content>
     
@@ -14,5 +14,5 @@
   <hr>
 
   <ng-container *ngIf="show">
-      <app-typography-item [index]='index' ></app-typography-item>
+      <app-typography-item [typograph]='typograph' ></app-typography-item>
   </ng-container>

@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service';
+import { Typograph } from 'src/app/_interfaces/_typograph';
 
 @Component({
   selector: 'app-typography-item',
@@ -7,15 +10,25 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TypographyItemComponent implements OnInit {
 
-  @Input() index!:number
+  _typograph!:Typograph
+  @Input() set typograph(value:Typograph){
+     this._typograph = value
+  }
 
-  font!:{font:string,size:number,font_type:string,color:string}
+  get typograph():Typograph{
+    return this._typograph
+  }
 
-  fontlist = ['Barlow Medium','Basic','Caudex','Comic Sans MS']
-  constructor() { }
+  //typograph!:Typograph
+
+  all_fonts!:Observable<string[]>
+  constructor(private pagePropertyService:PagePropertyServiceService) { 
+    this.all_fonts = pagePropertyService.allFonts
+  }
 
   
   ngOnInit(): void {
+   
   }
 
 }

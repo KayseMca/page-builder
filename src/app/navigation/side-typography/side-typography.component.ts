@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ColorEvent } from 'ngx-color';
-import { take } from 'rxjs';
+import { Observable, of, take } from 'rxjs';
 import { PageDataService } from 'src/app/shared/services/page-data-service/page-data.service';
 
 import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service';
 import { PageData } from 'src/app/_interfaces/_page';
+import { Typograph } from 'src/app/_interfaces/_typograph';
 
 @Component({
   selector: 'app-side-typography',
@@ -24,7 +25,8 @@ export class SideTypographyComponent implements OnInit {
 
   toggleList:{[key:string]:boolean}  = {'typo':false, 'color':true}
 
-  list = [1,3]
+  typograp_list!:Observable<Typograph[]>
+
   page_data!:PageData
   page_selected:PageData = new PageData()
   saving_page_data:PageData = new PageData()
@@ -38,6 +40,12 @@ export class SideTypographyComponent implements OnInit {
         this.saving_page_data.id = res.page.id
         this.page_selected = res.page
       })
+
+      // get all typographs
+      this.typograp_list = pagePropertyService.typographList;
+      
+      // get all font list
+      
    }
 
   ngOnInit(): void {

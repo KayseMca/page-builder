@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, Input, OnInit } from '@angular/core';
+import { Typograph } from 'src/app/_interfaces/_typograph';
 
 @Component({
   selector: 'app-typography-list',
@@ -7,7 +8,8 @@ import { Component, ElementRef, HostListener, Input, OnInit } from '@angular/cor
 })
 export class TypographyListComponent implements OnInit {
 
-  @Input() index!:number
+  @Input() typograph!:Typograph
+  
   show:Boolean = false
   clicked = null
   @HostListener('window:click', ['$event'])
@@ -24,10 +26,12 @@ export class TypographyListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openFont(){
+  onSelectTypography(){
+    // first close already open font window
     this.show = false
-    console.log("open the fonts")
+    console.log("selected a font")
+    console.log(this.typograph)
+    // reopen the new one selected
     this.show = !this.show
-    console.log(this.index)
   }
 }

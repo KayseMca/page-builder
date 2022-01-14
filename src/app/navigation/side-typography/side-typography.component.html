@@ -27,7 +27,7 @@
 
       <!-- fonts picker -->
       <ng-container *ngIf="toggleList['typo']" >
-        <app-typography-list  *ngFor="let item of list; let i=index" [index]='i'></app-typography-list>
+        <app-typography-list   *ngFor="let typograph of typograp_list | async as list; let i=index" [typograph]='typograph'></app-typography-list>
       </ng-container>
 
       <!-- colors picker -->

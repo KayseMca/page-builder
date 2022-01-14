@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import {  Typograph } from 'src/app/_interfaces/_typograph';
 import { PageData } from 'src/app/_interfaces/_page';
 import { fontList } from './allFonts';
+import { typographs } from './typograph';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class PagePropertyServiceService {
   private closeTab= new Subject<Boolean>(); 
 
   // style typograph list [heading1..heading6, p1...p3]
-  public typographList:Observable<Typograph[]> = new BehaviorSubject<Typograph[]>([])
+  public typographList:Observable<Typograph[]> = of(typographs)
 
   // all fonts lists
   public allFonts = of(fontList)

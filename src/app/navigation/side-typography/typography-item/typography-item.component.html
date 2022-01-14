@@ -1,28 +1,30 @@
 <mat-card class="example-card">
   <div style="margin-left: 5px;">
 
-    <mat-card-title>Edit{{index}}</mat-card-title>
+    <mat-card-title>Edit {{typograph?.style_type}}</mat-card-title>
     <mat-card-subtitle>
       <form class="example-form">
+        <!-- Fonts lists -->
         <div class="font-list" >
-          <!-- Fonts lists -->
           <div class="fonts item"  matTooltip="Fonts"
           matTooltipPosition="above">
             <select class="form-select form-select-sm" aria-label="Default select example">
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              <option *ngFor="let item of all_fonts | async as list" [value]="item" [selected]="item ===typograph.font">
+                {{item}}
+              </option>
+              
             </select>
           </div>
   
           <!-- font size -->
-          <div class="font-size item "  matTooltip="Font size"
+          <div class="font-size item"  matTooltip="Font size"
           matTooltipPosition="above">
-            <input type="number" min="0" value="0" class="form-control">
+            <input type="number" min="0" [value]="typograph.size" class="form-control">
+            <span>px</span>
           </div>
 
           <div class="font-type item">
-            <mat-button-toggle-group name="fontStyle" class="font-type--style" aria-label="Font Style">
+            <mat-button-toggle-group name="fontStyle" value="All" class="font-type--style" aria-label="Font Style">
               <mat-button-toggle matTooltip="Bold"
               matTooltipPosition="above"
               style="line-height: none;" value="bold">
@@ -48,7 +50,7 @@
     <mat-card-content>
       <div class="font-display-field">
         <div style="font-size: 89px;line-height: 2;opacity: 0.1;">
-          For Bold Creators
+          {{typograph.font}}
       </div>
       </div>
     </mat-card-content>
