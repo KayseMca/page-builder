@@ -5,6 +5,8 @@
 
 
 :root{
+  /** Global background variable*/
+  --background-color:#ffffff;
     /*heading1*/
     --heading1-font: "Oswaldo";
     --heading1-size: 2em;

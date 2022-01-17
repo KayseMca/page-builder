@@ -1,4 +1,5 @@
 
+
 .home{
     margin: 0;
     position:relative;
@@ -17,9 +18,9 @@
 
 .mat-sidenav-content{
   z-index: -1;
-
   width: 98%;
-  overflow: scroll;
+  /* ! check if scroll page working later */
+  overflow: auto;
   height: 100vh;
   margin: 65px auto;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
@@ -86,9 +87,8 @@ mat-sidenav .pages-side{
 
 
 mat-sidenav-container{
-    /* height: calc(100vh-65px); */
-    /* height: calc(100vh - 56px); */
-    overflow: auto;
+    background-color: var(--background-color);
+    /* overflow: auto; */
 
 }
 .mat-drawer-container{

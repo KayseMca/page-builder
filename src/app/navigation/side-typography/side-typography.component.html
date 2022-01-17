@@ -1,9 +1,9 @@
 <mat-nav-list>
-    <mat-list-item  (click)='toggleDesign("typo")' >
+    <mat-list-item  (click)='toggletypography("typo")' >
       <p matLine >Typography</p>
  
     </mat-list-item>
-    <mat-list-item (click)='toggleDesign("color")' >
+    <mat-list-item (click)='toggletypography("color")' >
         <p matLine >Background</p>
          <!-- <button mat-icon-button >
             <mat-icon>info</mat-icon>
@@ -34,7 +34,7 @@
       <ng-container *ngIf="toggleList['color']" >
         <div style="width: 18rem;">
           <!-- (onChangeComplete)="changeComplete($event)" -->
-          <color-sketch (onChange)="handleChange($event)" ></color-sketch>
+          <color-sketch  (onChange)="handleChange($event)" appBackgroundColorChange [color_variable]='color' ></color-sketch>
         </div>
       </ng-container>
   </div>

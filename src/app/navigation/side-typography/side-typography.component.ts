@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { ColorEvent } from 'ngx-color';
 import { Observable, of, take } from 'rxjs';
 import { PageDataService } from 'src/app/shared/services/page-data-service/page-data.service';
@@ -13,8 +13,8 @@ import { Typograph } from 'src/app/_interfaces/_typograph';
   styleUrls: ['./side-typography.component.css']
 })
 export class SideTypographyComponent implements OnInit {
-
-  color!:string
+ 
+  color:string = "#ffffff"
   primaryColor = '#194D33';
   state = {
     h: 150,
@@ -54,7 +54,7 @@ export class SideTypographyComponent implements OnInit {
     console.log(this.page_selected)
   }
 
-  toggleDesign(event:string){
+  toggletypography(event:string){
     if(event==='color'){
       this.toggleList['typo'] = false
       this.toggleList['color']=true
@@ -65,11 +65,10 @@ export class SideTypographyComponent implements OnInit {
   }
 
   handleChange(event:ColorEvent){
+    //this.page_selected.page_styles = this.saving_page_data.page_styles = {background_color:this.color}
     this.color = event.color.hex
-    this.page_selected.page_styles = this.saving_page_data.page_styles = {background_color:this.color}
-
     // update both selected page and the whole data
-    this.pagePropertyService.singlePageChoose(this.page_selected)
-    this.pageDataService.updatePageData(this.page_selected)
+    // this.pagePropertyService.singlePageChoose(this.page_selected)
+    // this.pageDataService.updatePageData(this.page_selected)
   }
 }
