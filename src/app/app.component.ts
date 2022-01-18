@@ -19,7 +19,7 @@ import { Typograph } from './_interfaces/_typograph';
 })
 export class AppComponent implements OnInit  {
 
-  @HostBinding('style.--background-color') backgroundColor!:string
+  @HostBinding('style.--background-color') backgroundColor!:string|undefined
    public sidenav!: MatSidenav 
 
   title = 'page-builder';
@@ -40,11 +40,11 @@ export class AppComponent implements OnInit  {
     
 
     // handle this it causes some "Violation changes"
-    this.typography.background_color.subscribe(res=>{
+    this.pageService.allPagesData.subscribe(res=>{
       // waiting until first value initiliazed to use and change then (from style.css)
       setTimeout(() => {
         
-        this.backgroundColor = res;
+        this.backgroundColor = res[0].page_styles?.background_color;
       }, 0);
 
       })

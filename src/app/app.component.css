@@ -79,7 +79,8 @@ mat-sidenav .pages-side{
 .content{
 
     /* height: calc(100vh-98px); */
-/*     margin:109px 8px 8px 32px;*/    
+/*     margin:109px 8px 8px 32px;*/ 
+background:var(--background-color);   
   border-radius: 10px;
     
 
