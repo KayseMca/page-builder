@@ -40,7 +40,7 @@ export class SideTypographyComponent implements OnInit {
     ) {
 
       pageDataService.allPagesData.subscribe(res=>{
-        this.page_selected = res[0]
+        this.page_selected.page_styles = res[0].page_styles
         this.typograp_list = this.page_selected.page_styles?.typography
       })
       // after App start let select page that in url
@@ -89,7 +89,7 @@ export class SideTypographyComponent implements OnInit {
   }
 
   handleChange(event:ColorEvent){
-    this.page_selected.id = NaN
+    //this.page_selected.id = NaN
     this.color = event.color.hex
     this.page_selected.page_styles = {background_color:this.color}
     this.pageDataService.updatePageData(this.page_selected)

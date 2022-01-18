@@ -44,6 +44,7 @@ export class PageDataService {
 
     oldData.forEach((item: PageData) => {
       id = item.id === data.id ? true : false
+      console.log(id)
       // check and change  the other items home_page value 
       if (data.home_page) {
 
@@ -69,10 +70,11 @@ export class PageDataService {
         // change all the pages styles background color
         let item_style = item.page_styles
         let data_style = data.page_styles
-        
+        let style = data_style?.typography
+        console.log(style)
         item.page_styles={
            background_color:data_style?.background_color ? data_style?.background_color : item_style?.background_color,
-           typography:data_style?.typography ?[...this.updatePageStyles(item_style?.typography, data_style?.typography)]:[...item_style?.typography!]
+           typography: style ?[...this.updatePageStyles(item_style?.typography, data_style?.typography)]:item_style?.typography
           }
       }
 
