@@ -5,7 +5,7 @@ export  class Typograph{
     font?: string
     size?:number
     style?:string
-    weight?:string
+    weight?:string|number
     color?:string
     example_text?:string
 }

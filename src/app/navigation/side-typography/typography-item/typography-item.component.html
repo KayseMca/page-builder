@@ -31,7 +31,6 @@
             <input class="bold" type="checkbox" 
              id="weight" name="weight" [checked]="checked_weight"
              (click)="onCheckChange($event)"
-             formControlName="weight"
              >
             <label matTooltip="Bold"
             matTooltipPosition="above"
@@ -48,7 +47,7 @@
              
               [checked] ="checked_style"
               (click)="onCheckStyle($event)" 
-             formControlName="style"
+           
              >
             <label matTooltip="italic"
             matTooltipPosition="above"

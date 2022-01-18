@@ -1,5 +1,5 @@
 import { style } from '@angular/animations';
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { PageDataService } from 'src/app/shared/services/page-data-service/page-data.service';
@@ -20,10 +20,10 @@ export class TypographyItemComponent implements OnInit {
      this._typograph = value
   }
 
-  checked_weight:Boolean = false
-  checked_style:Boolean = false
+  checked_weight!:Boolean
+  checked_style!:Boolean
   get typograph():Typograph{
-    
+    //console.log("get console")
     return this._typograph
   }
 
@@ -35,11 +35,23 @@ export class TypographyItemComponent implements OnInit {
     private pageData: PageDataService,
     private fb:FormBuilder, 
     ) { 
+      
     this.all_fonts = pagePropertyService.allFonts
     
   }
 
-  
+  ngOnChanges(changes: SimpleChanges): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+    //console.log(changes)
+    let change = changes['typograph'].currentValue
+    if(change){
+      this.checked_style =change.style ==='normal' ? false:true
+      this.checked_weight =change.weight ==='bold' ? true:false
+      console.log(this.checked_style)
+      console.log(this.checked_weight)
+    }
+  }
   ngOnInit(): void {
     
     
@@ -56,9 +68,11 @@ export class TypographyItemComponent implements OnInit {
   }
 
   onCheckChange(event:any){
+    const isChecked = (<HTMLInputElement>event.target).checked;
+    console.log(isChecked)
     this.checked_weight = !this.checked_weight
     let value = {weight:"bold"}
-    console.log(event.target.value)
+    console.log(event.target.checked)
     if(this.checked_weight){
       this.styleForm.patchValue(value)
     }else{
@@ -69,6 +83,7 @@ export class TypographyItemComponent implements OnInit {
   }
 
   onCheckStyle(event:any){
+    console.log(this.checked_style)
     this.checked_style = !this.checked_style
     let value = {style:"italic"}
     console.log(event.target.value)
