@@ -82,13 +82,13 @@ onChanges(i:number){
   
   //change the value
   if(index)  advanced_data_update[index] = changeIndex
-  // console.log(advanced_data_update)
+  // 
 
   //saving the updated data
   // this.saving_data.page_settings  = {}
   this.saving_data.page_settings = {advanced_seo:{robots_meta_tags:[...advanced_data_update]}}
   this.saving_data.id = id
-  // console.log(this.saving_data.page_settings.advanced_seo?.robots_meta_tags)
+  // 
   this.pageData.updatePageData(this.saving_data)
 }
 

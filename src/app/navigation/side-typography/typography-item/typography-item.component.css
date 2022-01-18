@@ -8,7 +8,7 @@
   }
 
   .mat-card-content{
-    height: 188px;
+    /* height: 188px; */
     overflow: auto;
   }
 
@@ -32,9 +32,11 @@
 
   .font-size{
     display: flex;
-    padding: 0.2em;
+    /* padding: 0.2em; */
+    padding-left:0.2em ;
     border: 1px solid;
     border-radius: 8px;
+    flex-basis: 100px;
   }
   .fonts{
     flex:0 0 216px;
@@ -42,6 +44,7 @@
 
  .form-control{
     border: none;
+    padding: 0 !important;
   }
 
   input[type="number"]{
@@ -55,8 +58,18 @@
   .item{
     margin-left: 5px;
   }
+
+  .font-type{
+    display: flex;
+  }
+
   .font-type--style{
     border: none;
+    
+  }
+
+  .mat-button{
+    min-width: 30px;
   }
 
   .mat-button-toggle-group {
@@ -70,10 +83,35 @@
   }
 
   .font-display-field{
-    height: 350px; 
-
+    
+    height: 170px; 
+    /* text-align: center; */
+    padding: 45px 23px;
   }
 
   span{
     margin-top: 4px;
   }
+
+/* Hide the checkboxes */
+input[type='checkbox'] { display:none; }
+
+/* Default styling for labels to make them look like buttons */
+input[type='checkbox'] + label {
+  display:inline-block;
+  /* box-shadow:1px 1px grey; */
+  border-radius:3px;
+  /* backgrounpxd-color:#e0e0e0; */
+  margin:2px;
+  padding:5px 10px;
+  font-family:Arial, Helvetica, sans-serif;
+  cursor:pointer;
+  color: black;
+}
+
+/* Styling for labels when corresponding checkbox is checked */
+input[type='checkbox']:checked + label {
+  /* box-shadow:-1px -1px grey;
+  background-color:#f78d32; */
+  background-color:#b6b3b1;
+}

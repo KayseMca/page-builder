@@ -1,6 +1,6 @@
 .side-typography{
     position: fixed;
-    min-width: 300px;
+    min-width: 400px;
     top: 75px;
     left: 168px;
     bottom: 520px;
@@ -23,4 +23,5 @@
     box-shadow: none !important;
     width: 20rem !important;
     height: 40rem;
+ 
 }

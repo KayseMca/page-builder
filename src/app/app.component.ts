@@ -1,9 +1,14 @@
-import { AfterViewInit,ChangeDetectorRef, Component, EventEmitter, HostBinding, OnInit, ViewChild } from '@angular/core';
+import {  Component, HostBinding, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { Observable } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter, Observable, take } from 'rxjs';
+import { PageDataService } from './shared/services/page-data-service/page-data.service';
+import { PagePropertyServiceService } from './shared/services/page-property/page-property-service.service';
+
 
 import { TypographyService } from './shared/services/typography/typography.service';
 import { PageData } from './_interfaces/_page';
+import { Typograph } from './_interfaces/_typograph';
 
 
 
@@ -20,13 +25,21 @@ export class AppComponent implements OnInit  {
   title = 'page-builder';
   page_selected!:PageData
   
-  constructor(private typography:TypographyService, private cdr:ChangeDetectorRef){
+
+  constructor(
+    
+    private typography:TypographyService,
+    private pageService:PageDataService,
+    private propertyService:PagePropertyServiceService
+    ){
    
   }
 
   
   ngOnInit(): void {
     
+
+    // handle this it causes some "Violation changes"
     this.typography.background_color.subscribe(res=>{
       // waiting until first value initiliazed to use and change then (from style.css)
       setTimeout(() => {

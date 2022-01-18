@@ -4,8 +4,9 @@
  <!--    <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon> -->
     <mat-card-subtitle>{{typograph.font}}, {{typograph.size}}px</mat-card-subtitle>
     <mat-card-content>
-        <div class="font" style="font-size: 69px;line-height: 1;opacity: 0.1;">
-            {{typograph.font}}
+        <div class="font" [ngStyle]="style">
+            <!-- {{typograph.font}} -->
+            {{typograph.example_text}}
         </div>
     </mat-card-content>
     

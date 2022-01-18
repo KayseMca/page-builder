@@ -32,16 +32,16 @@ export class PagePropertiesComponent implements OnInit {
      //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
      //Add '${implements OnChanges}' to the class.
      if(changes['pageSelected'].currentValue){
-       console.log(changes)
+       
      }
    }
   
   ngOnInit(): void {
-    console.log('page property')
+    
 
     this.pageService.selectedPage.subscribe(res=>{
       this.selectedPageData = res
-      console.log(this.selectedPageData)
+      
       this.homepage = this.selectedPageData.page['home_page']
       // set dynamically tab selected
       if(this.selectedPageData.tab==='Settings') {
@@ -65,15 +65,16 @@ export class PagePropertiesComponent implements OnInit {
 
 
   onTabChange(event:MatTabChangeEvent){
-    console.log("tabb")
-      console.log(event)
+    
+      
   }
 
   closeTabs(){
     this.closeTab = false
-    this.pageService.closeComponentsTab(this.closeTab).pipe(take(1)).subscribe(res=>console.log(res))
-    
-  }
+    this.pageService.closeComponentsTab(this.closeTab).pipe(take(1)).subscribe(res=>{
+      console.log()
+    })
 
-  
+}
+
 }

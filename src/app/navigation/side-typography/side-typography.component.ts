@@ -1,6 +1,7 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { ColorEvent } from 'ngx-color';
-import { Observable, of, take } from 'rxjs';
+import { filter, Observable, of, take } from 'rxjs';
 import { PageDataService } from 'src/app/shared/services/page-data-service/page-data.service';
 
 import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service';
@@ -24,34 +25,57 @@ export class SideTypographyComponent implements OnInit {
   };
 
   toggleList:{[key:string]:boolean}  = {'typo':false, 'color':true}
+  currentRoute!: string;
+  typograp_list!:Typograph[]|undefined
 
-  typograp_list!:Observable<Typograph[]>
-
-  page_data!:PageData
+  //page_data!:PageData
   page_selected:PageData = new PageData()
-  saving_page_data:PageData = new PageData()
+  //saving_page_data:PageData = new PageData()
 
   
   constructor(
+    private router:Router, 
     private pagePropertyService:PagePropertyServiceService,
     private pageDataService:PageDataService
     ) {
-      pagePropertyService.selectedPage.pipe(take(1)).subscribe(res=>{
-        this.saving_page_data.id = res.page.id
-        this.page_selected = res.page
-      })
 
-      // get all typographs
-      this.typograp_list = pagePropertyService.typographList;
+      pageDataService.allPagesData.subscribe(res=>{
+        this.page_selected = res[0]
+        this.typograp_list = this.page_selected.page_styles?.typography
+      })
+      // after App start let select page that in url
+      //todo change this after App start
+      // router.events.pipe(
+      //   filter(event => event instanceof NavigationEnd)).pipe(take(1))
+      // .subscribe((ev:any) => 
+      //  {
+      //    let url = ev.url; 
+      //   this.currentRoute = url.substring(1)
+      //    let selected:PageData = this.pageDataService.getPage(this.currentRoute) 
+      //    this.page_selected = selected
+      //    this.pagePropertyService.singlePageChoose(selected)
+
+  
+      //  });
+
+     
+
       
       // get all font list
       
    }
 
   ngOnInit(): void {
+   console.log(this.page_selected)
+    // this.pagePropertyService.selectedPage.pipe(take(1)).subscribe(res=>{
+    //   //this.saving_page_data.id = res.page.id
+    //   this.page_selected = res.page
+      
+      
+    //   // get all typographs
+    //   this.typograp_list = this.page_selected.page_styles?.typography
+    // })
 
-    console.log("in side typo")
-    console.log(this.page_selected)
   }
 
   toggletypography(event:string){
@@ -67,6 +91,7 @@ export class SideTypographyComponent implements OnInit {
   handleChange(event:ColorEvent){
     //this.page_selected.page_styles = this.saving_page_data.page_styles = {background_color:this.color}
     this.color = event.color.hex
+    //this.page_selected.page_styles ={background_color:this.color} 
     // update both selected page and the whole data
     // this.pagePropertyService.singlePageChoose(this.page_selected)
     // this.pageDataService.updatePageData(this.page_selected)

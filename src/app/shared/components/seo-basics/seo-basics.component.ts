@@ -44,11 +44,11 @@ export class SeoBasicsComponent implements OnInit {
     this.seo_page_title.statusChanges.pipe(debounceTime(200)).subscribe(res=>{
       if(res==='VALID'){
         let data = this.seo_page_title.value
-        console.log(this.seo_page_title.valid)
+        
         if(!(data==='') && this.seo_page_title.valid)
         this.seo_data.page_title = data
         this.saveAllData()
-        // console.log(this.seo_data)
+        // 
       }
     })
   }
@@ -61,7 +61,7 @@ export class SeoBasicsComponent implements OnInit {
 
         this.seo_data.meta_description = data
         this.saveAllData()
-        // console.log(this.seo_data)
+        // 
       }
     })
   }
@@ -71,13 +71,13 @@ export class SeoBasicsComponent implements OnInit {
     this.seo_page_url.statusChanges.pipe(debounceTime(100)).subscribe(res=>{
       if(res==='VALID'){
         let data = this.seo_page_url.value
-        console.log(this.seo_page_url.valid)
+        
         data = data.replace(/\s+/g, '');
         if(!(data==='')&& this.seo_page_url.valid )
 
         this.seo_data.url = data
         this.saveAllData()
-        // console.log(this.seo_data)
+        // 
       }
     })
   }

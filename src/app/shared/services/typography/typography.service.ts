@@ -13,7 +13,7 @@ export class TypographyService {
   
 
   setColor(color:string){
-    console.log("service")
+    
     this._current_color.next(color)
   }
 }

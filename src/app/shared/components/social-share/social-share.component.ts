@@ -38,7 +38,7 @@ export class SocialShareComponent implements OnInit {
   ngOnInit(): void {
     this.getTitledata()
     this.getDescriptionData()
-    console.log(this.selected_page)
+    
     this.getURL()
   }
 
@@ -49,7 +49,7 @@ export class SocialShareComponent implements OnInit {
         if(!(data==='') && this.social_page_title.valid)
         this.social_share_data.og_title = data
         this.saveAllData()
-        // console.log(this.seo_data)
+        // 
       }
     })
   }
@@ -62,7 +62,7 @@ export class SocialShareComponent implements OnInit {
 
         this.social_share_data.og_description = data
         this.saveAllData()
-        // console.log(this.seo_data)
+        // 
       }
     })
   }
@@ -77,7 +77,7 @@ export class SocialShareComponent implements OnInit {
 
         this.social_share_data.url = data
         this.saveAllData()
-        // console.log(this.seo_data)
+        // 
       }
     })
   }

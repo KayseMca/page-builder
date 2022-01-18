@@ -26,11 +26,20 @@ export class TypographyListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get style(){
+    return {
+      "font-family":this.typograph.font,
+      "font-size":this.typograph.size,
+      "font-style":this.typograph.style,
+      "font-weight":this.typograph.weight,
+      "opacity":0.1,
+      "color" :this.typograph.color || 'black'
+    }
+  }
   onSelectTypography(){
     // first close already open font window
     this.show = false
-    console.log("selected a font")
-    console.log(this.typograph)
+    
     // reopen the new one selected
     this.show = !this.show
   }

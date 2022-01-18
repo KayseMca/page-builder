@@ -87,7 +87,7 @@ mat-sidenav .pages-side{
 
 
 mat-sidenav-container{
-    background-color: var(--background-color);
+    /* background-color: var(--background-color); */
     /* overflow: auto; */
 
 }

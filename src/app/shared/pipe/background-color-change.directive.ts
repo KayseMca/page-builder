@@ -15,7 +15,7 @@ export class BackgroundColorChangeDirective {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
     if(changes['color_variable'].currentValue){
-      console.log(changes['color_variable'].currentValue)
+      
       const value = changes['color_variable'].currentValue
       this.typography.setColor(value)
     }

@@ -3,44 +3,66 @@
 
     <mat-card-title>Edit {{typograph?.style_type}}</mat-card-title>
     <mat-card-subtitle>
-      <form class="example-form">
+      <form class="example-form" [formGroup]="styleForm" (onSubmit) ='onSubmit()'>
         <!-- Fonts lists -->
         <div class="font-list" >
           <div class="fonts item"  matTooltip="Fonts"
           matTooltipPosition="above">
-            <select class="form-select form-select-sm" aria-label="Default select example">
-              <option *ngFor="let item of all_fonts | async as list" [value]="item" [selected]="item ===typograph.font">
-                {{item}}
+            <select class="form-select form-select-sm" aria-label="Default select example"  formControlName="font">
+              <!-- [selected]="item ===typograph.font" -->
+              <option *ngFor="let font of all_fonts | async as list" [value]="font"  >
+                <span >
+                  {{font}}
+                </span>
               </option>
               
             </select>
           </div>
   
           <!-- font size -->
-          <div class="font-size item"  matTooltip="Font size"
+          <div class="font-size  item"  matTooltip="Font size"
           matTooltipPosition="above">
-            <input type="number" min="0" [value]="typograph.size" class="form-control">
+            <input type="number" min="0" formControlName="size" [value]="typograph.size" class="form-control">
             <span>px</span>
           </div>
 
-          <div class="font-type item">
-            <mat-button-toggle-group name="fontStyle" value="All" class="font-type--style" aria-label="Font Style">
-              <mat-button-toggle matTooltip="Bold"
-              matTooltipPosition="above"
-              style="line-height: none;" value="bold">
-              Bold
-            </mat-button-toggle>
-              <mat-button-toggle matTooltip="Italic"
-              matTooltipPosition="above"
-               value="italic">
-               Italic
-              </mat-button-toggle>
-            </mat-button-toggle-group>
+          <!-- font style and weight -->
+          <div class="font-type color item">
+            <input class="bold" type="checkbox" 
+             id="weight" name="weight" [checked]="checked_weight"
+             (click)="onCheckChange($event)"
+             formControlName="weight"
+             >
+            <label matTooltip="Bold"
+            matTooltipPosition="above"
+            for="weight"
+            >
+            <i class="fa fa-bold"></i>
+          </label>
+
+          <div style="border: 1px solid;height: 22px;margin-top: 5px;"></div>
+          
+          <!-- italic font -->
+          <input class="italic" type="checkbox" 
+             id="style" name="style" 
+             
+              [checked] ="checked_style"
+              (click)="onCheckStyle($event)" 
+             formControlName="style"
+             >
+            <label matTooltip="italic"
+            matTooltipPosition="above"
+            for="style"
+            >
+            <i class="fa fa-italic"></i>
+          </label>
+             
+  
           </div>
 
           <div class="color item">  
             <button mat-button matTooltip="Color"
-            matTooltipPosition="above"
+            matTooltipPosition="above" 
             >Color</button>
           </div>
         </div>
@@ -49,14 +71,15 @@
     </mat-card-subtitle>
     <mat-card-content>
       <div class="font-display-field">
-        <div style="font-size: 89px;line-height: 2;opacity: 0.1;">
-          {{typograph.font}}
+        <div [ngStyle]="styleFonts">
+          <!-- {{typograph.font}} -->
+          {{typograph.example_text}}
       </div>
       </div>
     </mat-card-content>
     <mat-card-actions style="float: right;">
       <button mat-button>Cancel</button>
-      <button mat-button color='primary'>Apply</button>
+      <button mat-button color='primary' (click)="onSubmit()">Apply</button>
     </mat-card-actions>
   </div>
   </mat-card>

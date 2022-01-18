@@ -41,7 +41,7 @@ export class PermissionsComponent implements OnInit {
     */
 
   ngOnInit(): void {
-    console.log(this.permissions_view_type.value)
+    
     this.saveTypeData()
     this.saveMembers()
     this.savePassword()
@@ -71,9 +71,9 @@ export class PermissionsComponent implements OnInit {
         if(res==='VALID'){
           let data = this.permissions_view_type.value
           if(!(data==='') && data ==='everyone' )
-          console.log(this.permission_data)
+          
           this.permission_data.type = data
-          console.log(this.permission_data)
+          
         }
       })
     }
@@ -87,12 +87,12 @@ export class PermissionsComponent implements OnInit {
           // check type of members selected
           if(!(selected_data==='') && selected_data==='All Members'){
 
-            console.log(selected_data)
+            
             this.permission_data.members_type = selected_data
             this.saveAllData()
 
           }else if(!(selected_data==='') && selected_data==='selected_members'){
-            console.log(selected_data)
+            
             this.permission_data.members_type = ''
             this.permission_data.selected_members = selected_data
             this.saveAllData()

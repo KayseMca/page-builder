@@ -44,7 +44,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     let target = ['fa fa-ellipsis-h', 'mat-button-wrapper', 'mat-focus-indicator mat-button mat-button-base ng-star-inserted', 'dropdown-content-active']
     // let list = event.target.classList
     // let value = (event.target as Element).className
-    // console.log(list)
+    // 
     // if(!target.includes(value)) this.openDropdown = false
     let value = (event.target as Element).className
     if (!target.includes(value)) {
@@ -66,14 +66,14 @@ export class SidebarComponent implements OnInit, OnDestroy {
       take(1)
     ).subscribe((res: PageData[]) => {
       this.allPagesData = res
-      console.log('reading data')
+      
     })
 
   }
 
   ngOnInit(): void {
     this.pageProperties.selectedPage.pipe(take(1)).subscribe(res => {
-      console.log('reding data createdpage')
+      
     })
 
 
@@ -117,7 +117,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   settings(setting: string, index: number) {
-    console.log(setting, index)
+    
     this.onPageModify(setting)
     // emit the page choosed
     this.openComponentTabs = true
@@ -164,7 +164,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
         dublicatePage.settings.push('Delete')
       }
 
-      console.log(dublicatePage)
+      
       this.pageData.creatNewPage(dublicatePage)
       // clear the id
       this.index = NaN
@@ -177,7 +177,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
       this.index = NaN
 
     } else if (settingType === 'Hide') {
-      console.log(settingType)
+      
       this.allPagesData[this.index].hide = true
       this.settingType[6] = 'Show'
       this.index = NaN
@@ -214,10 +214,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
     let data = this.editPageValue.value
     if (data !== '' && this.editPageValue.valid) {
-      console.log(data)
+      
       this.savingData.name = data
       this.savingData.id = this.allPagesData[this.index].id
-      console.log(this.savingData)
+      
       this.pageData.updatePageData(this.savingData)
 
     }
@@ -235,7 +235,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(res => {
       if (res === 'true') {
-        console.log(res)
+        
         this.pageData.deletePage(page.id)
       }
     })

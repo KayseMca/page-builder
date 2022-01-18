@@ -10,7 +10,9 @@ import { PageData } from '../_interfaces/_page';
 export class MainContentComponent implements OnInit {
 
   data!:PageData[] 
-  constructor(private dataService:PageDataService) { }
+  constructor(private dataService:PageDataService) { 
+    
+  }
 
   ngOnInit(): void {
     this.dataService.allPagesData.subscribe(res=>{

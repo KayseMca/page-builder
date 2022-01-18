@@ -32,11 +32,11 @@ export class PageInfoComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log("page info")
+    
     this.page_info = new FormControl(''||this.selectedPageData.page.name)
     this.saveData()
 
-    console.log(this.button_checked)
+    
   }
 
   
@@ -56,7 +56,7 @@ saveData(){
        ).subscribe(res=>{
         if(res==='VALID'){
           if(!(this.page_info.value==='')){
-            // console.log("valid")
+            // 
             // console.group(this.page_info.value, this.page_info.valid)
             this.selectedPageData.page.name = this.page_info.value
           }
@@ -69,19 +69,19 @@ saveData(){
 //   this.page_info.statusChanges.pipe(
 //     debounceTime(200)
 //   ).subscribe(res=>{
-//     console.log(res,'res of page')
+//     
 //     this.newPageData.name = res
 //     this.selectedPageData.page.name = res
 
-//     console.log(this.newPageData)
-//     console.log(this.pageData)
+//     
+//     
 //     this.pageDataService.updatePageData(this.newPageData)
     
 //   })
 // }
 
 checkedButton(event:any){
-  console.log(event)
+  
 }
 }
 

@@ -16,8 +16,8 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     this.pageData.allPagesData.pipe(take(1)).subscribe(res=>{
-      console.log("inside nav")
-      console.log(res)
+      
+      
       this.pages = res
     })
   }

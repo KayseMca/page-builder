@@ -27,12 +27,12 @@
 
       <!-- fonts picker -->
       <ng-container *ngIf="toggleList['typo']" >
-        <app-typography-list   *ngFor="let typograph of typograp_list | async as list; let i=index" [typograph]='typograph'></app-typography-list>
+        <app-typography-list   *ngFor="let typograph of typograp_list; let i=index" [typograph]='typograph'></app-typography-list>
       </ng-container>
 
       <!-- colors picker -->
       <ng-container *ngIf="toggleList['color']" >
-        <div style="width: 18rem;">
+        <div style="width: 18rem;margin-left:48px">
           <!-- (onChangeComplete)="changeComplete($event)" -->
           <color-sketch  (onChange)="handleChange($event)" appBackgroundColorChange [color_variable]='color' ></color-sketch>
         </div>
