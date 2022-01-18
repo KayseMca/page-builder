@@ -89,11 +89,10 @@ export class SideTypographyComponent implements OnInit {
   }
 
   handleChange(event:ColorEvent){
-    //this.page_selected.page_styles = this.saving_page_data.page_styles = {background_color:this.color}
+    this.page_selected.id = NaN
     this.color = event.color.hex
-    //this.page_selected.page_styles ={background_color:this.color} 
-    // update both selected page and the whole data
-    // this.pagePropertyService.singlePageChoose(this.page_selected)
-    // this.pageDataService.updatePageData(this.page_selected)
+    this.page_selected.page_styles = {background_color:this.color}
+    this.pageDataService.updatePageData(this.page_selected)
+    
   }
 }

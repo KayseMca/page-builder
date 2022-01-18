@@ -72,7 +72,7 @@ export class PageDataService {
         
         item.page_styles={
            background_color:data_style?.background_color ? data_style?.background_color : item_style?.background_color,
-           typography:[...this.updatePageStyles(item_style?.typography, data_style?.typography)]
+           typography:data_style?.typography ?[...this.updatePageStyles(item_style?.typography, data_style?.typography)]:[...item_style?.typography!]
           }
       }
 
@@ -80,7 +80,7 @@ export class PageDataService {
 
 
     //saving data
-    
+    console.log(oldData)
     this.dataSource.next(oldData)
   }
 
@@ -95,6 +95,7 @@ export class PageDataService {
   }
 
   updatePageStyles(itemTypo:any, newTypo:any):Typograph[]{
+    console.log(itemTypo)
     let newElement = newTypo[0]
     console.log(newElement)
 
