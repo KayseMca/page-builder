@@ -8,7 +8,7 @@ import { PagePropertyServiceService } from './shared/services/page-property/page
 
 import { TypographyService } from './shared/services/typography/typography.service';
 import { PageData } from './_interfaces/_page';
-import { Typograph } from './_interfaces/_typograph';
+
 
 
 
@@ -25,6 +25,7 @@ export class AppComponent implements OnInit  {
   @HostBinding('style.--heading1-font') heading1_font:any
   @HostBinding('style.--heading1-size') heading1_size:any
   @HostBinding('style.--heading1-style') heading1_style:any
+  @HostBinding('style.--heading1-color') heading1_color:any
 
   title = 'page-builder';
   page_selected!:PageData
@@ -76,6 +77,7 @@ export class AppComponent implements OnInit  {
        this.heading1_size = typo.size+'px'
        this.heading1_font = typo.font
        this.heading1_style = typo.style
+       this.heading1_color = typo.color
      }
    })
    console.log(this.heading1_size)
