@@ -115,3 +115,19 @@ input[type='checkbox']:checked + label {
   background-color:#f78d32; */
   background-color:#b6b3b1;
 }
+
+.font-color-picker{
+  position: fixed;
+  top: 49px;
+  left: 1002px;
+  width: 235px;
+  background:white;
+}
+
+.font-color-picker-none{
+  display: none;
+}
+
+.sketch-picker[_ngcontent-gxw-c176]{
+  box-shadow: none !important;
+}

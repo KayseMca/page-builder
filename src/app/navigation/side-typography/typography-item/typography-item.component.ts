@@ -1,5 +1,5 @@
 import { style } from '@angular/animations';
-import { Component, HostBinding, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { PageDataService } from 'src/app/shared/services/page-data-service/page-data.service';
@@ -14,6 +14,15 @@ import { Typograph } from 'src/app/_interfaces/_typograph';
 })
 export class TypographyItemComponent implements OnInit {
 
+  font_color_picker:Boolean = false
+  // @HostListener('window:click', ['$event'])
+  // onMouseUp(event: any) {
+  //   if (!this.eref.nativeElement.contains(event.target)) {
+  //     console.log(event.target)
+  //     this.font_color_picker = false
+
+  //   }
+  // }
  // @HostBinding('class.preview') preview = 'red '
   _typograph!:Typograph
   @Input() set typograph(value:Typograph){
@@ -34,6 +43,7 @@ export class TypographyItemComponent implements OnInit {
     private pagePropertyService:PagePropertyServiceService,
     private pageData: PageDataService,
     private fb:FormBuilder, 
+    private eref:ElementRef
     ) { 
       
     this.all_fonts = pagePropertyService.allFonts
@@ -56,9 +66,10 @@ export class TypographyItemComponent implements OnInit {
     
     
    this.styleForm = this.fb.group({
-     name:new FormControl(this.typograph.style_type),
+     style_type:new FormControl(this.typograph.style_type),
      font:new FormControl(this.typograph.font),
      size:new FormControl(this.typograph.size),
+     color:new FormControl(this.typograph.color),
      style:new FormControl(this.typograph.style),
      weight:new FormControl(this.typograph.weight),
      //font:new FormControl(this.typograph.font)
@@ -112,8 +123,17 @@ export class TypographyItemComponent implements OnInit {
       'font-size':styles.size+'px',
       'font-style':styles.style,
       "font-weight":styles.weight,
+      "color":styles.color,
       "line-height": 1
     }
+  }
+
+  //font color picker
+  handleChange(event:any){
+    let color = event.color.hex
+    this.styleForm.patchValue({
+      color:color
+    })
   }
 
   onSubmit(){

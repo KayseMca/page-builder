@@ -62,8 +62,19 @@
           <div class="color item">  
             <button mat-button matTooltip="Color"
             matTooltipPosition="above" 
+            (click)="font_color_picker=!font_color_picker"
             >Color</button>
           </div>
+        </div>
+
+        <!-- font color picker -->
+        <div  [ngClass]="font_color_picker?'font-color-picker':'font-color-picker-none'">
+          <div style="float: right;font-size: 22px;padding: 10px;">
+            <!-- <i class="fa fa-times"></i> -->
+            <button class="btn btn-light" (click)="font_color_picker=!font_color_picker">X</button>
+          </div>
+          
+          <color-chrome  (onChange)="handleChange($event)" ></color-chrome>
         </div>
       </form>
       
