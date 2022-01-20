@@ -31,7 +31,7 @@
   background-color: white;
   width: 298px;
   /* min-height: 400px; */
-
+  height: 65vh;
   display: -webkit-box;
 
   display: -ms-flexbox;
@@ -58,7 +58,7 @@ h5 {
   margin: 0px;
   /* padding: $card_head_padding; */
   font-family: "Noto Sans KR", sans-serif;
-  font-size: 30px;
+  font-size: 20px;
   color: black;
 }
 
@@ -76,4 +76,16 @@ hr {
   -webkit-transition-timing-function: cubic-bezier(0.795, 0, 0.165, 1);
   -o-transition-timing-function: cubic-bezier(0.795, 0, 0.165, 1);
   transition-timing-function: cubic-bezier(0.795, 0, 0.165, 1); /* custom */
+}
+
+.footer{
+    width: 88%;
+    padding-top: 10px;
+    position: absolute;
+    bottom: 0;
+}
+
+.footer button{
+    width: 100%;
+    color: rgb(30, 30, 165);
 }
