@@ -6,7 +6,7 @@ export let data = [
             name:"heading1",
           style_type: 'Heading 1',
           font: 'Oswaldo',
-          size: 90,
+         
           weight: 300,
           style: 'italic',
           color: 'black',
@@ -16,7 +16,7 @@ export let data = [
             name:"heading2",
           style_type: 'Heading 2',
           font: 'Lato',
-          size: 90,
+         
           weight: 'bold',
           style: 'normal',
           color: 'black',
@@ -26,7 +26,7 @@ export let data = [
             name:"heading3",
           style_type: 'Heading 3',
           font: 'Roboto',
-          size: 90,
+         
           weight: 'bold',
           style: 'normal',
           color: 'black',
@@ -36,7 +36,7 @@ export let data = [
             name:"heading4",
           style_type: 'Heading 4',
           font: 'Oswaldo',
-          size: 90,
+         
           weight: 'bold',
           style: 'normal',
           color: 'black',
@@ -46,7 +46,7 @@ export let data = [
             name:"heading5",
           style_type: 'Heading 5',
           font: 'Moon Dance',
-          size: 90,
+         
           weight: 'bold',
           style: 'normal',
           color: 'black',
@@ -56,7 +56,7 @@ export let data = [
             name:"heading6",
           style_type: 'Heading 6',
           font: 'Oswaldo',
-          size: 90,
+         
           weight: 'bold',
           style: 'normal',
           color: 'black',
@@ -68,7 +68,7 @@ export let data = [
             name:"p1",
           style_type: 'Pragraphy 1',
           font: 'Oswaldo',
-          size: 90,
+         
           weight: 'bold',
           style: 'normal',
           color: 'black',
@@ -78,7 +78,7 @@ export let data = [
             name:"p2",
           style_type: 'Pragraphy 2',
           font: 'Oswaldo',
-          size: 90,
+         
           weight: 'bold',
           style: 'normal',
           color: 'black',
@@ -88,7 +88,7 @@ export let data = [
             name:"p3",
           style_type: 'Pragraphy 3',
           font: 'Oswaldo',
-          size: 90,
+         
           weight: 'bold',
           style: 'normal',
           color: 'black',
@@ -167,7 +167,7 @@ export let data = [
               name:"heading1",
             style_type: 'Heading 1',
             font: 'Oswaldo',
-            size: 90,
+           
             weight: 300,
             style: 'italic',
             color: 'black',
@@ -177,7 +177,7 @@ export let data = [
               name:"heading2",
             style_type: 'Heading 2',
             font: 'Lato',
-            size: 90,
+           
             weight: 'bold',
             style: 'normal',
             color: 'black',
@@ -187,7 +187,7 @@ export let data = [
               name:"heading3",
             style_type: 'Heading 3',
             font: 'Roboto',
-            size: 90,
+           
             weight: 'bold',
             style: 'normal',
             color: 'black',
@@ -197,7 +197,7 @@ export let data = [
               name:"heading4",
             style_type: 'Heading 4',
             font: 'Oswaldo',
-            size: 90,
+           
             weight: 'bold',
             style: 'normal',
             color: 'black',
@@ -207,7 +207,7 @@ export let data = [
               name:"heading5",
             style_type: 'Heading 5',
             font: 'Moon Dance',
-            size: 90,
+           
             weight: 'bold',
             style: 'normal',
             color: 'black',
@@ -217,7 +217,7 @@ export let data = [
               name:"heading6",
             style_type: 'Heading 6',
             font: 'Oswaldo',
-            size: 90,
+           
             weight: 'bold',
             style: 'normal',
             color: 'black',
@@ -229,7 +229,7 @@ export let data = [
               name:"p1",
             style_type: 'Pragraphy 1',
             font: 'Oswaldo',
-            size: 90,
+           
             weight: 'bold',
             style: 'normal',
             color: 'black',
@@ -239,7 +239,7 @@ export let data = [
               name:"p2",
             style_type: 'Pragraphy 2',
             font: 'Oswaldo',
-            size: 90,
+           
             weight: 'bold',
             style: 'normal',
             color: 'black',
@@ -249,7 +249,7 @@ export let data = [
               name:"p3",
             style_type: 'Pragraphy 3',
             font: 'Oswaldo',
-            size: 90,
+           
             weight: 'bold',
             style: 'normal',
             color: 'black',

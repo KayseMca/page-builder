@@ -72,7 +72,7 @@ export class PagePropertiesComponent implements OnInit {
   closeTabs(){
     this.closeTab = false
     this.pageService.closeComponentsTab(this.closeTab).pipe(take(1)).subscribe(res=>{
-      console.log()
+      
     })
 
 }

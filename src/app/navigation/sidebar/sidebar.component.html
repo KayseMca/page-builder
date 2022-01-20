@@ -54,7 +54,7 @@
           <!-- class="pages" *ngFor="let page of pageData; let i = index" -->
           <a
             class="pages"
-           
+           routerLink="{{page.page_url}}" routerLinkActive="router-link-active" 
             style="color: rgb(3, 0, 0)"
             [ngClass]="{ 'pages-hover': hoverPage[i] && !editable[i] }"
           >

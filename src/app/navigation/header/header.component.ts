@@ -16,11 +16,8 @@ export class HeaderComponent implements OnInit {
   constructor(public pageService:PagePropertyServiceService) {
   //  this.sidenavOpened = this.pageService?.opened()
    }
-ngOnChanges(changes: SimpleChanges): void {
-  //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-  //Add '${implements OnChanges}' to the class.
-  
-}
+
+
   ngOnInit(): void {
     
     
@@ -38,5 +35,6 @@ ngOnChanges(changes: SimpleChanges): void {
 
   toggleUnderline(event:string){
     this.toggleLine = event
+    console.log(event)
   }
 }

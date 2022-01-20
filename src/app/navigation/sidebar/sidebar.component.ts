@@ -63,7 +63,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   ) {
     this.editPageValue = new FormControl('')
     this.pageData.allPagesData.pipe(
-      take(1)
+      //take(1)
     ).subscribe((res: PageData[]) => {
       this.allPagesData = res
       
@@ -150,7 +150,11 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
     if (settingType === 'Rename') {
       this.editPageValue.setValue(this.allPagesData[this.index].name)
+      // let value:string = this.editPageValue.value
+      // this.allPagesData[this.index].page_url = value.replace(/\s/g, '')
+      //this.editPageValue.setValue(this.allPagesData[this.index].page_url)
       this.editable[this.index] = true
+      
 
     } else if (settingType === 'Dublicate') {
       // todo write the codes in the service
@@ -203,7 +207,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
     
     newPage.settings = settings
     newPage.home_page = false
+    newPage.page_settings = {seo_basics:{},advanced_seo:{},page_info:{},social_share:{}}
+    newPage.page_styles = {...this.allPagesData[0].page_styles}
     newPage.page_url = 'newpage'+this.allPagesData.length
+    
     this.pageData.creatNewPage(newPage)
   }
 

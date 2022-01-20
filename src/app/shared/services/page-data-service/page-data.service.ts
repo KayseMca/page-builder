@@ -31,8 +31,9 @@ export class PageDataService {
 
   // creating new empty page
   creatNewPage(page: PageData) {
-    let pages: any[] = this.dataSource.getValue()
-    pages.push(page)
+    let pages: any[] = [...this.dataSource.value]
+    pages.push({...page})
+    //
     this.dataSource.next(pages)
   }
 
@@ -44,7 +45,7 @@ export class PageDataService {
 
     oldData.forEach((item: PageData) => {
       id = item.id === data.id ? true : false
-      console.log(id)
+      
       // check and change  the other items home_page value 
       if (data.home_page) {
 
@@ -71,7 +72,7 @@ export class PageDataService {
         let item_style = item.page_styles
         let data_style = data.page_styles
         let style = data_style?.typography
-        console.log(style)
+        
         item.page_styles={
            background_color:data_style?.background_color ? data_style?.background_color : item_style?.background_color,
            typography: style ?[...this.updatePageStyles(item_style?.typography, data_style?.typography)]:item_style?.typography
@@ -82,7 +83,7 @@ export class PageDataService {
 
 
     //saving data
-    console.log(oldData)
+    
     this.dataSource.next(oldData)
   }
 
@@ -97,21 +98,21 @@ export class PageDataService {
   }
 
   updatePageStyles(itemTypo:any, newTypo:any):Typograph[]{
-    console.log(itemTypo)
+    
     let newElement = newTypo[0]
-    console.log(newElement)
+    
 
     for (let index = 0; index < itemTypo.length; index++) {
       const element = itemTypo[index]['style_type'];
       if(element === newElement['style_type']){
-        console.log("inside")
-        //console.log(itemTypo[index])
+        
+        //
         itemTypo[index] = newElement
         break
       }
       
     }
-    console.log(itemTypo)
+    
     return itemTypo
   }
   // draft code maybe use later

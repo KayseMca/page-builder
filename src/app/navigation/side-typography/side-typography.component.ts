@@ -66,7 +66,7 @@ export class SideTypographyComponent implements OnInit {
    }
 
   ngOnInit(): void {
-   console.log(this.page_selected)
+   
     // this.pagePropertyService.selectedPage.pipe(take(1)).subscribe(res=>{
     //   //this.saving_page_data.id = res.page.id
     //   this.page_selected = res.page
