@@ -1,0 +1,79 @@
+
+.container {
+
+    padding: 0;
+  width: 300px;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+
+  position: fixed;
+  left: 52%;
+  top: 7px;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 3;
+}
+
+.center {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.card {
+  background-color: white;
+  width: 298px;
+  /* min-height: 400px; */
+
+  display: -webkit-box;
+
+  display: -ms-flexbox;
+
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 20px;
+  margin: 5px;
+
+  border-radius: 10px;
+
+  -webkit-transition-timing-function: cubic-bezier(0.795, 0, 0.165, 1);
+  -o-transition-timing-function: cubic-bezier(0.795, 0, 0.165, 1);
+  transition-timing-function: cubic-bezier(0.795, 0, 0.165, 1); /* custom */
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0px;
+  /* padding: $card_head_padding; */
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 30px;
+  color: black;
+}
+
+hr {
+  display: block;
+  border: none;
+  height: 3px;
+  /* background-color: $point; */
+  margin: 0px;
+
+  -webkit-animation-name: line-show; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 0.3s; /* Safari 4.0 - 8.0 */
+  animation-name: line-show;
+  animation-duration: 0.3s;
+  -webkit-transition-timing-function: cubic-bezier(0.795, 0, 0.165, 1);
+  -o-transition-timing-function: cubic-bezier(0.795, 0, 0.165, 1);
+  transition-timing-function: cubic-bezier(0.795, 0, 0.165, 1); /* custom */
+}

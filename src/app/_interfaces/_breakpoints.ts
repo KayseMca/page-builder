@@ -1,4 +1,5 @@
 export class BreakPoints{
     type!:string
-    value!:string
+    value!:{min:number, max:number}
+    editable!:Boolean
 }

@@ -1,44 +1,54 @@
 <mat-toolbar  class='header-layout header '>
    
     <ng-container class="sidenavs item">
-        <mat-toolbar-row>
+        <!-- <mat-toolbar-row> -->
             <button mat-icon-button (click)="onToggleSidenav()">
                 <mat-icon *ngIf="sidenavOpened">close</mat-icon>
                 <!-- *ngIf="sidenav.mode=='side'" *ngIf="toggleService.mode()=='side'"   (click)='toggle()' -->
                 <!-- *ngIf="!sidenav.opened" -->
               </button>
-        </mat-toolbar-row>
+        <!-- </mat-toolbar-row> -->
 
     </ng-container>
         
 
-    <mat-toolbar-row class="breakpoints item">
-        <div style="width: 40%;" >
-            <ul class='medias'>
-                <li>
-                    <img src="assets/images/Desktop.svg" [ngClass]="{'fill-blue': toggleLine==='desktop'}" alt="" (click)='toggleUnderline("desktop")'>
-                    <div *ngIf="toggleLine==='desktop'" class="underline"></div>
-                </li>
-                
-                <li>
-                    <img src="assets/images/Tablet.svg" [ngClass]="{'fill-blue': toggleLine==='tablet'}" alt="" (click)='toggleUnderline("tablet")'>
-                    <div *ngIf="toggleLine==='tablet'" class="underline"></div>
-                </li>
-                <li >
-                    <img src="assets/images/mobile.svg" [ngClass]="{'fill-blue': toggleLine==='mobile'}" alt="" (click)='toggleUnderline("mobile")'>
-                    <div *ngIf="toggleLine==='mobile'" class="underline"></div>
-                </li>
-                
-                <li>
-                    <input type="text" class="form-control" readonly name="" id="" >
-                </li>
-    
-            </ul>
+    <!-- <mat-toolbar-row class="breakpoints item"> -->
+        
+        <div class="breakpoints"  >
+            <div class="all-medias">
+                <ul class="medias">
+                    <li>
+                        <img src="assets/images/Desktop.svg" [ngClass]="{'fill-blue': toggleLine==='desktop'}" alt="" (click)='toggleUnderline("desktop")'>
+                        <div *ngIf="toggleLine==='desktop'" class="underline"></div>
+                    </li>
+                    
+                    <li>
+                        <img src="assets/images/Tablet.svg" [ngClass]="{'fill-blue': toggleLine==='tablet'}" alt="" (click)='toggleUnderline("tablet")'>
+                        <div *ngIf="toggleLine==='tablet'" class="underline"></div>
+                    </li>
+                    <li >
+                        <img src="assets/images/mobile.svg" [ngClass]="{'fill-blue': toggleLine==='mobile'}" alt="" (click)='toggleUnderline("mobile")'>
+                        <div *ngIf="toggleLine==='mobile'" class="underline"></div>
+                    </li> 
+                </ul>
+                <i
+
+                class="fa fa-ellipsis-h"
+                (click)="breakpoints_show=!breakpoints_show"
+              ></i>
+              <span class="divedir"></span>
+            </div>
+            <div class="width-dsplay">
+                <label for="display">w</label>
+          <input type="text" id="display" class="form-control" readonly name="" >
+            <span>px</span>
+        </div>
         </div>
     
-    </mat-toolbar-row>
-    <mat-toolbar-row class="publish item">
-        <button mat-button>Publish</button>
-    </mat-toolbar-row>
+    <!-- </mat-toolbar-row> -->
+    <!-- <mat-toolbar-row class="publish item"> -->
+        <button mat-button class=".publish">Publish</button>
+    <!-- </mat-toolbar-row> -->
 </mat-toolbar>
-
+<!-- <app-breakpoint-list></app-breakpoint-list> -->
+<app-breakpoint-list *ngIf="breakpoints_show"></app-breakpoint-list>

@@ -15,7 +15,7 @@ export class NavComponent implements OnInit {
   constructor(private pageData:PageDataService) { }
 
   ngOnInit(): void {
-    this.pageData.allPagesData.pipe(take(1)).subscribe(res=>{
+    this.pageData.allPagesData.subscribe(res=>{
       
       
       this.pages = res

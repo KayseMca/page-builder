@@ -2,16 +2,29 @@ mat-toolbar {
     /* background:rgba(0,0,0,0.2); */
     color: white;
     /* margin:  10px; */
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     /* width: 500px; */
     left: 0;
     /* z-index: 2; */
-    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* padding: 8px; */
 }
 
 
-  .header::after {
+  
+  
+/* .header-layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px; */
+    /* height: 35px; */
+    /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px; */
+/* }
+.header::after {
     bottom: 0;
     box-shadow: 0 0.0625em 0.5em rgba(0, 0, 0, 0.3);
     content: '';
@@ -22,16 +35,8 @@ mat-toolbar {
     top: 0;
     transition: opacity 0.3s;
     z-index: -1;
-  }
-  
-.header-layout {
-    display: inline-flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 8px;
-    height: 35px;
-    /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px; */
-}
+  } */
+
 img{
     height: 33px;
     
@@ -41,14 +46,14 @@ img{
 .fill-blue{
     filter: invert(42%) sepia(93%) saturate(4152%) hue-rotate(185deg) brightness(79%) contrast(139%); 
 }
-
+/* 
 .header-layout .item {
     width: 44px;
-  }
+  } */
 
-.mat-toolbar-row{
+/* .mat-toolbar-row{
     width: 5px !important;
-}
+} */
 .sidenavs{
      display: inline-flex;;
     flex-direction: row;
@@ -57,7 +62,7 @@ img{
 }
 
 .breakpoints{
-    flex: 3;
+    display: flex;
     width: 100%;
     justify-content: center;
 }
@@ -66,11 +71,23 @@ img{
     color: blue;
     justify-content: flex-end;
 }
+
+.all-medias{
+    display: flex;
+}
+.all-medias .fa{
+    color: rebeccapurple;
+    margin: 31px 4px 4px 4px;
+}
+
+.divedir{
+    border-right: 1px solid rgba(180, 189, 180,0.4);
+}
 .medias {
     display: flex;
     /* justify-content: space-evenly; */
-    margin-left:130px ;
-    margin-top: 6px;
+    /* margin-left:130px ; */
+    margin-top: 22px;
 }
 
 ul li {
@@ -88,7 +105,6 @@ ul {
 
 .form-control{
     padding: 1px;
-    margin-left: 10px;
     margin-top: 3px;
 
 }
@@ -99,4 +115,20 @@ ul {
 
 input[type='text']{
     border: 1px solid blue;
+}
+
+.width-dsplay{
+    display: flex;
+    flex-basis: 87px;
+    align-items: center;
+    font-size: 13px;
+    color: rgba(28, 32, 28,0.6);
+}
+
+.form-control:focus {
+    box-shadow: none;
+    }
+
+.publish{
+    color: rgb(22, 22, 253);
 }

@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
   @Output() public sidenavToggle = new EventEmitter();
   @Input() sidenavOpened!:any 
 
+  breakpoints_show:Boolean = false
   toggleLine:string = 'desktop'
   constructor(public pageService:PagePropertyServiceService) {
   //  this.sidenavOpened = this.pageService?.opened()

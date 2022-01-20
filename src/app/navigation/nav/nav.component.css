@@ -1,8 +1,10 @@
 
   nav {
+    position: relative;
     background: #545e5a;
     padding: 0 15px;
     margin-top: 4px;
+    /* z-index: -1; */
   }
   a {
     color: white;

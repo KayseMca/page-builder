@@ -21,6 +21,6 @@ import { BreakpointsEditComponent } from './breakpoint-list/breakpoints-edit/bre
     MaterialModuleModule,
 
   ],
-  exports:[PagePropertiesComponent, PageInfoComponent, SeoBasicsComponent, PermissionsComponent]
+  exports:[PagePropertiesComponent, PageInfoComponent, SeoBasicsComponent, PermissionsComponent,BreakpointListComponent]
 })
 export class PagePropertiesModule { }
