@@ -2,8 +2,8 @@
 .container {
 
     padding: 0;
-  width: 300px;
-  min-height: 100vh;
+  width: 331px;
+  min-height: 36vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11,14 +11,15 @@
   flex-wrap: wrap;
 
   position: fixed;
-  left: 52%;
-  top: 7px;
+  left: 52.3%;
+  /* top: 7px; */
   margin-left: auto;
   margin-right: auto;
   z-index: 3;
 }
 
 .center {
+    top: 16px;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -29,7 +30,7 @@
 
 .card {
   background-color: white;
-  width: 298px;
+  width: 330px;
   /* min-height: 400px; */
   height: 65vh;
   display: -webkit-box;
@@ -42,7 +43,7 @@
   -ms-flex-direction: column;
   flex-direction: column;
   padding: 20px;
-  margin: 5px;
+  /* margin: 5px; */
 
   border-radius: 10px;
 
@@ -78,12 +79,19 @@ hr {
   transition-timing-function: cubic-bezier(0.795, 0, 0.165, 1); /* custom */
 }
 
+.list{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 .footer{
     width: 88%;
     padding-top: 10px;
     position: absolute;
     bottom: 0;
 }
+
 
 .footer button{
     width: 100%;

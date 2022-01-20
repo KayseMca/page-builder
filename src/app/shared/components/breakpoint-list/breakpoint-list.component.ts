@@ -9,6 +9,7 @@ import { BreakPoints } from 'src/app/_interfaces/_breakpoints';
 })
 export class BreakpointListComponent implements OnInit {
 
+  
   min_value = 320
   breakpoints$:Observable<BreakPoints[]> = new BehaviorSubject<BreakPoints[]>([
     {type:'mobile', value:{min:this.min_value, max:768},editable:false},
@@ -21,4 +22,6 @@ export class BreakpointListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  close(){}
 }
