@@ -1,9 +1,29 @@
 <div class="home">
  
+  <!-- instedd two sidenav use this https://codepen.io/shieldsma91/pen/zLpbLX -->
   <app-header
     [sidenavOpened]="sidenav?.opened"
     (sidenavToggle)="sidenav.toggle()"
   ></app-header>
+  <!-- Open/Close sidenav -->
+  <div class="sidenanToggle">
+
+    <!-- Pages edit sidebav open window -->
+    <i
+      class="fa fa-pencil-square-o"
+      aria-hidden="true"
+      *ngIf="!sidenav?.opened"
+      (click)="onToggleSidenav(sidenav1)"
+    >
+    </i>
+
+    <!-- ! font editor window -->
+    <i
+      class="fa fa-font"
+      *ngIf="!sidenav?.opened"
+      (click)="onToggleSidenav(sidenav2)"
+    ></i>
+  </div>
   <mat-sidenav-container [hasBackdrop]="false" >
     <mat-sidenav class="pages-side" #sidenav1 position="start" mode="over">
       <app-sidebar></app-sidebar>
@@ -13,29 +33,11 @@
     </mat-sidenav>
 
     <!--* Main -->
-    <mat-sidenav-content [style]="width">
-      <!-- Open/Close sidenav -->
-      <div class="sidenanToggle">
-
-        <!-- Pages edit sidebav open window -->
-        <i
-          class="fa fa-pencil-square-o"
-          aria-hidden="true"
-          *ngIf="!sidenav?.opened"
-          (click)="onToggleSidenav(sidenav1)"
-        >
-        </i>
-
-        <!-- ! font editor window -->
-        <i
-          class="fa fa-font"
-          *ngIf="!sidenav?.opened"
-          (click)="onToggleSidenav(sidenav2)"
-        ></i>
-      </div>
+    <mat-sidenav-content [style]="width"  >
+      
 
       <!-- Main content -->
-      <div class="content" >
+      <div class="content" [ngStyle]="resize" >
           <app-nav></app-nav>
         <!-- <app-main-content></app-main-content> -->
         <router-outlet></router-outlet>

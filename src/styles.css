@@ -5,11 +5,14 @@
 /* @import "./assets/css/module/_fonts.css"; */
 @import "./assets/css/module/_variables.css";
 
+/* @import "./assets/css/mobile.css"; */
+/* @import "./assets/css/desktop.css"; */
+
 *{
     box-sizing: none;
 }
 html, body { height: 100%; position: relative;   overflow-y: hidden; } 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 
 
 /*? heeading 1 */

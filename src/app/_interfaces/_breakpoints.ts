@@ -1,5 +1,5 @@
-export class BreakPoints{
-    type!:string
-    value!:{min:number, max:number}
-    editable!:Boolean
+export interface BreakPoints{
+    type:string
+    value:string
+    // editable!:Boolean
 }

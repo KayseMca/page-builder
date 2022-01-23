@@ -87,11 +87,27 @@ background:var(--background-color);
 }
 
 
-mat-sidenav-container{
+/* mat-sidenav-container{
     /* background-color: var(--background-color); */
     /* overflow: auto; */
 
-}
+/* } */ 
 .mat-drawer-container{
     position: static;
   }
+
+  @media (min-width: 320px) and (max-width: 480px) {
+   .mat-sidenav-content{
+     width: inherit;
+   }
+  }
+
+   @media  (min-width: 481px) {
+    .mat-sidenav-content{
+      width: 100px;
+      overflow: auto;
+    }
+  }
+
+  
+  
