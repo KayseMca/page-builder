@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service';
 import { PageData } from 'src/app/_interfaces/_page';
 import { PageDataService } from '../../services/page-data-service/page-data.service';
+import { SeoService } from '../../services/seo/seo.service';
 
 @Component({
   selector: 'app-advanced-seo',
@@ -23,7 +24,8 @@ export class AdvancedSeoComponent implements OnInit {
   constructor(
     private pageProperty: PagePropertyServiceService, 
     private _fb:FormBuilder,
-    private pageData:PageDataService) {
+    private pageData:PageDataService,
+    private seo:SeoService) {
     this.pageProperty.selectedPage.subscribe(res => {
 
       this.selected_page = res.page
@@ -88,7 +90,12 @@ onChanges(i:number){
   // this.saving_data.page_settings  = {}
   this.saving_data.page_settings = {advanced_seo:{robots_meta_tags:[...advanced_data_update]}}
   this.saving_data.id = id
-  // 
+
+
+  // update page seo
+  this.seo.updateMetaTags(this.saving_data)
+
+  //save page seo in the server
   this.pageData.updatePageData(this.saving_data)
 }
 

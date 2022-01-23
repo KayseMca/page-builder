@@ -4,6 +4,7 @@ import { debounceTime } from 'rxjs';
 import { PageData, SEO } from 'src/app/_interfaces/_page';
 import { PageDataService } from '../../services/page-data-service/page-data.service';
 import { PagePropertyServiceService } from '../../services/page-property/page-property-service.service';
+import { SeoService } from '../../services/seo/seo.service';
 
 @Component({
   selector: 'app-seo-basics',
@@ -22,7 +23,8 @@ export class SeoBasicsComponent implements OnInit {
   desc:string = "some  data to show"
   constructor(
     private pageDataService: PageDataService,
-    private pageProperty:PagePropertyServiceService
+    private pageProperty:PagePropertyServiceService,
+    private seo:SeoService
     ) {
 
       this.pageProperty.selectedPage.subscribe(res=>{
@@ -87,6 +89,11 @@ export class SeoBasicsComponent implements OnInit {
     this.savingData.page_settings = {seo_basics:this.seo_data}
     this.savingData.id = this.id
     // this.savingData['page_settings']['permissions'] = {...this.permission_data }
+
+    // update seo
+    this.seo.updateMetaTags(this.savingData)
+
+    // save the page seo data
     this.pageDataService.updatePageData(this.savingData)
   }
 }

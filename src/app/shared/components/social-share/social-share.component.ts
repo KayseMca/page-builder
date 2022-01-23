@@ -4,6 +4,7 @@ import { debounceTime } from 'rxjs';
 import { AdditionalSEO, PageData, SocialShare } from 'src/app/_interfaces/_page';
 import { PageDataService } from '../../services/page-data-service/page-data.service';
 import { PagePropertyServiceService } from '../../services/page-property/page-property-service.service';
+import { SeoService } from '../../services/seo/seo.service';
 
 @Component({
   selector: 'app-social-share',
@@ -23,7 +24,8 @@ export class SocialShareComponent implements OnInit {
 
   constructor(
     private pageDataService: PageDataService,
-    private pageProperty:PagePropertyServiceService
+    private pageProperty:PagePropertyServiceService,
+    private seo:SeoService
     ) {
 
       this.pageProperty.selectedPage.subscribe(res=>{
@@ -87,6 +89,11 @@ export class SocialShareComponent implements OnInit {
     this.savingData.page_settings = {social_share:this.social_share_data}
     this.savingData.id = this.id
     // this.savingData['page_settings']['permissions'] = {...this.permission_data }
+
+    // update page seo
+    this.seo.updateMetaTags(this.savingData)
+
+    // save page seo
     this.pageDataService.updatePageData(this.savingData)
   }
 }

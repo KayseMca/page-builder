@@ -24,6 +24,7 @@ import { TypographyListComponent } from './navigation/side-typography/typography
 import { TypographyItemComponent } from './navigation/side-typography/typography-item/typography-item.component';
 import { BackgroundColorChangeDirective } from './shared/pipe/background-color-change.directive';
 import { TypographyService } from './shared/services/typography/typography.service';
+import { SeoService } from './shared/services/seo/seo.service';
 
 
 
@@ -59,7 +60,7 @@ import { TypographyService } from './shared/services/typography/typography.servi
     
   ],
   // entryComponents:[DeleteDialogComponent],
-  providers: [PagePropertyServiceService,PageDataService, TypographyService],
+  providers: [PagePropertyServiceService,PageDataService, TypographyService, SeoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
