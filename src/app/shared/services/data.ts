@@ -3,7 +3,7 @@ export let data = [
     page_styles: {
       typography: [
         {
-            name:"heading1",
+          name:"heading1",
           style_type: 'Heading 1',
           font: 'Oswaldo',
          

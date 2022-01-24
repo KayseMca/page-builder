@@ -33,99 +33,99 @@ export class AppComponent implements OnInit, OnDestroy  {
   resize: {width:string,margin?:string}={width:'100%'};
 
   // Update the css variable in typograpies
-  // @HostBinding('style')
-  // get style(){
-  //   let style = ['size','font','style','color']
-  //   //let index = 0
-  //   let stylesArray:any = {}
-  //   let count = 0
-  //   let allcount=0;
-  //   this.page_selected.page_styles?.typography?.map((typo:any)=>{
-  //     let current;
-  //     let value = `${typo[`${style[0]}`]}`
-  //     let value1 = `${typo[`${style[1]}`]}`
-  //     let value2 = `${typo[`${style[2]}`]}`
-  //     let value3 = `${typo[`${style[3]}`]}`
-  //     // console.log(typo)
-  //     if(typo.name==='heading1'){
-  //         current = `--heading1-${style[1]}`
-  //       value = `${typo[`${style[1]}`]}`
-  //       // value1 = `${typo[`${style[1]}`]}`
-  //       // value2 = `${typo[`${style[2]}`]}`
-  //       // value3 = `${typo[`${style[3]}`]}`
-  //       stylesArray[current] = value
-  //       // for (let index = 0; index < style.length; index++) {
-  //       //   let value = `${typo[`${style[index]}`]}`
-  //       //   if(current.includes('size')) value = value+'px'
-  //       // }
+  @HostBinding('style')
+  get style(){
+    let style = ['size','font','style','color']
+    //let index = 0
+    let stylesArray:any = {}
+    let count = 0
+    let allcount=0;
+    this.page_selected.page_styles?.typography?.map((typo:any)=>{
+      let current;
+      let value = `${typo[`${style[0]}`]}`
+      let value1 = `${typo[`${style[1]}`]}`
+      let value2 = `${typo[`${style[2]}`]}`
+      let value3 = `${typo[`${style[3]}`]}`
+      // console.log(typo)
+      if(typo.name==='heading1'){
+        // value1 = `${typo[`${style[1]}`]}`
+        // value2 = `${typo[`${style[2]}`]}`
+        // value3 = `${typo[`${style[3]}`]}`
+        for (let index = 0; index < style.length; index++) {
+          let value = `${typo[`${style[index]}`]}`
+          current = `--heading1-${style[1]}`
+          value = `${typo[`${style[1]}`]}`
+          if(current.includes('size')) value = value+'px'
+          stylesArray[current] = value
+        }
        
-  //     // }else if(typo.name==='heading2'){
-  //     //   for (let index = 0; index < style.length; index++) {
-  //     //     current = `--heading2-${style[index]}`
-  //     //     let value = `${typo[`${style[index]}`]}`
-  //     //     if(current.includes('size')) value = value+'px'
-  //     //     stylesArray[current] = value
-  //     //   }
+      }else if(typo.name==='heading2'){
+        for (let index = 0; index < style.length; index++) {
+          current = `--heading2-${style[index]}`
+          let value = `${typo[`${style[index]}`]}`
+          if(current.includes('size')) value = value+'px'
+          stylesArray[current] = value
+        }
        
-  //     // }else if(typo.name==='heading3'){
-  //     //   for (let index = 0; index < style.length; index++) {
-  //     //     current = `--heading3-${style[index]}`
-  //     //     let value = `${typo[`${style[index]}`]}`
-  //     //     if(current.includes('size')) value = value+'px'
-  //     //     stylesArray[current] = value
-  //     //   }
-  //     // }else  if(typo.name==='heading4'){
-  //     //   for (let index = 0; index < style.length; index++) {
-  //     //     current = `--heading4-${style[index]}`
-  //     //     let value = `${typo[`${style[index]}`]}`
-  //     //     if(current.includes('size')) value = value+'px'
-  //     //     stylesArray[current] = value
-  //     //   }
-  //     // }else  if(typo.name==='heading5'){
-  //     //   for (let index = 0; index < style.length; index++) {
-  //     //     current = `--heading5-${style[index]}`
-  //     //     let value = `${typo[`${style[index]}`]}`
-  //     //     if(current.includes('size')) value = value+'px'
-  //     //     stylesArray[current] = value
-  //     //   }
-  //     // }else  if(typo.name==='heading6'){
-  //     //   for (let index = 0; index < style.length; index++) {
-  //     //     current = `--heading6-${style[index]}`
-  //     //     let value = `${typo[`${style[index]}`]}`
-  //     //     if(current.includes('size')) value = value+'px'
-  //     //     stylesArray[current] = value
-  //     //   }
-  //     // }else  if(typo.name==='p1'){
-  //     //   for (let index = 0; index < style.length; index++) {
-  //     //     current = `--p1-${style[index]}`
-  //     //     let value = `${typo[`${style[index]}`]}`
-  //     //     if(current.includes('size')) value = value+'px'
-  //     //     stylesArray[current] = value
-  //     //   }
-  //     // }else  if(typo.name==='p2'){
-  //     //   for (let index = 0; index < style.length; index++) {
-  //     //     current = `--p2-${style[index]}`
-  //     //     let value = `${typo[`${style[index]}`]}`
-  //     //     if(current.includes('size')) value = value+'px'
-  //     //     stylesArray[current] = value
-  //     //   }
-  //     // }else  if(typo.name==='p3'){
-  //     //   // todo change later as this instead of for loop
+      }else if(typo.name==='heading3'){
+        for (let index = 0; index < style.length; index++) {
+          current = `--heading3-${style[index]}`
+          let value = `${typo[`${style[index]}`]}`
+          if(current.includes('size')) value = value+'px'
+          stylesArray[current] = value
+        }
+      }else  if(typo.name==='heading4'){
+        for (let index = 0; index < style.length; index++) {
+          current = `--heading4-${style[index]}`
+          let value = `${typo[`${style[index]}`]}`
+          if(current.includes('size')) value = value+'px'
+          stylesArray[current] = value
+        }
+      }else  if(typo.name==='heading5'){
+        for (let index = 0; index < style.length; index++) {
+          current = `--heading5-${style[index]}`
+          let value = `${typo[`${style[index]}`]}`
+          if(current.includes('size')) value = value+'px'
+          stylesArray[current] = value
+        }
+      }else  if(typo.name==='heading6'){
+        for (let index = 0; index < style.length; index++) {
+          current = `--heading6-${style[index]}`
+          let value = `${typo[`${style[index]}`]}`
+          if(current.includes('size')) value = value+'px'
+          stylesArray[current] = value
+        }
+      }else  if(typo.name==='p1'){
+        for (let index = 0; index < style.length; index++) {
+          current = `--p1-${style[index]}`
+          let value = `${typo[`${style[index]}`]}`
+          if(current.includes('size')) value = value+'px'
+          stylesArray[current] = value
+        }
+      }else  if(typo.name==='p2'){
+        for (let index = 0; index < style.length; index++) {
+          current = `--p2-${style[index]}`
+          let value = `${typo[`${style[index]}`]}`
+          if(current.includes('size')) value = value+'px'
+          stylesArray[current] = value
+        }
+      }else  if(typo.name==='p3'){
+        // todo change later as this instead of for loop
         
-  //     //   // console.log(value, value1, value2, value3)
-  //     //   for (let index = 0; index < style.length; index++) {
-  //     //     current = `--p3-${style[index]}`
-  //     //     let value = `${typo[`${style[index]}`]}`
-  //     //     if(current.includes('size')) value = value+'px'
-  //     //     stylesArray[current] = value
+        // console.log(value, value1, value2, value3)
+        for (let index = 0; index < style.length; index++) {
+          current = `--p3-${style[index]}`
+          let value = `${typo[`${style[index]}`]}`
+          if(current.includes('size')) value = value+'px'
+          stylesArray[current] = value
 
-  //     //   }
-  //     }
-  //   })
+        }
+      }
+    })
 
-  //   console.log(stylesArray)
-  //   return stylesArray  
-  // }
+    console.log(stylesArray)
+    return stylesArray  
+  }
 
 
   // constructor
