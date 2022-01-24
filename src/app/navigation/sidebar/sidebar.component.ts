@@ -1,7 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatDialog } from '@angular/material/dialog';
 
-import { ChangeDetectorRef, Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, take } from 'rxjs';
 
 import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service';
@@ -9,12 +9,13 @@ import { PageDataService } from 'src/app/shared/services/page-data-service/page-
 import { PageData } from 'src/app/_interfaces/_page';
 import { FormControl } from '@angular/forms';
 import { DeleteDialogComponent } from 'src/app/dialog/delete-dialog.component';
-import { MatSidenav } from '@angular/material/sidenav';
+
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.css'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class SidebarComponent implements OnInit, OnDestroy {
 

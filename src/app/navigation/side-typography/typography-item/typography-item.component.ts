@@ -1,5 +1,5 @@
 import { style } from '@angular/animations';
-import { Component, ElementRef, HostBinding, HostListener, Input, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, HostListener, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { PageDataService } from 'src/app/shared/services/page-data-service/page-data.service';
@@ -10,20 +10,13 @@ import { Typograph } from 'src/app/_interfaces/_typograph';
 @Component({
   selector: 'app-typography-item',
   templateUrl: './typography-item.component.html',
-  styleUrls: ['./typography-item.component.css']
+  styleUrls: ['./typography-item.component.css'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class TypographyItemComponent implements OnInit {
 
   font_color_picker:Boolean = false
-  // @HostListener('window:click', ['$event'])
-  // onMouseUp(event: any) {
-  //   if (!this.eref.nativeElement.contains(event.target)) {
-  //     
-  //     this.font_color_picker = false
 
-  //   }
-  // }
- // @HostBinding('class.preview') preview = 'red '
   _typograph!:Typograph
   @Input() set typograph(value:Typograph){
     
