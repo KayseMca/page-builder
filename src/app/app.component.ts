@@ -1,7 +1,7 @@
-import {  ChangeDetectionStrategy, Component, HostBinding, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import {  ChangeDetectionStrategy, Component, HostBinding, HostListener, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NavigationEnd, Router } from '@angular/router';
 import { Observable, Subscription, take } from 'rxjs';
 
 import { PageDataService } from './shared/services/page-data-service/page-data.service';
@@ -24,7 +24,7 @@ import { PageData } from './_interfaces/_page';
 export class AppComponent implements OnInit, OnDestroy  {
 
   subscribe:Subscription = new Subscription()
-  // @HostBinding('style.--background-color') backgroundColor!:string|undefined
+  @HostBinding('style.--background-color') backgroundColor!:string|undefined
   public sidenav!: MatSidenav 
   width:{width:string,position:string, margin?:string} = {width:'inherit',position:'static'}
 
@@ -33,104 +33,43 @@ export class AppComponent implements OnInit, OnDestroy  {
   resize: {width:string,margin?:string}={width:'100%'};
 
   // Update the css variable in typograpies
-  // @HostBinding('style')
-  // get style(){
-  //   let style = ['size','font','style','color']
-  //   //let index = 0
-  //   let stylesArray:any = {}
-  //   let count = 0
-  //   let allcount=0;
-  //   this.page_selected.page_styles?.typography?.map((typo:any)=>{
-  //     let current;
-  //     let value = `${typo[`${style[0]}`]}`
-  //     let value1 = `${typo[`${style[1]}`]}`
-  //     let value2 = `${typo[`${style[2]}`]}`
-  //     let value3 = `${typo[`${style[3]}`]}`
-  //     // console.log(typo)
-  //     if(typo.name==='heading1'){
-  //         current = `--heading1-${style[1]}`
-  //       value = `${typo[`${style[1]}`]}`
-  //       // value1 = `${typo[`${style[1]}`]}`
-  //       // value2 = `${typo[`${style[2]}`]}`
-  //       // value3 = `${typo[`${style[3]}`]}`
-  //       stylesArray[current] = value
-  //       // for (let index = 0; index < style.length; index++) {
-  //       //   let value = `${typo[`${style[index]}`]}`
-  //       //   if(current.includes('size')) value = value+'px'
-  //       // }
-       
-  //     // }else if(typo.name==='heading2'){
-  //     //   for (let index = 0; index < style.length; index++) {
-  //     //     current = `--heading2-${style[index]}`
-  //     //     let value = `${typo[`${style[index]}`]}`
-  //     //     if(current.includes('size')) value = value+'px'
-  //     //     stylesArray[current] = value
-  //     //   }
-       
-  //     // }else if(typo.name==='heading3'){
-  //     //   for (let index = 0; index < style.length; index++) {
-  //     //     current = `--heading3-${style[index]}`
-  //     //     let value = `${typo[`${style[index]}`]}`
-  //     //     if(current.includes('size')) value = value+'px'
-  //     //     stylesArray[current] = value
-  //     //   }
-  //     // }else  if(typo.name==='heading4'){
-  //     //   for (let index = 0; index < style.length; index++) {
-  //     //     current = `--heading4-${style[index]}`
-  //     //     let value = `${typo[`${style[index]}`]}`
-  //     //     if(current.includes('size')) value = value+'px'
-  //     //     stylesArray[current] = value
-  //     //   }
-  //     // }else  if(typo.name==='heading5'){
-  //     //   for (let index = 0; index < style.length; index++) {
-  //     //     current = `--heading5-${style[index]}`
-  //     //     let value = `${typo[`${style[index]}`]}`
-  //     //     if(current.includes('size')) value = value+'px'
-  //     //     stylesArray[current] = value
-  //     //   }
-  //     // }else  if(typo.name==='heading6'){
-  //     //   for (let index = 0; index < style.length; index++) {
-  //     //     current = `--heading6-${style[index]}`
-  //     //     let value = `${typo[`${style[index]}`]}`
-  //     //     if(current.includes('size')) value = value+'px'
-  //     //     stylesArray[current] = value
-  //     //   }
-  //     // }else  if(typo.name==='p1'){
-  //     //   for (let index = 0; index < style.length; index++) {
-  //     //     current = `--p1-${style[index]}`
-  //     //     let value = `${typo[`${style[index]}`]}`
-  //     //     if(current.includes('size')) value = value+'px'
-  //     //     stylesArray[current] = value
-  //     //   }
-  //     // }else  if(typo.name==='p2'){
-  //     //   for (let index = 0; index < style.length; index++) {
-  //     //     current = `--p2-${style[index]}`
-  //     //     let value = `${typo[`${style[index]}`]}`
-  //     //     if(current.includes('size')) value = value+'px'
-  //     //     stylesArray[current] = value
-  //     //   }
-  //     // }else  if(typo.name==='p3'){
-  //     //   // todo change later as this instead of for loop
-        
-  //     //   // console.log(value, value1, value2, value3)
-  //     //   for (let index = 0; index < style.length; index++) {
-  //     //     current = `--p3-${style[index]}`
-  //     //     let value = `${typo[`${style[index]}`]}`
-  //     //     if(current.includes('size')) value = value+'px'
-  //     //     stylesArray[current] = value
-
-  //     //   }
-  //     }
-  //   })
-
-  //   console.log(stylesArray)
-  //   return stylesArray  
-  // }
+  @HostBinding('style')
+  get style(){
+    let style = ['size','font','style','color']
+    //let index = 0
+    let stylesArray:any = {}
+    let count = 0
+    let allcount=0;
+    this.page_selected.page_styles?.typography?.map((typo:any)=>{
+      let current;
+      
+      if(typo.name==='heading1'){
+        this.setCssVariableValue(typo,'heading1')
+      }else if(typo.name==='heading2'){
+        this.setCssVariableValue(typo,'heading2')
+      }else if(typo.name==='heading3'){
+        this.setCssVariableValue(typo,'heading3')
+      }else  if(typo.name==='heading4'){
+        this.setCssVariableValue(typo,'heading4')
+      }else  if(typo.name==='heading5'){
+        this.setCssVariableValue(typo,'heading5')
+      }else  if(typo.name==='heading6'){
+        this.setCssVariableValue(typo,'heading6')
+      }else  if(typo.name==='p1'){
+        this.setCssVariableValue(typo,'p1')
+      }else  if(typo.name==='p2'){
+        this.setCssVariableValue(typo,'p2')
+      }else  if(typo.name==='p3'){
+        this.setCssVariableValue(typo,'p3')
+      }
+    }) 
+    return 
+  }
 
 
   // constructor
   constructor(
-    
+    @Inject(DOCUMENT) private document: Document,
     private typography:TypographyService,
     private pageService:PageDataService,
     private propertyService:PagePropertyServiceService,
@@ -143,7 +82,7 @@ export class AppComponent implements OnInit, OnDestroy  {
     // waiting until first value initiliazed to use and change then (from style.css)
     //setTimeout(() => {
       this.page_selected = res[0]
-      // this.backgroundColor = res[0].page_styles?.background_color;
+      this.backgroundColor = res[0].page_styles?.background_color;
       // this.updateTypographyClasses()
    // }, 0);
     
@@ -151,8 +90,6 @@ export class AppComponent implements OnInit, OnDestroy  {
 
   }
 
-  resizeObservable$!: Observable<Event>
-  resizeSubscription$!: Subscription
   ngOnInit(): void {
    
     console.log("############resizing window")
@@ -163,6 +100,24 @@ export class AppComponent implements OnInit, OnDestroy  {
     // 
   }
   
+
+  setCssVariableValue(typo:any,title:any){
+    let stylesArray:any = {}
+    let style = ['size','font','style','color']
+    let current:string
+
+    for (let index = 0; index < style.length; index++) {
+      let value = `${typo[`${style[index]}`]}`
+      current = `--${title}-${style[index]}`
+    value = `${typo[`${style[index]}`]}`
+      if(current.includes('size')) value = value+'px'
+      // stylesArray[current] = value
+
+      // set the typography to the document
+      document.documentElement.style.setProperty(current,value)
+    }
+  }
+
 
   onResize(event:any){
     console.log(event)
@@ -193,8 +148,8 @@ export class AppComponent implements OnInit, OnDestroy  {
 
 
   ngOnDestroy(): void {
-    if(this.subscribe){
-      this.subscribe.unsubscribe()
-    }
+    // if(this.subscribe){
+    //   this.subscribe.unsubscribe()
+    // }
   }
 }
