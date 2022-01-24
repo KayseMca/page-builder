@@ -52,7 +52,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "none"
+              "outputHashing": "all"
             },
             "development": {
               "buildOptimizer": false,
@@ -95,6 +95,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -104,12 +105,12 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/page-builder/server",
-            "main": "server.ts",
+            "main": "src/main.server.ts",
             "tsConfig": "tsconfig.server.json"
           },
           "configurations": {
             "production": {
-              "outputHashing": "none",
+              "outputHashing": "media",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -125,7 +126,6 @@
           },
           "defaultConfiguration": "production"
         }
-        
       }
     }
   },

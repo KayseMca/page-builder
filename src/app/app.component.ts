@@ -35,11 +35,7 @@ export class AppComponent implements OnInit, OnDestroy  {
   // Update the css variable in typograpies
   @HostBinding('style')
   get style(){
-    let style = ['size','font','style','color']
-    //let index = 0
-    let stylesArray:any = {}
-    let count = 0
-    let allcount=0;
+   
     this.page_selected.page_styles?.typography?.map((typo:any)=>{
       let current;
       
