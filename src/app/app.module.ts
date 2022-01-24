@@ -47,7 +47,7 @@ import { SeoService } from './shared/services/seo/seo.service';
 
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModuleModule,

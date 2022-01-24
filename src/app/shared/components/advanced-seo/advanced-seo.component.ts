@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service';
 import { PageData } from 'src/app/_interfaces/_page';
 import { PageDataService } from '../../services/page-data-service/page-data.service';
@@ -10,8 +11,9 @@ import { SeoService } from '../../services/seo/seo.service';
   templateUrl: './advanced-seo.component.html',
   styleUrls: ['./advanced-seo.component.css']
 })
-export class AdvancedSeoComponent implements OnInit {
+export class AdvancedSeoComponent implements OnInit, OnDestroy {
 
+  subscriptions:Subscription = new Subscription()
   meta_tags_form!:FormGroup
   saving_data:PageData = new PageData()
   selected_page: PageData = new PageData()
@@ -26,7 +28,7 @@ export class AdvancedSeoComponent implements OnInit {
     private _fb:FormBuilder,
     private pageData:PageDataService,
     private seo:SeoService) {
-    this.pageProperty.selectedPage.subscribe(res => {
+    this.subscriptions.add(this.pageProperty.selectedPage.subscribe(res => {
 
       this.selected_page = res.page
       this.robotsMetaDataList = this.selected_page.page_settings.advanced_seo?.robots_meta_tags
@@ -36,7 +38,7 @@ export class AdvancedSeoComponent implements OnInit {
       this.meta_tags_form = this.initMetaDataForm()
      
     })
-    
+    )
 
   }
 
@@ -99,5 +101,10 @@ onChanges(i:number){
   this.pageData.updatePageData(this.saving_data)
 }
 
+ngOnDestroy(): void {
+  //Called once, before the instance is destroyed.
+  //Add 'implements OnDestroy' to the class.
+  if(this.subscriptions) this.subscriptions.unsubscribe()
+}
 
 }

@@ -10,8 +10,9 @@ import { PagePropertyServiceService } from '../services/page-property/page-prope
   templateUrl: './page-properties.component.html',
   styleUrls: ['./page-properties.component.css']
 })
-export class PagePropertiesComponent implements OnInit {
+export class PagePropertiesComponent implements OnInit, OnDestroy {
 
+  subscriptions:Subscription = new Subscription()
   closeTab!:Boolean
   pageTabOpen!:{}
   selectedPageData!:{page:any,tab:string}
@@ -26,20 +27,21 @@ export class PagePropertiesComponent implements OnInit {
   constructor(private pageService:PagePropertyServiceService) {
     
    }
+ 
 
 
-   ngOnChanges(changes: SimpleChanges): void {
-     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-     //Add '${implements OnChanges}' to the class.
-     if(changes['pageSelected'].currentValue){
+  //  ngOnChanges(changes: SimpleChanges): void {
+  //    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+  //    //Add '${implements OnChanges}' to the class.
+  //    if(changes['pageSelected'].currentValue){
        
-     }
-   }
+  //    }
+  //  }
   
   ngOnInit(): void {
     
 
-    this.pageService.selectedPage.subscribe(res=>{
+    this.subscriptions.add(this.pageService.selectedPage.subscribe(res=>{
       this.selectedPageData = res
       
       this.homepage = this.selectedPageData.page['home_page']
@@ -58,6 +60,7 @@ export class PagePropertiesComponent implements OnInit {
       //  this.selectedIndex = this.selectedPageDatka.tab
        
     })
+    )
     
   }
 
@@ -65,16 +68,19 @@ export class PagePropertiesComponent implements OnInit {
 
 
   onTabChange(event:MatTabChangeEvent){
-    
       
   }
 
   closeTabs(){
     this.closeTab = false
-    this.pageService.closeComponentsTab(this.closeTab).pipe(take(1)).subscribe(res=>{
+    this.subscriptions.add(this.pageService.closeComponentsTab(this.closeTab).subscribe(res=>{
       
     })
+    )
+}
 
+ngOnDestroy(): void {
+  if(this.subscriptions) this.subscriptions.unsubscribe()
 }
 
 }

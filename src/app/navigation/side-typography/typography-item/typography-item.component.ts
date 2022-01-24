@@ -65,11 +65,11 @@ export class TypographyItemComponent implements OnInit {
   }
   ngOnInit(): void {
     
-    
+    console.log(this.typograph)
    this.styleForm = this.fb.group({
      style_type:new FormControl(this.typograph.style_type),
      font:new FormControl(this.typograph.font),
-     size:new FormControl(this.typograph.size),
+     size:new FormControl(this.typograph.size || 0),
      color:new FormControl(this.typograph.color),
      style:new FormControl(this.typograph.style),
      weight:new FormControl(this.typograph.weight),
@@ -80,7 +80,7 @@ export class TypographyItemComponent implements OnInit {
   }
 
   onCheckChange(event:any){
-    const isChecked = (<HTMLInputElement>event.target).checked;
+    //const isChecked = (<HTMLInputElement>event.target).checked;
     
     this.checked_weight = !this.checked_weight
     let value = {weight:"bold"}
@@ -127,6 +127,7 @@ export class TypographyItemComponent implements OnInit {
       "color":styles.color,
       "line-height": 1
     }
+    console.log(styles)
   }
 
   //font color picker

@@ -1,6 +1,6 @@
 import { Typograph } from "./_typograph"
 
-export class Permisions{
+export interface Permisions{
     type?:string
     password?:string
     members_type?:string

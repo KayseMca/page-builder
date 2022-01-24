@@ -38,6 +38,7 @@ export class SeoService {
     // social
 
     // add tags
+    console.group(tags, robotTags)
     this.meta.addTags([tags, robotTags])
     
     

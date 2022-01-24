@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { debounceTime, take } from 'rxjs';
+import { debounceTime, Subscription, take } from 'rxjs';
 import { PageData } from 'src/app/_interfaces/_page';
 import { PageDataService } from '../../services/page-data-service/page-data.service';
 import { PagePropertyServiceService } from '../../services/page-property/page-property-service.service';
@@ -14,6 +14,7 @@ import { PagePropertyServiceService } from '../../services/page-property/page-pr
 })
 export class PageInfoComponent implements OnInit {
 
+  subscriptions:Subscription = new Subscription()
   page_info!:FormControl
   button_checked:Boolean = false
 
@@ -51,7 +52,7 @@ export class PageInfoComponent implements OnInit {
 }
 
 saveData(){
-  this.page_info.statusChanges.pipe(
+  this.subscriptions.add(this.page_info.statusChanges.pipe(
          debounceTime(200)
        ).subscribe(res=>{
         if(res==='VALID'){
@@ -62,6 +63,7 @@ saveData(){
           }
         }
        })
+  )
 }
 // ngAfterViewInit(): void {
 //   //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
@@ -83,6 +85,14 @@ saveData(){
 checkedButton(event:any){
   
 }
+
+ngOnDestroy(): void {
+  //Called once, before the instance is destroyed.
+  //Add 'implements OnDestroy' to the class.
+  if(this.subscriptions) this.subscriptions.unsubscribe()
 }
+}
+
+
 
 

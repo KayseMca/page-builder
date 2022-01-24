@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {  FormControl} from '@angular/forms';
-import { debounce, debounceTime } from 'rxjs';
+import { debounce, debounceTime, Subscription } from 'rxjs';
 import { PageData, PageSettings, Permisions } from 'src/app/_interfaces/_page';
 import { PageDataService } from '../../services/page-data-service/page-data.service';
 import { PagePropertyServiceService } from '../../services/page-property/page-property-service.service';
@@ -11,13 +11,14 @@ import { PagePropertyServiceService } from '../../services/page-property/page-pr
   templateUrl: './permissions.component.html',
   styleUrls: ['./permissions.component.css']
 })
-export class PermissionsComponent implements OnInit {
+export class PermissionsComponent implements OnInit, OnDestroy {
 
+  subscriptions:Subscription = new Subscription()
   permissions_view_type!:FormControl
   permissions_set_password!:FormControl
   permissions_members_selected!:FormControl
 
-  permission_data:Permisions = new Permisions()
+  permission_data!:Permisions
   savingData:PageData = new PageData()
   newPageData!:PageData
   selectedPageData!:{page:PageData,tab:string}
@@ -54,7 +55,7 @@ export class PermissionsComponent implements OnInit {
     * @return permision view form data
     */
   get value(){
-    this.permission_data.type = this.permissions_view_type.value
+    this.permission_data = {type:this.permissions_view_type.value}
     return this.permissions_view_type.value
   }
 
@@ -67,7 +68,7 @@ export class PermissionsComponent implements OnInit {
   
   saveTypeData(){
   
-      this.permissions_view_type.statusChanges.subscribe(res=>{
+      this.subscriptions.add(this.permissions_view_type.statusChanges.subscribe(res=>{
         if(res==='VALID'){
           let data = this.permissions_view_type.value
           if(!(data==='') && data ==='everyone' )
@@ -76,11 +77,12 @@ export class PermissionsComponent implements OnInit {
           
         }
       })
+      )
     }
 
     saveMembers(){
   
-      this.permissions_members_selected.statusChanges.subscribe(res=>{
+     this.subscriptions.add(this.permissions_members_selected.statusChanges.subscribe(res=>{
         if(res==='VALID'){
           let selected_data = this.permissions_members_selected.value
           
@@ -99,6 +101,7 @@ export class PermissionsComponent implements OnInit {
           }
         }
       })
+     )
     }
 
 
@@ -106,7 +109,7 @@ export class PermissionsComponent implements OnInit {
      * listening set password form event then passing the data to savAllData after every 2000 second
      */
     savePassword(){
-      this.permissions_set_password.statusChanges.pipe(
+      this.subscriptions.add(this.permissions_set_password.statusChanges.pipe(
         debounceTime(200)
       ).subscribe(res=>{
         if(res==='VALID'){
@@ -116,6 +119,7 @@ export class PermissionsComponent implements OnInit {
           this.saveAllData()
         }
       })
+      )
     }
 
 
@@ -127,5 +131,11 @@ export class PermissionsComponent implements OnInit {
       this.savingData.page_settings = {permissions:this.permission_data}
       // this.savingData['page_settings']['permissions'] = {...this.permission_data }
       this.pageDataService.updatePageData(this.savingData)
+    }
+
+    ngOnDestroy(): void {
+      //Called once, before the instance is destroyed.
+      //Add 'implements OnDestroy' to the class.
+      if(this.subscriptions) this.subscriptions.unsubscribe()
     }
 }

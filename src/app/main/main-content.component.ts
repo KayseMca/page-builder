@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { PageDataService } from '../shared/services/page-data-service/page-data.service';
 import { SeoService } from '../shared/services/seo/seo.service';
 import { PageData } from '../_interfaces/_page';
@@ -8,15 +9,16 @@ import { PageData } from '../_interfaces/_page';
   templateUrl: './main-content.component.html',
   styleUrls: ['./main-content.component.css']
 })
-export class MainContentComponent implements OnInit {
+export class MainContentComponent implements OnInit, OnDestroy {
 
+  subscribtion!:Subscription
   data!:PageData[] 
   constructor(private dataService:PageDataService, private seo:SeoService) { 
     
   }
 
   ngOnInit(): void {
-    this.dataService.allPagesData.subscribe(res=>{
+    this.subscribtion.add(this.dataService.allPagesData.subscribe(res=>{
       this.data = res
 
       // add tags
@@ -24,9 +26,17 @@ export class MainContentComponent implements OnInit {
         const element = this.data[index];
         this.seo.addMetaTags(element)
       }
-    })
+    }))
 
 
   }
 
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if(this.subscribtion){
+      this.subscribtion.unsubscribe()
+    }
+    
+  }
 }

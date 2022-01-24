@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { debounceTime } from 'rxjs';
+import { debounceTime, Subscription } from 'rxjs';
 import { PageData, SEO } from 'src/app/_interfaces/_page';
 import { PageDataService } from '../../services/page-data-service/page-data.service';
 import { PagePropertyServiceService } from '../../services/page-property/page-property-service.service';
@@ -13,6 +13,10 @@ import { SeoService } from '../../services/seo/seo.service';
 })
 export class SeoBasicsComponent implements OnInit {
 
+  subscriptions:Subscription = new Subscription()
+  // private destroy$ = new Subject();
+  // private variable to hold all your subscriptions for the component
+// private subscriptions!: Subscription
   seo_page_title!:FormControl
   seo_meta_description!:FormControl
   seo_page_url!: FormControl
@@ -27,10 +31,10 @@ export class SeoBasicsComponent implements OnInit {
     private seo:SeoService
     ) {
 
-      this.pageProperty.selectedPage.subscribe(res=>{
+      this.subscriptions.add(this.pageProperty.selectedPage.subscribe(res=>{
         this.id = res.page.id
         this.selected_page = res.page
-      })
+      }))
     this.seo_page_title = new FormControl('',Validators.maxLength(200))
     this.seo_meta_description = new FormControl('',Validators.maxLength(500))
     this.seo_page_url = new FormControl('',Validators.maxLength(20))
@@ -43,7 +47,7 @@ export class SeoBasicsComponent implements OnInit {
   }
 
   getTitledata(){
-    this.seo_page_title.statusChanges.pipe(debounceTime(200)).subscribe(res=>{
+    this.subscriptions.add(this.seo_page_title.statusChanges.pipe(debounceTime(200)).subscribe(res=>{
       if(res==='VALID'){
         let data = this.seo_page_title.value
         
@@ -52,11 +56,13 @@ export class SeoBasicsComponent implements OnInit {
         this.saveAllData()
         // 
       }
-    })
+    }))
   }
 
   getDescriptionData(){
-    this.seo_meta_description.statusChanges.pipe(debounceTime(200)).subscribe(res=>{
+    this.subscriptions.add(this.seo_meta_description.statusChanges.pipe(debounceTime(200)).pipe(
+      debounceTime(200)
+    ).subscribe(res=>{
       if(res==='VALID'){
         let data = this.seo_meta_description.value
         if(!(data==='') && this.seo_meta_description.valid )
@@ -65,12 +71,12 @@ export class SeoBasicsComponent implements OnInit {
         this.saveAllData()
         // 
       }
-    })
+    }))
   }
 
   getURL(){
 
-    this.seo_page_url.statusChanges.pipe(debounceTime(100)).subscribe(res=>{
+    this.subscriptions.add(this.seo_page_url.statusChanges.pipe(debounceTime(100)).subscribe(res=>{
       if(res==='VALID'){
         let data = this.seo_page_url.value
         
@@ -81,7 +87,7 @@ export class SeoBasicsComponent implements OnInit {
         this.saveAllData()
         // 
       }
-    })
+    }))
   }
 
   saveAllData(): void{
@@ -91,9 +97,18 @@ export class SeoBasicsComponent implements OnInit {
     // this.savingData['page_settings']['permissions'] = {...this.permission_data }
 
     // update seo
-    this.seo.updateMetaTags(this.savingData)
+    console.log("seo adding")
+    this.seo.addMetaTags(this.savingData)
 
     // save the page seo data
     this.pageDataService.updatePageData(this.savingData)
+  }
+
+  ngOnDestroy(){
+    // this.destroy$.next();
+    // this.destroy$.complete(); 
+    if (this.subscriptions) {
+      this.subscriptions.unsubscribe()
+  }
   }
 }

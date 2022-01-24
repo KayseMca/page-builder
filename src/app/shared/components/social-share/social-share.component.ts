@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { debounceTime } from 'rxjs';
+import { debounceTime, Subscription } from 'rxjs';
 import { AdditionalSEO, PageData, SocialShare } from 'src/app/_interfaces/_page';
 import { PageDataService } from '../../services/page-data-service/page-data.service';
 import { PagePropertyServiceService } from '../../services/page-property/page-property-service.service';
@@ -11,8 +11,9 @@ import { SeoService } from '../../services/seo/seo.service';
   templateUrl: './social-share.component.html',
   styleUrls: ['./social-share.component.css']
 })
-export class SocialShareComponent implements OnInit {
+export class SocialShareComponent implements OnInit, OnDestroy {
 
+  subscriptions:Subscription = new Subscription()
   selected_page:PageData = new PageData()
   social_page_title!:FormControl
   social_meta_description!:FormControl
@@ -28,10 +29,11 @@ export class SocialShareComponent implements OnInit {
     private seo:SeoService
     ) {
 
-      this.pageProperty.selectedPage.subscribe(res=>{
+      this.subscriptions.add(this.pageProperty.selectedPage.subscribe(res=>{
         this.selected_page  = res.page
         this.id = res.page.id
       })
+      )
     this.social_page_title = new FormControl('', Validators.maxLength(200))
     this.social_meta_description = new FormControl('', Validators.maxLength(500))
     this.social_url = new FormControl('', Validators.maxLength(20))
@@ -45,7 +47,7 @@ export class SocialShareComponent implements OnInit {
   }
 
   getTitledata(){
-    this.social_page_title.statusChanges.pipe(debounceTime(100)).subscribe(res=>{
+    this.subscriptions.add(this.social_page_title.statusChanges.pipe(debounceTime(100)).subscribe(res=>{
       if(res==='VALID'){
         let data = this.social_page_title.value
         if(!(data==='') && this.social_page_title.valid)
@@ -54,10 +56,11 @@ export class SocialShareComponent implements OnInit {
         // 
       }
     })
+    )
   }
 
   getDescriptionData(){
-    this.social_meta_description.statusChanges.pipe(debounceTime(100)).subscribe(res=>{
+    this.subscriptions.add(this.social_meta_description.statusChanges.pipe(debounceTime(100)).subscribe(res=>{
       if(res==='VALID'){
         let data = this.social_meta_description.value
         if(!(data==='') &&this.social_meta_description.valid )
@@ -67,11 +70,12 @@ export class SocialShareComponent implements OnInit {
         // 
       }
     })
+    )
   }
 
   getURL(){
 
-    this.social_url.statusChanges.pipe(debounceTime(100)).subscribe(res=>{
+    this.subscriptions.add(this.social_url.statusChanges.pipe(debounceTime(100)).subscribe(res=>{
       if(res==='VALID'){
         let data = this.social_url.value
         data = data.replace(/\s+/g, '');
@@ -82,6 +86,7 @@ export class SocialShareComponent implements OnInit {
         // 
       }
     })
+    )
   }
 
   saveAllData(): void{
@@ -95,5 +100,11 @@ export class SocialShareComponent implements OnInit {
 
     // save page seo
     this.pageDataService.updatePageData(this.savingData)
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if(this.subscriptions) this.subscriptions.unsubscribe()
   }
 }

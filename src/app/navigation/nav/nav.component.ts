@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { PageDataService } from 'src/app/shared/services/page-data-service/page-data.service';
 import { PageData } from 'src/app/_interfaces/_page';
 
@@ -9,6 +10,7 @@ import { PageData } from 'src/app/_interfaces/_page';
 })
 export class NavComponent implements OnInit {
 
+  subscriptions:Subscription = new Subscription()
   // @ViewChild("toggle") toggle!:ElementRef
   active:Boolean = false
   pages!:PageData[]
@@ -16,9 +18,10 @@ export class NavComponent implements OnInit {
   constructor(private pageData:PageDataService) { }
 
   ngOnInit(): void {
-    this.pageData.allPagesData.subscribe(res=>{
+   this.subscriptions.add(this.pageData.allPagesData.subscribe(res=>{
       this.pages = res
     })
+   )
 
     
   }
@@ -27,9 +30,9 @@ export class NavComponent implements OnInit {
     this.active = !this.active
   }
 
-  ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-    // console.log(this.navToggle)
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if(this.subscriptions) this.subscriptions.unsubscribe()
   }
 }

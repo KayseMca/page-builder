@@ -1,7 +1,7 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { ColorEvent } from 'ngx-color';
-import { filter, Observable, of, take } from 'rxjs';
+import { filter, Observable, of, Subscription, take } from 'rxjs';
 import { PageDataService } from 'src/app/shared/services/page-data-service/page-data.service';
 
 import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service';
@@ -13,8 +13,9 @@ import { Typograph } from 'src/app/_interfaces/_typograph';
   templateUrl: './side-typography.component.html',
   styleUrls: ['./side-typography.component.css']
 })
-export class SideTypographyComponent implements OnInit {
+export class SideTypographyComponent implements OnInit, OnDestroy {
  
+  subscriptions:Subscription = new Subscription()
   color:string = "#ffffff"
   primaryColor = '#194D33';
   state = {
@@ -39,10 +40,11 @@ export class SideTypographyComponent implements OnInit {
     private pageDataService:PageDataService
     ) {
 
-      pageDataService.allPagesData.subscribe(res=>{
+      this.subscriptions.add(pageDataService.allPagesData.subscribe(res=>{
         this.page_selected.page_styles = res[0].page_styles
         this.typograp_list = this.page_selected.page_styles?.typography
       })
+      )
       // after App start let select page that in url
       //todo change this after App start
       // router.events.pipe(
@@ -94,5 +96,10 @@ export class SideTypographyComponent implements OnInit {
     this.page_selected.page_styles = {background_color:this.color}
     this.pageDataService.updatePageData(this.page_selected)
     
+  }
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if(this.subscriptions) this.subscriptions.unsubscribe()
   }
 }

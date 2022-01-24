@@ -1,8 +1,9 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, EventEmitter, Inject, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service'
-import { BreakPoints } from 'src/app/_interfaces/_breakpoints';
+
 
 
 @Component({
@@ -10,8 +11,9 @@ import { BreakPoints } from 'src/app/_interfaces/_breakpoints';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
+  subscriptions:Subscription = new Subscription()
   //contionue here for adding output an event
   @Output() public sidenavToggle = new EventEmitter();
   @Input() sidenavOpened!:any 
@@ -37,10 +39,10 @@ export class HeaderComponent implements OnInit {
   onToggleSidenav(){
     this.sidenavToggle.emit()
     // this.pageService.toggle()
-    this.pageService.closeComponentsTab(false).subscribe((res:any)=>{
+    this.subscriptions.add(this.pageService.closeComponentsTab(false).subscribe((res:any)=>{
        
      })
-    
+    )
   }
 
 
@@ -58,5 +60,9 @@ export class HeaderComponent implements OnInit {
 
       this.document.getElementById('theme')?.setAttribute('href','assets/css/mobile.css');
     }
+  }
+
+  ngOnDestroy(): void {
+      if(this.subscriptions) this.subscriptions.unsubscribe()
   }
 }

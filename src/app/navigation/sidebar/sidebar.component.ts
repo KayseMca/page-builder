@@ -18,6 +18,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class SidebarComponent implements OnInit, OnDestroy {
 
+  subscriptions:Subscription = new Subscription()
   panelOpenState: Boolean = true
   previousIndex!: number
   openDropdown: Boolean = false
@@ -62,21 +63,19 @@ export class SidebarComponent implements OnInit, OnDestroy {
     private dialog: MatDialog
   ) {
     this.editPageValue = new FormControl('')
-    this.pageData.allPagesData.pipe(
+    this.subscriptions.add(this.pageData.allPagesData.pipe(
       //take(1)
     ).subscribe((res: PageData[]) => {
       this.allPagesData = res
       
     })
-
+    )
   }
 
   ngOnInit(): void {
-    this.pageProperties.selectedPage.pipe(take(1)).subscribe(res => {
-      
+    this.subscriptions.add(this.pageProperties.selectedPage.subscribe(res => {
     })
-
-
+    )
   }
 
 
@@ -87,12 +86,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.index = index
     this.openComponentTabs = false
     this.hoverPage[index] = true
-    this.pageProperties.closeComponentsTab(this.openComponentTabs).pipe(take(1)).subscribe(res => {
+    this.subscriptions.add(this.pageProperties.closeComponentsTab(this.openComponentTabs).subscribe(res => {
       this.openComponentTabs = res
 
     })
 
-
+    )
     if (index !== this.previousIndex) {
       this.previousIndex = index
       this.openDropdown = true
@@ -134,10 +133,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
       this.openComponentTabs = false
     }
 
-    this.pageProperties.closeComponentsTab(this.openComponentTabs).pipe(take(1)).subscribe(res => {
+    this.subscriptions.add(this.pageProperties.closeComponentsTab(this.openComponentTabs).subscribe(res => {
       this.openComponentTabs = res
     })
-
+    )
     // set dropdown true or false when it clicked
     this.openDropdown = !this.openDropdown
 
@@ -240,18 +239,19 @@ export class SidebarComponent implements OnInit, OnDestroy {
     let page = this.allPagesData[this.index]
     let dialogRef = this.dialog.open(DeleteDialogComponent, { data: { page } })
 
-    dialogRef.afterClosed().subscribe(res => {
+    this.subscriptions.add(dialogRef.afterClosed().subscribe(res => {
       if (res === 'true') {
         
         this.pageData.deletePage(page.id)
       }
     })
+    )
   }
 
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-
+    if(this.subscriptions) this.subscriptions.unsubscribe()
 
   }
 }
