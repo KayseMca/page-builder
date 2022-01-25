@@ -2,10 +2,13 @@ import { DOCUMENT } from '@angular/common';
 import {  ChangeDetectionStrategy, Component, HostBinding, HostListener, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Observable, Subscription, take } from 'rxjs';
+import { ActivatedRoute,Event, NavigationEnd, Route, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+// import { filter, map, mergeMap, Observable, Subscription, take } from 'rxjs';
 
 import { PageDataService } from './shared/services/page-data-service/page-data.service';
 import { PagePropertyServiceService } from './shared/services/page-property/page-property-service.service';
+import { SeoService } from './shared/services/seo/seo.service';
 
 
 import { TypographyService } from './shared/services/typography/typography.service';
@@ -28,7 +31,7 @@ export class AppComponent implements OnInit, OnDestroy  {
   public sidenav!: MatSidenav 
   width:{width:string,position:string, margin?:string} = {width:'inherit',position:'static'}
 
-  title = 'page-builder';
+  //title = 'page-builder';
   page_selected!:PageData
   resize: {width:string,margin?:string}={width:'100%'};
 
@@ -66,11 +69,12 @@ export class AppComponent implements OnInit, OnDestroy  {
   // constructor
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private typography:TypographyService,
     private pageService:PageDataService,
-    private propertyService:PagePropertyServiceService,
-    private sanitizer: DomSanitizer,
-
+    // private sanitizer: DomSanitizer,
+    private seo:SeoService,
+    private pProperty:PagePropertyServiceService,
+    private activatedRoute: ActivatedRoute,
+    private router:Router
     ){
 
    // handle this it causes some "Violation changes"
@@ -78,6 +82,7 @@ export class AppComponent implements OnInit, OnDestroy  {
     // waiting until first value initiliazed to use and change then (from style.css)
     //setTimeout(() => {
       this.page_selected = res[0]
+      // this.seo.addTitle(this.page_selected.name)
       this.backgroundColor = res[0].page_styles?.background_color;
       // this.updateTypographyClasses()
    // }, 0);
@@ -87,14 +92,20 @@ export class AppComponent implements OnInit, OnDestroy  {
   }
 
   ngOnInit(): void {
-   
-    console.log("############resizing window")
-    // this.resizeObservable$ = fromEvent(window, 'resize')
-    // this.resizeSubscription$ = this.resizeObservable$.subscribe( evt => {
-    //   console.log('event: ', evt)
-    // })
-    // 
-  }
+
+
+    this.router.events.subscribe((event:Event)=>{
+      if(event instanceof NavigationEnd) {
+        let url = event.url.replace('/','')
+        let selected = this.pageService.getPage(url)
+        let title = selected.page_settings.seo_basics?.page_title
+        let newTitle = title!==''?title:selected.name
+        this.seo.addTitle(newTitle)
+        this.pProperty.singlePageChoose(selected)
+      }
+    })
+}
+  
   
 
   setCssVariableValue(typo:any,title:any){
