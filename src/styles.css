@@ -100,9 +100,14 @@ body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
     font-style: var(--p2-style);
     color: var(--p2-color);
 
+ 
+    /* style=> italic normal */
 }
 /* * paragraph 3 */
 
 .p3{
     font-family: var(--p3-font);
+    font-size: var(--p3-size);
+    font-style: var(--p3-style);
+    color: var(--p3-color);
 }

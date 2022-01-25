@@ -6,8 +6,7 @@ export let data = [
             name:"heading1",
           style_type: 'Heading 1',
           font: 'Oswaldo',
-         
-          weight: 300,
+          size:32,
           style: 'italic',
           color: 'black',
           example_text: 'Heading example Font',
@@ -16,8 +15,7 @@ export let data = [
             name:"heading2",
           style_type: 'Heading 2',
           font: 'Lato',
-         
-          weight: 'bold',
+          size:24,
           style: 'normal',
           color: 'black',
           example_text: 'Heading example Font',
@@ -26,8 +24,8 @@ export let data = [
             name:"heading3",
           style_type: 'Heading 3',
           font: 'Roboto',
+         size:21,
          
-          weight: 'bold',
           style: 'normal',
           color: 'black',
           example_text: 'Heading example Font',
@@ -36,8 +34,8 @@ export let data = [
             name:"heading4",
           style_type: 'Heading 4',
           font: 'Oswaldo',
+          size:18,
          
-          weight: 'bold',
           style: 'normal',
           color: 'black',
           example_text: 'Heading example Font',
@@ -46,8 +44,8 @@ export let data = [
             name:"heading5",
           style_type: 'Heading 5',
           font: 'Moon Dance',
+          size:13,
          
-          weight: 'bold',
           style: 'normal',
           color: 'black',
           example_text: 'Heading example Font',
@@ -56,8 +54,8 @@ export let data = [
             name:"heading6",
           style_type: 'Heading 6',
           font: 'Oswaldo',
+          size:10,
          
-          weight: 'bold',
           style: 'normal',
           color: 'black',
           example_text: 'Heading example Font',
@@ -68,8 +66,7 @@ export let data = [
             name:"p1",
           style_type: 'Pragraphy 1',
           font: 'Oswaldo',
-         
-          weight: 'bold',
+          size:17,
           style: 'normal',
           color: 'black',
           example_text: 'Pragraph example Font',
@@ -78,8 +75,8 @@ export let data = [
             name:"p2",
           style_type: 'Pragraphy 2',
           font: 'Oswaldo',
+          size:16,
          
-          weight: 'bold',
           style: 'normal',
           color: 'black',
           example_text: 'Heading example Font',
@@ -88,8 +85,8 @@ export let data = [
             name:"p3",
           style_type: 'Pragraphy 3',
           font: 'Oswaldo',
+          size:14,
          
-          weight: 'bold',
           style: 'normal',
           color: 'black',
           example_text: 'Heading example Font',
@@ -162,102 +159,99 @@ export let data = [
     page_url: 'page2',
     home_page: false,
     page_styles: {
-        typography: [
-          {
-              name:"heading1",
-            style_type: 'Heading 1',
-            font: 'Oswaldo',
-           
-            weight: 300,
-            style: 'italic',
-            color: 'black',
-            example_text: 'Heading example Font',
-          },
-          {
-              name:"heading2",
-            style_type: 'Heading 2',
-            font: 'Lato',
-           
-            weight: 'bold',
-            style: 'normal',
-            color: 'black',
-            example_text: 'Heading example Font',
-          },
-          {
-              name:"heading3",
-            style_type: 'Heading 3',
-            font: 'Roboto',
-           
-            weight: 'bold',
-            style: 'normal',
-            color: 'black',
-            example_text: 'Heading example Font',
-          },
-          {
-              name:"heading4",
-            style_type: 'Heading 4',
-            font: 'Oswaldo',
-           
-            weight: 'bold',
-            style: 'normal',
-            color: 'black',
-            example_text: 'Heading example Font',
-          },
-          {
-              name:"heading5",
-            style_type: 'Heading 5',
-            font: 'Moon Dance',
-           
-            weight: 'bold',
-            style: 'normal',
-            color: 'black',
-            example_text: 'Heading example Font',
-          },
-          {
-              name:"heading6",
-            style_type: 'Heading 6',
-            font: 'Oswaldo',
-           
-            weight: 'bold',
-            style: 'normal',
-            color: 'black',
-            example_text: 'Heading example Font',
-          },
-  
-          // pragraphs
-          {
-              name:"p1",
-            style_type: 'Pragraphy 1',
-            font: 'Oswaldo',
-           
-            weight: 'bold',
-            style: 'normal',
-            color: 'black',
-            example_text: 'Pragraph example Font',
-          },
-          {
-              name:"p2",
-            style_type: 'Pragraphy 2',
-            font: 'Oswaldo',
-           
-            weight: 'bold',
-            style: 'normal',
-            color: 'black',
-            example_text: 'Heading example Font',
-          },
-          {
-              name:"p3",
-            style_type: 'Pragraphy 3',
-            font: 'Oswaldo',
-           
-            weight: 'bold',
-            style: 'normal',
-            color: 'black',
-            example_text: 'Heading example Font',
-          },
-        ],
-        background_color: '',
-      },
+      typography: [
+        {
+            name:"heading1",
+          style_type: 'Heading 1',
+          font: 'Oswaldo',
+          size:32,
+          style: 'italic',
+          color: 'black',
+          example_text: 'Heading example Font',
+        },
+        {
+            name:"heading2",
+          style_type: 'Heading 2',
+          font: 'Lato',
+          size:24,
+          style: 'normal',
+          color: 'black',
+          example_text: 'Heading example Font',
+        },
+        {
+            name:"heading3",
+          style_type: 'Heading 3',
+          font: 'Roboto',
+         size:21,
+         
+          style: 'normal',
+          color: 'black',
+          example_text: 'Heading example Font',
+        },
+        {
+            name:"heading4",
+          style_type: 'Heading 4',
+          font: 'Oswaldo',
+          size:18,
+         
+          style: 'normal',
+          color: 'black',
+          example_text: 'Heading example Font',
+        },
+        {
+            name:"heading5",
+          style_type: 'Heading 5',
+          font: 'Moon Dance',
+          size:13,
+         
+          style: 'normal',
+          color: 'black',
+          example_text: 'Heading example Font',
+        },
+        {
+            name:"heading6",
+          style_type: 'Heading 6',
+          font: 'Oswaldo',
+          size:10,
+         
+          style: 'normal',
+          color: 'black',
+          example_text: 'Heading example Font',
+        },
+
+        // pragraphs
+        {
+            name:"p1",
+          style_type: 'Pragraphy 1',
+          font: 'Oswaldo',
+          size:17,
+          style: 'normal',
+          color: 'black',
+          example_text: 'Pragraph example Font',
+        },
+        {
+            name:"p2",
+          style_type: 'Pragraphy 2',
+          font: 'Oswaldo',
+          size:16,
+         
+          style: 'normal',
+          color: 'black',
+          example_text: 'Heading example Font',
+        },
+        {
+            name:"p3",
+          style_type: 'Pragraphy 3',
+          font: 'Oswaldo',
+          size:14,
+         
+          style: 'normal',
+          color: 'black',
+          example_text: 'Heading example Font',
+        },
+      ],
+      background_color: '',
+    },
     base_url: 'https://ciaone-1.editorx.io/mysite/',
     settings: [
       'Settings',

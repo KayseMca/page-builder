@@ -1,6 +1,6 @@
 
 
-export  class Typograph{
+export  interface Typograph{
     name?:string
     style_type?:string
     font?: string
