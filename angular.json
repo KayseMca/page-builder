@@ -38,7 +38,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -105,7 +105,7 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/page-builder/server",
-            "main": "src/main.server.ts",
+            "main": "server.ts",
             "tsConfig": "tsconfig.server.json"
           },
           "configurations": {
@@ -122,6 +122,39 @@
               "optimization": false,
               "sourceMap": true,
               "extractLicenses": false
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "page-builder:build:development",
+              "serverTarget": "page-builder:server:development"
+            },
+            "production": {
+              "browserTarget": "page-builder:build:production",
+              "serverTarget": "page-builder:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "page-builder:build:production",
+              "serverTarget": "page-builder:server:production"
+            },
+            "development": {
+              "browserTarget": "page-builder:build:development",
+              "serverTarget": "page-builder:server:development"
             }
           },
           "defaultConfiguration": "production"
