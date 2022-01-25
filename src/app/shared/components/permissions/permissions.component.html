@@ -9,13 +9,13 @@
 </div>
   <mat-divider></mat-divider>
 
-  <p *ngIf="value=='everyone'" style="margin: 10px 0 17px 5px;">
+  <p *ngIf="typeValue=='everyone'" style="margin: 10px 0 17px 5px;">
     Everyone can access this page!
   </p>
 
 
   <!-- for password set -->
-  <div class="set-password" *ngIf="value=='password'">
+  <div class="set-password" *ngIf="typeValue=='password'">
     <form>
 
         <div class="form-group">
@@ -40,7 +40,7 @@
 
   <mat-divider></mat-divider>
 
-  <div *ngIf="value=='Members Only'">
+  <div *ngIf="typeValue=='Members Only'">
     <!-- <fieldset [formControl] = "permissions_members_selected" >
       <p>Which members can access this pages</p>
       <div class="form-check">

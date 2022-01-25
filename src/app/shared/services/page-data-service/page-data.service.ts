@@ -57,10 +57,10 @@ export class PageDataService {
         // and checking which page data modifying
         
         if (id) {
-          item.page_settings.permissions = { ...item.page_settings?.permissions, ...data?.page_settings?.permissions }
-          item.page_settings.seo_basics = { ...item.page_settings.seo_basics, ...data?.page_settings?.seo_basics }
-          item.page_settings.social_share = { ...item.page_settings.social_share, ...data?.page_settings?.social_share }
-          item.page_settings.advanced_seo = { ...item.page_settings.advanced_seo, ...data?.page_settings?.advanced_seo }
+          item!.page_settings!.permissions = { ...item?.page_settings?.permissions, ...data?.page_settings?.permissions }
+          item!.page_settings!.seo_basics = { ...item?.page_settings?.seo_basics, ...data?.page_settings?.seo_basics }
+          item!.page_settings!.social_share = { ...item.page_settings?.social_share, ...data?.page_settings?.social_share }
+          item!.page_settings!.advanced_seo = { ...item.page_settings?.advanced_seo, ...data?.page_settings?.advanced_seo }
 
           item.name = this.assign(data.name, item.name)
           item.home_page = this.assign(data.home_page, item.home_page)

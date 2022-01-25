@@ -25,8 +25,8 @@ export class SeoService {
 
   addMetaTags(pageData:PageData){
     
-    let seo = {...pageData.page_settings.seo_basics}
-    let robots =pageData.page_settings.advanced_seo?.robots_meta_tags
+    let seo = {...pageData?.page_settings?.seo_basics}
+    let robots =pageData?.page_settings?.advanced_seo?.robots_meta_tags
     let updaterobots = this.checkRobots(robots)
     // for seo
     this.addTitle(seo.page_title)
@@ -54,8 +54,8 @@ export class SeoService {
 
   updateMetaTags(pageData:PageData){
     
-    let seo = {...pageData.page_settings.seo_basics}
-    let robots =pageData.page_settings.advanced_seo?.robots_meta_tags
+    let seo = {...pageData?.page_settings?.seo_basics}
+    let robots =pageData.page_settings?.advanced_seo?.robots_meta_tags
     let updaterobots = this.checkRobots(robots)
     // for seo
     this.addTitle(seo.page_title)

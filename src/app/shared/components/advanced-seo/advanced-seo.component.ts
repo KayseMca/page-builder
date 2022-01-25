@@ -31,8 +31,8 @@ export class AdvancedSeoComponent implements OnInit, OnDestroy {
     this.subscriptions.add(this.pageProperty.selectedPage.subscribe(res => {
 
       this.selected_page = res.page
-      this.robotsMetaDataList = this.selected_page.page_settings.advanced_seo?.robots_meta_tags
-      this.tagsSearch = this.selected_page.page_settings.advanced_seo?.additional_tags
+      this.robotsMetaDataList = this.selected_page?.page_settings?.advanced_seo?.robots_meta_tags
+      this.tagsSearch = this.selected_page?.page_settings?.advanced_seo?.additional_tags
       
       // init form with a data
       this.meta_tags_form = this.initMetaDataForm()
@@ -79,10 +79,10 @@ onChanges(i:number){
   let changeIndex = this.metaDataTags.at(i).value
 
   // initiliaze the data of page the change and save
-  let advanced_data_update = this.selected_page.page_settings.advanced_seo?.robots_meta_tags ?? []
+  let advanced_data_update = this.selected_page.page_settings?.advanced_seo?.robots_meta_tags ?? []
 
   // get the index of element checked
-  let index = advanced_data_update?.findIndex((res:any)=>res['type']===changeIndex.type)
+  let index = advanced_data_update?.findIndex((res:any)=>res?.['type']===changeIndex.type)
   
   //change the value
   if(index)  advanced_data_update[index] = changeIndex

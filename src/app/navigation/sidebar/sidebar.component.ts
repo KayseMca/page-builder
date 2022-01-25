@@ -203,13 +203,17 @@ export class SidebarComponent implements OnInit, OnDestroy {
   createNewPage() {
     let newPage: PageData = new PageData()
     let settings = ['Settings','SEO Basics','Social Share','Rename','Dublicate','Edit Page','Hide','Delete']
-    newPage.name = 'New Page'
-    
-    newPage.settings = settings
-    newPage.home_page = false
-    newPage.page_settings = {seo_basics:{},advanced_seo:{},page_info:{},social_share:{}}
-    newPage.page_styles = {...this.allPagesData[0].page_styles}
-    newPage.page_url = 'newpage'+this.allPagesData.length
+    //creating new page with some values
+    newPage = {
+      name: 'New Page',
+      home_page : false,
+      id:this.allPagesData.length+1,
+      hide:false,
+      settings:settings,
+      page_settings:{seo_basics:{},advanced_seo:{},page_info:{},social_share:{}},
+      page_styles : {...this.allPagesData[0].page_styles},
+      page_url : 'newpage'+this.allPagesData.length
+    }
     
     this.pageData.creatNewPage(newPage)
   }

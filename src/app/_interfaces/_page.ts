@@ -1,6 +1,6 @@
 import { Typograph } from "./_typograph"
 
-export interface Permisions{
+export class Permisions{
     type?:string
     password?:string
     members_type?:string
@@ -71,6 +71,6 @@ export class PageData{
     page_url?:string
     base_url?:string
     settings!:Array<string>
-    page_settings!:PageSettings
+    page_settings?:PageSettings
 }
 

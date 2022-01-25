@@ -18,7 +18,7 @@ export class PermissionsComponent implements OnInit, OnDestroy {
   permissions_set_password!:FormControl
   permissions_members_selected!:FormControl
 
-  permission_data!:Permisions
+  permission_data:Permisions = new Permisions()
   savingData:PageData = new PageData()
   newPageData!:PageData
   selectedPageData!:{page:PageData,tab:string}
@@ -30,7 +30,8 @@ export class PermissionsComponent implements OnInit, OnDestroy {
     ) {
     this.selectedPageData = this.pageProperty.selectedPage.getValue()
     this.newPageData = this.selectedPageData.page
-    this.savingData.id = this.selectedPageData.page.id
+    let id  =this.selectedPageData.page.id
+    this.savingData.id = id
 
     this.permissions_view_type = new FormControl('')
     this.permissions_set_password = new FormControl('')
@@ -43,6 +44,7 @@ export class PermissionsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     
+    console.log(this.permission_data)
     this.saveTypeData()
     this.saveMembers()
     this.savePassword()
@@ -54,8 +56,8 @@ export class PermissionsComponent implements OnInit, OnDestroy {
   /**
     * @return permision view form data
     */
-  get value(){
-    this.permission_data = {type:this.permissions_view_type.value}
+  get typeValue(){
+    //this.permission_data.type = this.permissions_view_type.value
     return this.permissions_view_type.value
   }
 
@@ -71,10 +73,13 @@ export class PermissionsComponent implements OnInit, OnDestroy {
       this.subscriptions.add(this.permissions_view_type.statusChanges.subscribe(res=>{
         if(res==='VALID'){
           let data = this.permissions_view_type.value
-          if(!(data==='') && data ==='everyone' )
-          
-          this.permission_data.type = data
-          
+          // && data ==='everyone'
+          if(!(data==='') && data ==='everyone' ){
+            console.log("save type")
+            this.permission_data.type = data
+            this.saveAllData()
+
+          }
         }
       })
       )
@@ -91,13 +96,22 @@ export class PermissionsComponent implements OnInit, OnDestroy {
 
             
             this.permission_data.members_type = selected_data
+            // reset other fields
+            this.permission_data.selected_members=undefined
+            this.permission_data.password=undefined 
+            this.permission_data.type = this.permissions_view_type.value
             this.saveAllData()
 
           }else if(!(selected_data==='') && selected_data==='selected_members'){
             
-            this.permission_data.members_type = ''
+            // reset other options
+            this.permission_data.members_type = undefined
+            this.permission_data.password=undefined 
+            this.permission_data.password=undefined 
+            this.permission_data.type = this.permissions_view_type.value
+            // set the data the field choicen
             this.permission_data.selected_members = selected_data
-            this.saveAllData()
+           this.saveAllData()
           }
         }
       })
@@ -114,8 +128,13 @@ export class PermissionsComponent implements OnInit, OnDestroy {
       ).subscribe(res=>{
         if(res==='VALID'){
           let data = this.permissions_set_password.value
-          if(!(data==='') )
+          if(!(data==='') && data ==='password')
+          console.log("inside password")
           this.permission_data.password = data
+          // reset other options
+          this.permission_data.members_type = undefined
+          this.permission_data.selected_members = undefined
+          this.permission_data.type = this.permissions_view_type.value
           this.saveAllData()
         }
       })
@@ -128,8 +147,9 @@ export class PermissionsComponent implements OnInit, OnDestroy {
      */
     saveAllData(): void{
       
-      this.savingData.page_settings = {permissions:this.permission_data}
+      this.savingData!.page_settings = {permissions:this.permission_data}
       // this.savingData['page_settings']['permissions'] = {...this.permission_data }
+      console.log(this.savingData)
       this.pageDataService.updatePageData(this.savingData)
     }
 

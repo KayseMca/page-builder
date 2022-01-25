@@ -1,4 +1,6 @@
-import { DOCUMENT } from '@angular/common';
+import { PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, DOCUMENT } from '@angular/common';
+// import {  } from '@angular/common';
 import {  ChangeDetectionStrategy, Component, HostBinding, HostListener, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -36,39 +38,40 @@ export class AppComponent implements OnInit, OnDestroy  {
   resize: {width:string,margin?:string}={width:'100%'};
 
   // Update the css variable in typograpies
-  @HostBinding('style')
-  get style(){
+  // @HostBinding('style')
+  // get style(){
    
-    this.page_selected.page_styles?.typography?.map((typo:any)=>{
-      let current;
+  //   this.page_selected.page_styles?.typography?.map((typo:any)=>{
+  //     let current;
       
-      if(typo.name==='heading1'){
-        this.setCssVariableValue(typo,'heading1')
-      }else if(typo.name==='heading2'){
-        this.setCssVariableValue(typo,'heading2')
-      }else if(typo.name==='heading3'){
-        this.setCssVariableValue(typo,'heading3')
-      }else  if(typo.name==='heading4'){
-        this.setCssVariableValue(typo,'heading4')
-      }else  if(typo.name==='heading5'){
-        this.setCssVariableValue(typo,'heading5')
-      }else  if(typo.name==='heading6'){
-        this.setCssVariableValue(typo,'heading6')
-      }else  if(typo.name==='p1'){
-        this.setCssVariableValue(typo,'p1')
-      }else  if(typo.name==='p2'){
-        this.setCssVariableValue(typo,'p2')
-      }else  if(typo.name==='p3'){
-        this.setCssVariableValue(typo,'p3')
-      }
-    }) 
-    return 
-  }
+  //     if(typo.name==='heading1'){
+  //       this.setCssVariableValue(typo,'heading1')
+  //     }else if(typo.name==='heading2'){
+  //       this.setCssVariableValue(typo,'heading2')
+  //     }else if(typo.name==='heading3'){
+  //       this.setCssVariableValue(typo,'heading3')
+  //     }else  if(typo.name==='heading4'){
+  //       this.setCssVariableValue(typo,'heading4')
+  //     }else  if(typo.name==='heading5'){
+  //       this.setCssVariableValue(typo,'heading5')
+  //     }else  if(typo.name==='heading6'){
+  //       this.setCssVariableValue(typo,'heading6')
+  //     }else  if(typo.name==='p1'){
+  //       this.setCssVariableValue(typo,'p1')
+  //     }else  if(typo.name==='p2'){
+  //       this.setCssVariableValue(typo,'p2')
+  //     }else  if(typo.name==='p3'){
+  //       this.setCssVariableValue(typo,'p3')
+  //     }
+  //   }) 
+  //   return 
+  // }
 
 
   // constructor
   constructor(
     @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private platformId: Object,
     private pageService:PageDataService,
     // private sanitizer: DomSanitizer,
     private seo:SeoService,
@@ -98,7 +101,7 @@ export class AppComponent implements OnInit, OnDestroy  {
       if(event instanceof NavigationEnd) {
         let url = event.url.replace('/','')
         let selected = this.pageService.getPage(url)
-        let title = selected.page_settings.seo_basics?.page_title
+        let title = selected?.page_settings?.seo_basics?.page_title
         let newTitle = title!==''?title:selected.name
         this.seo.addTitle(newTitle)
         this.pProperty.singlePageChoose(selected)
@@ -119,9 +122,12 @@ export class AppComponent implements OnInit, OnDestroy  {
     value = `${typo[`${style[index]}`]}`
       if(current.includes('size')) value = value+'px'
       // stylesArray[current] = value
-
+      if (isPlatformBrowser(this.platformId)) {
+        // Client only code.
+        document.documentElement.style.setProperty(current,value)
+        console.log(this.platformId)
+     }
       // set the typography to the document
-      document.documentElement.style.setProperty(current,value)
     }
   }
 
