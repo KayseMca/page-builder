@@ -29,7 +29,7 @@ import { PageData } from './_interfaces/_page';
 export class AppComponent implements OnInit, OnDestroy  {
 
   subscribe:Subscription = new Subscription()
-  @HostBinding('style.--background-color') backgroundColor!:string|undefined
+  // @HostBinding('style.--background-color') backgroundColor!:string|undefined
   public sidenav!: MatSidenav 
   width:{width:string,position:string, margin?:string} = {width:'inherit',position:'static'}
 
@@ -38,34 +38,43 @@ export class AppComponent implements OnInit, OnDestroy  {
   resize: {width:string,margin?:string}={width:'100%'};
 
   // Update the css variable in typograpies
-  // @HostBinding('style')
-  // get style(){
+  @HostBinding('style')
+  get style(){
    
-  //   this.page_selected.page_styles?.typography?.map((typo:any)=>{
-  //     let current;
+    // set background
+    let backgroundColor:any = this.page_selected.page_styles?.background_color;
+    if (isPlatformBrowser(this.platformId)) {
+      // Client only code.
+      document.documentElement.style.setProperty(`--background-color`, backgroundColor)
+      //console.log(this.platformId)
+   }
+
+   // binding css variables
+    this.page_selected.page_styles?.typography?.map((typo:any)=>{
+      let current;
       
-  //     if(typo.name==='heading1'){
-  //       this.setCssVariableValue(typo,'heading1')
-  //     }else if(typo.name==='heading2'){
-  //       this.setCssVariableValue(typo,'heading2')
-  //     }else if(typo.name==='heading3'){
-  //       this.setCssVariableValue(typo,'heading3')
-  //     }else  if(typo.name==='heading4'){
-  //       this.setCssVariableValue(typo,'heading4')
-  //     }else  if(typo.name==='heading5'){
-  //       this.setCssVariableValue(typo,'heading5')
-  //     }else  if(typo.name==='heading6'){
-  //       this.setCssVariableValue(typo,'heading6')
-  //     }else  if(typo.name==='p1'){
-  //       this.setCssVariableValue(typo,'p1')
-  //     }else  if(typo.name==='p2'){
-  //       this.setCssVariableValue(typo,'p2')
-  //     }else  if(typo.name==='p3'){
-  //       this.setCssVariableValue(typo,'p3')
-  //     }
-  //   }) 
-  //   return 
-  // }
+      if(typo.name==='heading1'){
+        this.setCssVariableValue(typo,'heading1')
+      }else if(typo.name==='heading2'){
+        this.setCssVariableValue(typo,'heading2')
+      }else if(typo.name==='heading3'){
+        this.setCssVariableValue(typo,'heading3')
+      }else  if(typo.name==='heading4'){
+        this.setCssVariableValue(typo,'heading4')
+      }else  if(typo.name==='heading5'){
+        this.setCssVariableValue(typo,'heading5')
+      }else  if(typo.name==='heading6'){
+        this.setCssVariableValue(typo,'heading6')
+      }else  if(typo.name==='p1'){
+        this.setCssVariableValue(typo,'p1')
+      }else  if(typo.name==='p2'){
+        this.setCssVariableValue(typo,'p2')
+      }else  if(typo.name==='p3'){
+        this.setCssVariableValue(typo,'p3')
+      }
+    }) 
+    return 
+  }
 
 
   // constructor
@@ -86,7 +95,7 @@ export class AppComponent implements OnInit, OnDestroy  {
     //setTimeout(() => {
       this.page_selected = res[0]
       // this.seo.addTitle(this.page_selected.name)
-      this.backgroundColor = res[0].page_styles?.background_color;
+      // this.backgroundColor = res[0].page_styles?.background_color;
       // this.updateTypographyClasses()
    // }, 0);
     
@@ -97,16 +106,17 @@ export class AppComponent implements OnInit, OnDestroy  {
   ngOnInit(): void {
 
 
-    this.router.events.subscribe((event:Event)=>{
-      if(event instanceof NavigationEnd) {
-        let url = event.url.replace('/','')
-        let selected = this.pageService.getPage(url)
-        let title = selected?.page_settings?.seo_basics?.page_title
-        let newTitle = title!==''?title:selected.name
-        this.seo.addTitle(newTitle)
-        this.pProperty.singlePageChoose(selected)
-      }
-    })
+    // this.subscribe.add(this.router.events.subscribe((event:Event)=>{
+    //   if(event instanceof NavigationEnd) {
+    //     let url = event.url.replace('/','')
+    //     let selected = this.pageService.getPage(url)
+    //     let title = selected?.page_settings?.seo_basics?.page_title
+    //     let newTitle = title!==''?title:selected.name
+    //     this.seo.addTitle(newTitle)
+    //     this.pProperty.singlePageChoose(selected)
+    //   }
+    // })
+    // )
 }
   
   
@@ -125,7 +135,7 @@ export class AppComponent implements OnInit, OnDestroy  {
       if (isPlatformBrowser(this.platformId)) {
         // Client only code.
         document.documentElement.style.setProperty(current,value)
-        console.log(this.platformId)
+        // console.log(this.platformId)
      }
       // set the typography to the document
     }
@@ -161,8 +171,8 @@ export class AppComponent implements OnInit, OnDestroy  {
 
 
   ngOnDestroy(): void {
-    // if(this.subscribe){
-    //   this.subscribe.unsubscribe()
-    // }
+    if(this.subscribe){
+      this.subscribe.unsubscribe()
+    }
   }
 }

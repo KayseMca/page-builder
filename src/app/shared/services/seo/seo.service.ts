@@ -9,42 +9,64 @@ export class SeoService {
 
   constructor(private title:Title, private meta: Meta) { }
 
+  configSeo = {
+    title:"Page Builder"
+  }
   addTitle(title:string|undefined){
-    let newtitle = title? title: ''
+    let newtitle = title? title: this.configSeo.title
     this.title.setTitle(newtitle)
   }
 
-  // this.metaTagService.addTags([
-  //   { name: 'keywords', content: 'Angular SEO Integration, Music CRUD, Angular Universal' },
-  //   { name: 'robots', content: 'index, follow' },
-  //   { name: 'author', content: 'Digamber Singh' },
-  //   { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-  //   { name: 'date', content: '2019-10-31', scheme: 'YYYY-MM-DD' },
-  //   { charset: 'UTF-8' }
-  // ]);
 
   addMetaTags(pageData:PageData){
     
-    let seo = {...pageData?.page_settings?.seo_basics}
-    let robots =pageData?.page_settings?.advanced_seo?.robots_meta_tags
-    let updaterobots = this.checkRobots(robots)
-    // for seo
+    const seo = {...pageData?.page_settings?.seo_basics}
+    const robots =pageData?.page_settings?.advanced_seo?.robots_meta_tags
+    const social = {...pageData?.page_settings?.social_share}
+
+    //robots
+    let all_robots = this.checkRobots(robots)
+
+    // for titles
+    const title = seo.page_title
+    // add title
     this.addTitle(seo.page_title)
-    let tags = {name:'description', content:this.tags(seo.meta_description)}
-    let robotTags = {name:'robots', content:this.tags(updaterobots)}
+
+    // const twitter_title = social.og_title? social.og_title: this.getTag('twitter:title')
+
+    // descriptions
+    const description = seo.meta_description? seo.meta_description: this.getTag('description')
+    // const twitter_description = social.og_description? social.og_description: this.getTag('twitter:description')
+    
 
     //url
-
+    const url = seo.url? seo.url: ''
+    // const twitter_url = social.url? social.url: this.getTag('twitter:url')
     // social
 
     // add tags
-    console.group(tags, robotTags)
-    this.meta.addTags([tags, robotTags])
+    const tags = [ 
+      {name:'description', content:description},
+      // {name:'twitter:description', content:twitter_description},
+      // {name:'twitter:title', content:twitter_title},
+      {name:'robots', content:all_robots},
+      {name:'og:description', content:description},
+      // {name:'og:title', content:title},
+     ]
     
     
+     // add all tags to the metaservice
+
+     tags.forEach(tag=>this.meta.updateTag(tag))
   }
 
 
+  // get tag
+
+  getTag(tagName:string){
+    let tag = this.meta.getTag(`name= ${tagName}`)?.content
+    return tag?tag:''
+  }
   // remove undefined
   tags(tag:string|undefined):string{
     let newTag = tag ? tag : ''

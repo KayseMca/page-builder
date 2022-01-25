@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output, PLATFORM_ID, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service'
@@ -24,7 +24,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     public pageService:PagePropertyServiceService, 
     // private breakpoint:BreakpointsService,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    @Inject(PLATFORM_ID) private platformId: Object,
     ) {
   //  this.sidenavOpened = this.pageService?.opened()
   
@@ -52,13 +53,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if(event==='desktop'){
       // this.current_breakpoint = {value:'100%', type:'desktop'}
       // this.breakpoint.setBreakpoints(this.current_breakpoint)
+      if (isPlatformBrowser(this.platformId)) {
       this.document.getElementById('theme')?.setAttribute('href','assets/css/desktop.css');
+      }
     }else if(event==='mobile'){
       // this.current_breakpoint = {value:'480px', type:'mobile'}
       // this.current_breakpoint = {value:'321px', type:'mobile'}
       // this.breakpoint.setBreakpoints(this.current_breakpoint)
-
+      if (isPlatformBrowser(this.platformId)) {
       this.document.getElementById('theme')?.setAttribute('href','assets/css/mobile.css');
+      }
     }
   }
 
