@@ -278,8 +278,8 @@ export let data = [
         ],
       },
       seo_basics: {
-        page_title: 'string',
-        meta_description: 'string',
+        page_title: '',
+        meta_description: '',
         url: 'page2',
       },
       social_share: {
