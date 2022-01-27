@@ -10,7 +10,9 @@ export class SeoService {
   constructor(private title:Title, private meta: Meta) { }
 
   configSeo = {
-    title:"Page Builder"
+    title:"page builder"
+    // title:this.getTag('twitter:title') ? this.getTag('twitter:title'): 'page Builder',
+    // description:this.getTag('twitter:description') ? this.getTag('twitter:descriğtion'): 'page Builder' 
   }
   addTitle(title:string|undefined){
     let newtitle = title? title: this.configSeo.title
@@ -26,13 +28,13 @@ export class SeoService {
 
     //robots
     let all_robots = this.checkRobots(robots)
-
+    console.log(all_robots)
     // for titles
     const title = seo.page_title
     // add title
     this.addTitle(seo.page_title)
 
-    // const twitter_title = social.og_title? social.og_title: this.getTag('twitter:title')
+    // const twitter_title = social.og_title ? social.og_title: this.configSeo.title
 
     // descriptions
     const description = seo.meta_description? seo.meta_description: this.getTag('description')
@@ -47,11 +49,13 @@ export class SeoService {
     // add tags
     const tags = [ 
       {name:'description', content:description},
+      
       // {name:'twitter:description', content:twitter_description},
       // {name:'twitter:title', content:twitter_title},
+      {name:'twitter:card', content:"summary"},
       {name:'robots', content:all_robots},
       {name:'og:description', content:description},
-      // {name:'og:title', content:title},
+      {name:'og:title', content:this.tags(title)},
      ]
     
     

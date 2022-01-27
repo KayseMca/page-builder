@@ -90,9 +90,15 @@ export class AppComponent implements OnInit, OnDestroy  {
     ){
 
    // handle this it causes some "Violation changes"
-   this.subscribe.add(this.pageService.allPagesData.subscribe(res=>{
+   this.subscribe.add(this.pageService.allPagesData.subscribe((res:PageData[])=>{
     // waiting until first value initiliazed to use and change then (from style.css)
     //setTimeout(() => {
+
+    // * adding meta tags into index.html
+      for (let index = 0; index < res.length; index++) {
+        const element = res[index];
+        this.seo.addMetaTags(element)
+      }
       this.page_selected = res[0]
       // this.seo.addTitle(this.page_selected.name)
       // this.backgroundColor = res[0].page_styles?.background_color;
@@ -105,7 +111,7 @@ export class AppComponent implements OnInit, OnDestroy  {
 
   ngOnInit(): void {
 
-
+    
     // this.subscribe.add(this.router.events.subscribe((event:Event)=>{
     //   if(event instanceof NavigationEnd) {
     //     let url = event.url.replace('/','')

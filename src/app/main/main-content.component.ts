@@ -18,15 +18,7 @@ export class MainContentComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log("$$½½½½½½½ main content")
-    this.subscribtion.add(this.dataService.allPagesData.subscribe(res=>{
-      this.data = res
-      // add tags
-      for (let index = 0; index < this.data.length; index++) {
-        const element = this.data[index];
-        this.seo.addMetaTags(element)
-      }
-    }))
+    
 
 
   }
