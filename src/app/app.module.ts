@@ -25,6 +25,7 @@ import { TypographyItemComponent } from './navigation/side-typography/typography
 import { BackgroundColorChangeDirective } from './shared/pipe/background-color-change.directive';
 import { TypographyService } from './shared/services/typography/typography.service';
 import { SeoService } from './shared/services/seo/seo.service';
+import { PageModifyModule } from './create-duplicate-page/page-modify.module';
 
 
 
@@ -54,9 +55,8 @@ import { SeoService } from './shared/services/seo/seo.service';
     MainModuleModule,
     PagePropertiesModule,
     ColorChromeModule,
-    ColorSketchModule // picker color package
-
-   
+    ColorSketchModule, // picker color package
+   PageModifyModule
     
   ],
   // entryComponents:[DeleteDialogComponent],

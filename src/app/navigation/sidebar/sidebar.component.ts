@@ -9,6 +9,7 @@ import { PageDataService } from 'src/app/shared/services/page-data-service/page-
 import { PageData } from 'src/app/_interfaces/_page';
 import { FormControl } from '@angular/forms';
 import { DeleteDialogComponent } from 'src/app/dialog/delete-dialog.component';
+import { CreateDuplicatePageComponent } from 'src/app/create-duplicate-page/create-duplicate-page/create-duplicate-page.component';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { DeleteDialogComponent } from 'src/app/dialog/delete-dialog.component';
   styleUrls: ['./sidebar.component.css'],
   changeDetection:ChangeDetectionStrategy.OnPush
 })
-export class SidebarComponent implements OnInit, OnDestroy {
+export class SidebarComponent extends CreateDuplicatePageComponent implements OnInit, OnDestroy {
 
   subscriptions:Subscription = new Subscription()
   panelOpenState: Boolean = true
@@ -63,6 +64,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     private pageData: PageDataService,
     private dialog: MatDialog
   ) {
+    super(pageData)
     this.editPageValue = new FormControl('')
     this.subscriptions.add(this.pageData.allPagesData.pipe(
       //take(1)
@@ -74,6 +76,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // super.ngOnInit()
     this.subscriptions.add(this.pageProperties.selectedPage.subscribe(res => {
     })
     )
@@ -200,22 +203,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
   /**
    * Create new Page from + icon
    */
-  createNewPage() {
-    let newPage: PageData = new PageData()
-    let settings = ['Settings','SEO Basics','Social Share','Rename','Dublicate','Edit Page','Hide','Delete']
-    //creating new page with some values
-    newPage = {
-      name: 'New Page',
-      home_page : false,
-      id:this.allPagesData.length+1,
-      hide:false,
-      settings:settings,
-      page_settings:{seo_basics:{},advanced_seo:{},page_info:{},social_share:{}},
-      page_styles : {...this.allPagesData[0].page_styles},
-      page_url : 'newpage'+this.allPagesData.length
-    }
-    
-    this.pageData.creatNewPage(newPage)
+  createPage() {
+    // this.pageData.creatNewPage(newPage)
+    this.createNewPage()
   }
 
   /**

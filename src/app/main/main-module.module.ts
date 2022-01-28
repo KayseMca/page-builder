@@ -14,7 +14,8 @@ const appRoutes:Routes  = [
 
   {path:'',redirectTo:'/home', pathMatch:'full'},
   {path:'home', component:HomeComponent},
-  {path:'page2', component:Page2Component}
+  {path:'page2', component:Page2Component},
+  //{path:'**', component:Dynamc},
 ]
 
 @NgModule({
