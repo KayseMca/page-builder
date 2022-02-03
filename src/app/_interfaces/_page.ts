@@ -57,9 +57,7 @@ export interface Style{
 
     typography?:Array<Typograph>
     background_color?:string
-
-
-
+    html?:string
 }
 
 export class PageData{

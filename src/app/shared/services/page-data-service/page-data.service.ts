@@ -74,6 +74,7 @@ export class PageDataService {
         let style = data_style?.typography
         
         item.page_styles={
+          html:data.page_styles?.html?data.page_styles?.html:item_style?.html,
            background_color:data_style?.background_color ? data_style?.background_color : item_style?.background_color,
            typography: style ?[...this.updatePageStyles(item_style?.typography, data_style?.typography)]:item_style?.typography
           }

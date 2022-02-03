@@ -1,7 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatDialog } from '@angular/material/dialog';
 
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
+import { ApplicationRef, ChangeDetectionStrategy, ChangeDetectorRef, Compiler, Component, ComponentFactoryResolver, HostListener, Injector, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, take } from 'rxjs';
 
 import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service';
@@ -10,6 +10,8 @@ import { PageData } from 'src/app/_interfaces/_page';
 import { FormControl } from '@angular/forms';
 import { DeleteDialogComponent } from 'src/app/dialog/delete-dialog.component';
 import { CreateDuplicatePageComponent } from 'src/app/create-duplicate-page/create-duplicate-page/create-duplicate-page.component';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -62,9 +64,14 @@ export class SidebarComponent extends CreateDuplicatePageComponent implements On
     // private cdr: ChangeDetectorRef,
     private pageProperties: PagePropertyServiceService,
     private pageData: PageDataService,
-    private dialog: MatDialog
+    private resolve:ComponentFactoryResolver,
+    private routes:Router,
+    private app:ApplicationRef,
+    // private compiler:Compiler,
+    private dialog: MatDialog,
+    private inject:Injector
   ) {
-    super(pageData)
+    super(pageData,pageProperties, resolve, routes, app, inject)
     this.editPageValue = new FormControl('')
     this.subscriptions.add(this.pageData.allPagesData.pipe(
       //take(1)
@@ -78,6 +85,7 @@ export class SidebarComponent extends CreateDuplicatePageComponent implements On
   ngOnInit(): void {
     // super.ngOnInit()
     this.subscriptions.add(this.pageProperties.selectedPage.subscribe(res => {
+      console.log(res)
     })
     )
   }
@@ -131,7 +139,7 @@ export class SidebarComponent extends CreateDuplicatePageComponent implements On
 
       //for tab components set true when it choosed one
       this.openComponentTabs = true
-      this.pageProperties.selectedPage.next({ page: this.pageSelected, tab: setting })
+      this.pageProperties.singlePageChoose(  this.pageSelected,setting)
 
     } else {
       this.openComponentTabs = false

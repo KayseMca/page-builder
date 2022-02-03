@@ -1,21 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import { Route, RouterModule, Routes } from '@angular/router';
 
 import { MainContentComponent } from './main-content.component';
 import { HomeComponent } from './pages/home/home.component';
 
 import { PagePropertiesModule } from '../shared/components/page-properties.module';
 import { Page2Component } from './pages/page2/page2.component';
+import { PageData } from '../_interfaces/_page';
 
 
+interface CustomRoute extends Route {
+  data?: PageData;
+}
 
-const appRoutes:Routes  = [
+const appRoutes:CustomRoute[]  = [
 
-  {path:'',redirectTo:'/home', pathMatch:'full'},
   {path:'home', component:HomeComponent},
   {path:'page2', component:Page2Component},
+  {path:'', redirectTo:'/home', pathMatch:'full'},
+  {path:"**", loadChildren:()=>import('../create-duplicate-page/page-modify.module').then(m=>m.PageModifyModule)},
   //{path:'**', component:Dynamc},
+  // {path:'', redirectTo:'/home', pathMatch:'full'},
 ]
 
 @NgModule({
