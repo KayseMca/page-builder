@@ -9,7 +9,7 @@ interface CustomRoute extends Route {
 const routes: CustomRoute[] = [
   {path:'', loadChildren: ()=> import('./main/main-module.module').then(m => m.MainModuleModule)},
   //{path:"", loadChildren:()=>import('./create-duplicate-page/page-modify.module').then(m=>m.PageModifyModule)},
-  
+  //{path}
 ];
 
 @NgModule({
