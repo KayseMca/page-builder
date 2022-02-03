@@ -18,10 +18,9 @@ const appRoutes:CustomRoute[]  = [
 
   {path:'home', component:HomeComponent},
   {path:'page2', component:Page2Component},
+  {path:"", loadChildren:()=>import('../create-duplicate-page/page-modify.module').then(m=>m.PageModifyModule)},
   {path:'', redirectTo:'/home', pathMatch:'full'},
-  {path:"**", loadChildren:()=>import('../create-duplicate-page/page-modify.module').then(m=>m.PageModifyModule)},
-  //{path:'**', component:Dynamc},
-  // {path:'', redirectTo:'/home', pathMatch:'full'},
+  {path:'**', redirectTo:'/home', pathMatch:'full'},
 ]
 
 @NgModule({

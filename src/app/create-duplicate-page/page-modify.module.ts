@@ -15,7 +15,8 @@ interface CustomRoute extends Route {
 export const routes: CustomRoute[] = [
   //{path:'', component:CreateDuplicatePageComponent}
   //{path:'/test/:pagename', component:CreateDuplicatePageComponent}
-  {path:'', redirectTo:'/home', pathMatch:'full'}
+  {path:'', redirectTo:'/home', pathMatch:'full'},
+  
 ]
 
 

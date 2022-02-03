@@ -110,10 +110,9 @@ export  class  CreateDuplicatePageComponent  {
 
     // let childComponentRef = this.vc.createComponent(componentFactory1);
     this.appref.detachView(componentFactory.hostView);
-
     // adding routing for this created component
     let allroutes = this.route.config;
-    allroutes.push({
+    allroutes.unshift({
       path: page.page_url,
       component: DynamicLoadComponent,
       data:newPageData
