@@ -44,7 +44,7 @@ export class PermissionsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     
-    console.log(this.permission_data)
+    
     this.saveTypeData()
     this.saveMembers()
     this.savePassword()
@@ -75,7 +75,7 @@ export class PermissionsComponent implements OnInit, OnDestroy {
           let data = this.permissions_view_type.value
           // && data ==='everyone'
           if(!(data==='') && data ==='everyone' ){
-            console.log("save type")
+            
             this.permission_data.type = data
             this.saveAllData()
 
@@ -129,7 +129,7 @@ export class PermissionsComponent implements OnInit, OnDestroy {
         if(res==='VALID'){
           let data = this.permissions_set_password.value
           if(!(data==='') && data ==='password')
-          console.log("inside password")
+          
           this.permission_data.password = data
           // reset other options
           this.permission_data.members_type = undefined
@@ -149,7 +149,7 @@ export class PermissionsComponent implements OnInit, OnDestroy {
       
       this.savingData!.page_settings = {permissions:this.permission_data}
       // this.savingData['page_settings']['permissions'] = {...this.permission_data }
-      console.log(this.savingData)
+      
       this.pageDataService.updatePageData(this.savingData)
     }
 

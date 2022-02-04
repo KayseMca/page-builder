@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import {  Typograph } from 'src/app/_interfaces/_typograph';
@@ -24,7 +24,8 @@ export class PagePropertyServiceService {
   // current page to modify or change styles
   selectedPage = new BehaviorSubject({page: new PageData(), tab!:''})
   
-
+  private pageHTML = new BehaviorSubject<string>("")
+  selectedPageHTML = this.pageHTML.asObservable()
 
   // page tabs[setting, basic SEO....]
   closeComponentsTab(event:Boolean):Observable<Boolean>{
@@ -32,7 +33,9 @@ export class PagePropertyServiceService {
     return this.closeTab
   }
 
-  
+  setPageHTML(el:string){
+    this.pageHTML.next(el)
+  }
   // updating current page
   singlePageChoose(page:PageData, tab?:string) {
     this.selectedPage.next({page,tab:tab||''});

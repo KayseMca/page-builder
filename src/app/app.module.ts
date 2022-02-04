@@ -26,6 +26,7 @@ import { BackgroundColorChangeDirective } from './shared/pipe/background-color-c
 import { TypographyService } from './shared/services/typography/typography.service';
 import { SeoService } from './shared/services/seo/seo.service';
 import { PageModifyModule } from './create-duplicate-page/page-modify.module';
+import { PageContentDirective } from './shared/directives/page-content.directive';
 
 
 
@@ -45,6 +46,7 @@ import { PageModifyModule } from './create-duplicate-page/page-modify.module';
     TypographyListComponent,
     TypographyItemComponent,
     BackgroundColorChangeDirective,
+    PageContentDirective,
 
   ],
   imports: [

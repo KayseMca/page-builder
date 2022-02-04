@@ -1,7 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatDialog } from '@angular/material/dialog';
 
-import { ApplicationRef, ChangeDetectionStrategy, ChangeDetectorRef, Compiler, Component, ComponentFactoryResolver, HostListener, Injector, Input, OnDestroy, OnInit } from '@angular/core';
+import { ApplicationRef, ChangeDetectionStrategy, ChangeDetectorRef, Compiler, Component, ComponentFactoryResolver, HostListener, Injector, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription, take } from 'rxjs';
 
 import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service';
@@ -12,6 +12,7 @@ import { DeleteDialogComponent } from 'src/app/dialog/delete-dialog.component';
 
 import { CreateDuplicatePageComponent } from 'src/app/create-duplicate-page/create-duplicate-page/create-duplicate-page.component';
 import { Router } from '@angular/router';
+import { PageContentDirective } from 'src/app/shared/directives/page-content.directive';
 
 
 
@@ -23,6 +24,7 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent extends CreateDuplicatePageComponent implements OnInit, OnDestroy {
 
+  // @ViewChild(PageContentDirective) html_content!:PageContentDirective
   subscriptions:Subscription = new Subscription()
   panelOpenState: Boolean = true
   previousIndex!: number
@@ -86,7 +88,7 @@ export class SidebarComponent extends CreateDuplicatePageComponent implements On
   ngOnInit(): void {
     // super.ngOnInit()
     this.subscriptions.add(this.pageProperties.selectedPage.subscribe(res => {
-      console.log(res)
+      
     })
     )
   }
@@ -130,8 +132,9 @@ export class SidebarComponent extends CreateDuplicatePageComponent implements On
 
   settings(setting: string, index: number) {
     
+    //* modify and edit page selected with selected function
     this.onPageModify(setting)
-    // emit the page choosed
+    //! emit the page choosed
     this.openComponentTabs = true
 
     let editableSettings = ['SEO Basics', 'Social Share', 'Settings']
@@ -168,20 +171,12 @@ export class SidebarComponent extends CreateDuplicatePageComponent implements On
       this.editable[this.index] = true
       
 
-    } else if (settingType === 'Dublicate') {
-      // todo write the codes in the service
-      let id = this.allPagesData.length + 1
-      let dublicatePage: PageData = new PageData()
-      dublicatePage = { ...this.allPagesData[this.index] }
-      dublicatePage.id = id
-      dublicatePage.name = 'Copy of ' + dublicatePage.name
-      if(dublicatePage.home_page){
-        dublicatePage.home_page = false
-        dublicatePage.settings.push('Delete')
-      }
-
-      
-      this.pageData.creatNewPage(dublicatePage)
+    } else if (settingType === 'Duplicate') {
+      console.log("here")
+      // * duplicate the page its html to set this html to new page html
+      let selected_page = {...this.allPagesData[this.index]}
+      console.log(selected_page)
+     this.duplicatePage(selected_page)
       // clear the id
       this.index = NaN
     } else if (settingType === 'Edit Page') {

@@ -1,6 +1,7 @@
 
 import {  ApplicationRef, Component, ComponentFactoryResolver, createNgModuleRef, Injector, NgModule, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { PageDataService } from 'src/app/shared/services/page-data-service/page-data.service';
 import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service';
@@ -17,10 +18,8 @@ import { DynamicLoadComponent } from '../dynamic-load/dynamic-load.component';
 })
 export  class  CreateDuplicatePageComponent  {
 
-  //@ViewChild('dynamicPages') template!:ViewContainerRef
-  // private compiler!:Compiler;
-  // private myServiceC:MyServiceC;
-  //private created_page!:PageData
+  private pageHTML = ''
+  subs:Subscription = new Subscription()
   private allPages!:PageData[]
   constructor(
     private pages:PageDataService,
@@ -32,20 +31,34 @@ export  class  CreateDuplicatePageComponent  {
     private injector:Injector,
     ///private module:createNgModuleRef
     ) {
-
-     
-
-    this.pages.allPagesData.subscribe(res=>{
+    this.subs.add(
+      (this.pages.allPagesData.subscribe(res=>{
+        console.log("re calling before created")
       this.allPages = res
+      console.log(this.allPages)
     })
-   }
+    ))
 
+    this.subs.add(this.property.selectedPageHTML.subscribe(res=>{
+      console.log(res)
+      this.pageHTML =res
+    })
+    )
+   }
+    
+
+   //    private guidGenerator() {
+//     var S4 = function() {
+//        return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+//     };
+//     return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+// }
   // ngOnInit(): void {
   // }
 
     createNewPage(){
-    console.log("creating new page", this.allPages.length)
-    console.log("created this new page")
+    
+    
     let  page_data = this.newPageData()
     
     this.pages.creatNewPage(page_data)
@@ -54,35 +67,64 @@ export  class  CreateDuplicatePageComponent  {
     this.createComponent(page_data)
   }
 
-   dublicatePage(){
+   duplicatePage(page:PageData){
+    
+     //this.duplicateContent(page)
 
+     // get value of the duplicated page to save
+     let  page_data = this.duplicateContent(page)
+    
+     // save page content
+    this.pages.creatNewPage(page_data)
+
+    // generate the component of this and the route url
+    this.createComponent(page_data)
   }
 
 
   // intiliazing page data for some static data and id
   private newPageData():PageData{
-
-    let len = this.allPages.length
+    console.log("###creaeing new page data")
+    console.log(this.allPages)
+    let len = this.allPages.length+1
     let styleClass = 'p'+len
     let newPage: PageData = new PageData()
-    let settings = ['Settings','SEO Basics','Social Share','Rename','Dublicate','Edit Page','Hide','Delete']
+    let settings = ['Settings','SEO Basics','Social Share','Rename','Duplicate','Edit Page','Hide','Delete']
     //creating new page with some values
     let html = `<div class='${styleClass}'>Hello this a new created dynamic component</div>`
     newPage = {
       name: 'New Page',
       home_page : false,
       // id:1,
-      id:len,
+      id:len*2,
       hide:false,
       settings:settings,
       page_settings:{seo_basics:{},advanced_seo:{},page_info:{},social_share:{}},
       page_styles : {...this.allPages[0].page_styles, html:html},
-      
       page_url : `newpage${len+1}`
     }
+    
+    
     return newPage
   }
 
+
+  private duplicateContent(page:PageData){
+    let id = (this.allPages.length + 1)*2
+     let duplicatePage: PageData = new PageData()
+     duplicatePage = { ...page }
+     duplicatePage.id = id
+     duplicatePage.name = 'Copy of ' + duplicatePage.name
+     duplicatePage.page_url = 'copy'+duplicatePage.name.replace(/ /g,'')
+     duplicatePage.page_styles!['html'] = this.pageHTML
+     if(duplicatePage.home_page){
+       duplicatePage.home_page = false
+       duplicatePage.settings.push('Delete')
+     }
+
+     
+     return duplicatePage
+  }
   // resetConfig(url:any){
   //   const appRoutes = [...this.route.config]
   //   const route = {
@@ -94,15 +136,11 @@ export  class  CreateDuplicatePageComponent  {
   //       this.router.navigateByUrl(`${url}`)
   // }
 
-  ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-    //this.createComponent(this.created_page)
-    
-  }
 
 
   private createComponent(page:PageData){
+    console.log("########### creating component")
+    console.log(page)
     let newPageData = this.allPages.find(pages=>pages.id===page.id)
     let componentFactory = this.resolver.
     resolveComponentFactory(DynamicLoadComponent)
@@ -118,11 +156,12 @@ export  class  CreateDuplicatePageComponent  {
       data:newPageData
     });
     //this.property.selectedPage.next(page)
+
   }
 
 
  private createComponentd(page:PageData){
-   console.log(page)
+   
    // create first the page tempate <for now as a test>
    const template = `<div> created new page ${page.name}{{data}}</div>`
 
@@ -142,30 +181,20 @@ export  class  CreateDuplicatePageComponent  {
   })
 
   let module = createNgModuleRef(componentModule, this.injector)
-  console.log(module)
+  
 
-  // this.compile.compileModuleAndAllComponentsAsync(componentModule).then(module=>{
-  //   const appRoutes = [...this.router.config]
-
-  //   const route = {
-  //     path:`${page.page_url}`,
-  //     // loadChildren(){return module}
-  //   }
-  //   appRoutes.push(route)
-  //   this.router.resetConfig(appRoutes)
-  //   this.router.navigateByUrl(`${page.name}`)
-  // })
+  
   }
 
   
+  // testing find component its url
+  configureRoutes(routes:any[]) {
+    var potentialComponents = [ DynamicLoadComponent ];
+    routes.forEach((route) => {
+      route.component = potentialComponents.find((component) => {
+        return component.name === route.component;
+      })
+    });
+  }
 }
 
-
-// configureRoutes(routes) {
-//   var potentialComponents = [ OtherComponent ];
-//   routes.forEach((route) => {
-//     route.component = potentialComponents.find((component) => {
-//       return component.name === route.component;
-//     })
-//   });
-// }

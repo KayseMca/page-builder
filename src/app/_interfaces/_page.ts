@@ -11,7 +11,7 @@ export interface Settings{
     settings?:string,
     seo_basics?:string,
     social_share?:string,
-    dublicate?:string,
+    duplicate?:string,
     edit_page?:string,
     delete?:string,
     rename?:string

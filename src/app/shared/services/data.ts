@@ -93,6 +93,7 @@ export let data = [
         },
       ],
       background_color: '',
+      html:""
     },
     id: 1,
     name: 'Home',
@@ -105,7 +106,7 @@ export let data = [
       'SEO Basics',
       'Social Share',
       'Rename',
-      'Dublicate',
+      'Duplicate',
       'Edit Page',
       'Hide',
       'Delete',
@@ -251,6 +252,7 @@ export let data = [
         },
       ],
       background_color: '',
+      html:""
     },
     base_url: 'https://ciaone-1.editorx.io/mysite/',
     settings: [
@@ -258,7 +260,7 @@ export let data = [
       'SEO Basics',
       'Social Share',
       'Rename',
-      'Dublicate',
+      'Duplicate',
       'Edit Page',
       'Hide',
       'Delete',

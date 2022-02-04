@@ -28,7 +28,7 @@ export class SeoService {
 
     //robots
     let all_robots = this.checkRobots(robots)
-    console.log(all_robots)
+    
     // for titles
     const title = seo.page_title
     // add title

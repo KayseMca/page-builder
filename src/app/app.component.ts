@@ -46,7 +46,7 @@ export class AppComponent implements OnInit, OnDestroy  {
     if (isPlatformBrowser(this.platformId)) {
       // Client only code.
       document.documentElement.style.setProperty(`--background-color`, backgroundColor)
-      //console.log(this.platformId)
+      //
    }
 
    // binding css variables
@@ -85,8 +85,8 @@ export class AppComponent implements OnInit, OnDestroy  {
     // private sanitizer: DomSanitizer,
     private seo:SeoService,
     private pProperty:PagePropertyServiceService,
-    private activatedRoute: ActivatedRoute,
-    private router:Router
+    // private activatedRoute: ActivatedRoute,
+    // private router:Router
     ){
 
    // handle this it causes some "Violation changes"
@@ -112,20 +112,18 @@ export class AppComponent implements OnInit, OnDestroy  {
   ngOnInit(): void {
 
     
-    // this.subscribe.add(this.router.events.subscribe((event:Event)=>{
-    //   if(event instanceof NavigationEnd) {
-    //     let url = event.url.replace('/','')
-    //     let selected = this.pageService.getPage(url)
-    //     let title = selected?.page_settings?.seo_basics?.page_title
-    //     let newTitle = title!==''?title:selected.name
-    //     this.seo.addTitle(newTitle)
-    //     this.pProperty.singlePageChoose(selected)
-    //   }
-    // })
-    // )
 }
   
   
+testchange($event:any){
+  let pattern  = /_ngcontent\D+\w+\S+/gim
+  let target = ($event['target'] as HTMLHtmlElement)
+  let htmlContent:string = (target.lastElementChild?.innerHTML as string)
+  htmlContent = htmlContent?.replace(pattern, '')
+  
+
+this.pProperty.setPageHTML(htmlContent)
+}
 
   setCssVariableValue(typo:any,title:any){
     let stylesArray:any = {}
@@ -141,7 +139,7 @@ export class AppComponent implements OnInit, OnDestroy  {
       if (isPlatformBrowser(this.platformId)) {
         // Client only code.
         document.documentElement.style.setProperty(current,value)
-        // console.log(this.platformId)
+        // 
      }
       // set the typography to the document
     }
@@ -149,7 +147,7 @@ export class AppComponent implements OnInit, OnDestroy  {
 
 
   onResize(event:any){
-    console.log(event)
+    
   }
   onToggleSidenav(event:MatSidenav){
    

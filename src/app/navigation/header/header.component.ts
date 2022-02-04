@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   toggleUnderline(event:string){
     this.toggleLine = event
-    console.log(event)
+    
     if(event==='desktop'){
       // this.current_breakpoint = {value:'100%', type:'desktop'}
       // this.breakpoint.setBreakpoints(this.current_breakpoint)

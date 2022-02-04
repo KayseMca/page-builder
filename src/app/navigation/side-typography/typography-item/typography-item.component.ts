@@ -58,7 +58,7 @@ export class TypographyItemComponent implements OnInit {
   }
   ngOnInit(): void {
     
-    console.log(this.typograph)
+    
    this.styleForm = this.fb.group({
      style_type:new FormControl(this.typograph.style_type),
      font:new FormControl(this.typograph.font),
@@ -120,7 +120,7 @@ export class TypographyItemComponent implements OnInit {
       "color":styles.color,
       "line-height": 1
     }
-    console.log(styles)
+    
   }
 
   //font color picker

@@ -37,10 +37,13 @@
       
 
       <!-- Main content -->
-      <div class="content" [ngStyle]="resize" >
+      <div class="content"  [ngStyle]="resize" >
           <app-nav></app-nav>
+          <div appPageContent (domChange)="testchange($event)">
+            <router-outlet></router-outlet>
+
+          </div>
         <!-- <app-main-content></app-main-content> -->
-        <router-outlet></router-outlet>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
