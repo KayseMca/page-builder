@@ -84,10 +84,11 @@ export  class  CreateDuplicatePageComponent  {
 
   // intiliazing page data for some static data and id
   private newPageData():PageData{
+    let random = Math.floor(Math.random() * (3 - 1 + 1) + 1)
     console.log("###creaeing new page data")
     console.log(this.allPages)
     let len = this.allPages.length+1
-    let styleClass = 'p'+len
+    let styleClass = 'p'+random
     let newPage: PageData = new PageData()
     let settings = ['Settings','SEO Basics','Social Share','Rename','Duplicate','Edit Page','Hide','Delete']
     //creating new page with some values
