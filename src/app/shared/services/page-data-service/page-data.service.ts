@@ -57,7 +57,7 @@ export class PageDataService {
         // spreading object data to sourceData
         // and checking which page data modifying
         let pageURl = item.page_url
-        let newURL = data.page_settings.seo_basics?.url
+        let newURL = data.page_settings?.seo_basics?.url
         if (id) {
           item.page_settings.permissions = { ...item.page_settings?.permissions, ...data?.page_settings?.permissions }
           item.page_settings.seo_basics = { ...item.page_settings.seo_basics, ...data?.page_settings?.seo_basics }
@@ -66,7 +66,7 @@ export class PageDataService {
 
           item.name = this.assign(data.name, item.name)
           item.home_page = this.assign(data.home_page, item.home_page)
-          item.page_url = item.page_settings.seo_basics.url = data.page_settings.seo_basics?.url
+          item.page_url = item.page_settings!.seo_basics.url = data.page_settings?.seo_basics?.url
           this.updatePageUrl(pageURl, newURL)
         }
 
@@ -125,16 +125,15 @@ export class PageDataService {
    * @param value 
    */
   updatePageUrl(pageUrl:string|undefined, value?:string){
-    let routes = this.router.config
-    console.log(routes)
-    console.log(pageUrl)
-    let a = routes.map(route=>{
-      if(route.path===pageUrl) {
-        route.path = value
-      }
-    })
+    if(value){
+      let routes = this.router.config
+      let a = routes.map(route=>{
+        if(route.path===pageUrl) {
+          route.path = value
+        }
+      })
+    }
 
-    console.log(a)
   }
   
   deletePage(id: number) {

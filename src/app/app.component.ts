@@ -103,20 +103,22 @@ export class AppComponent implements OnInit, OnDestroy  {
           while (child?.firstChild) {
             child = child.firstChild;
           }
-          if (child?.snapshot.data['title']) {
-          // console.log()
-          page_meta.title= child.snapshot.data['title']
-          page_meta.description = child.snapshot.data['description']
-            // return child.snapshot.data['title'];
-            return page_meta
+          // if (child?.snapshot.data['title']) {
+          // // console.log()
+          // page_meta.title= child.snapshot.data['title']
+          // page_meta.description = child.snapshot.data['description']
+          //   // return child.snapshot.data['title'];
+          //   return page_meta
             
-          }
+          // }
           // return appTitle;
           let active_page = child?.snapshot.routeConfig?.path
           return this.getPage(active_page)
         })
       ).subscribe((page:any)=> {
+        console.log(page)
         this.seo.addTitle(page['title'])
+        this.seo.addTitle(page['description'])
         // this.seo.addTitle(ttl);
       });
   }
@@ -124,8 +126,8 @@ export class AppComponent implements OnInit, OnDestroy  {
   getPage(url:string|undefined){
     let page_meta:any = {}
     let page_index = this.all_pages.findIndex(page=> page.page_url===url)
-    page_meta['title'] = this.all_pages[page_index].page_settings.seo_basics?.page_title
-    page_meta['description'] = this.all_pages[page_index].page_settings.seo_basics?.meta_description
+    page_meta['title'] = this.all_pages[page_index]?.page_settings.seo_basics?.page_title
+    page_meta['description'] = this.all_pages[page_index]?.page_settings.seo_basics?.meta_description
     if(page_index !==-1) return page_meta
     return
   }

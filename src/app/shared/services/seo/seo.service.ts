@@ -28,17 +28,24 @@ export class SeoService {
   // ]);
 
 
+  /**
+   * * update page robots data
+   * @param robots 
+   */
   updateRobots(robots:string[]){
-
+    let robots_data = this.checkRobots(robots)
+    this.meta.updateTag({name:'robots', content:robots_data})
   }
 
-  updateDescription(){
-
+  updateDescription(description:string){
+    this.meta.updateTag({name:'description', content:description})
   }
 
   updateSocialTags(){
     
   }
+
+
   addMetaTags(pageData:PageData){
     
     let seo = {...pageData.page_settings?.seo_basics}
@@ -46,7 +53,7 @@ export class SeoService {
     let updaterobots = this.checkRobots(robots)
     // for seo
     this.addTitle(seo.page_title)
-    let tags = {name:'description', content:this.tags(seo.meta_description)}
+    let desc = seo.meta_description
     let robotTags = {name:'robots', content:this.tags(updaterobots)}
 
     //url
@@ -54,9 +61,8 @@ export class SeoService {
     // social
 
     // add tags
-    console.group(tags, robotTags)
-    this.meta.addTags([tags, robotTags])
-    
+    this.updateDescription(this.tags(desc))
+    this.meta.addTag(robotTags)
     
   }
 
