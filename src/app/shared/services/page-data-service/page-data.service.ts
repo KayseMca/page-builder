@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, from, Observable, of } from 'rxjs';
 import { PageData, Style } from 'src/app/_interfaces/_page';
 import { Typograph } from 'src/app/_interfaces/_typograph';
 import { data } from '../data';
-import { PagePropertyServiceService } from '../page-property/page-property-service.service';
+
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class PageDataService {
   readonly allPagesData: Observable<PageData[]> = this.dataSource.asObservable()
 
 
-  constructor(private ppd: PagePropertyServiceService) {
+  constructor( private router:Router) {
     //this.ppd.singlePageChoose(data[0], '')
   }
 
@@ -55,7 +56,8 @@ export class PageDataService {
       } else {
         // spreading object data to sourceData
         // and checking which page data modifying
-        
+        let pageURl = item.page_url
+        let newURL = data.page_settings.seo_basics?.url
         if (id) {
           item.page_settings.permissions = { ...item.page_settings?.permissions, ...data?.page_settings?.permissions }
           item.page_settings.seo_basics = { ...item.page_settings.seo_basics, ...data?.page_settings?.seo_basics }
@@ -64,8 +66,8 @@ export class PageDataService {
 
           item.name = this.assign(data.name, item.name)
           item.home_page = this.assign(data.home_page, item.home_page)
-
-
+          item.page_url = item.page_settings.seo_basics.url = data.page_settings.seo_basics?.url
+          this.updatePageUrl(pageURl, newURL)
         }
 
         // change all the pages styles background color
@@ -115,43 +117,25 @@ export class PageDataService {
     
     return itemTypo
   }
-  // draft code maybe use later
-  draftCode(item: PageData, data: PageData) {
-    item = {
-      ...item,       //copy everything from item
-      name: data.name,
-      home_page: data.home_page ? data.home_page : item.home_page,
-      page_styles: {
-       // headers: item.page_styles?.headers,
-        //...item.page_styles?.pragrapies,
-      },
+ 
 
-      page_settings: {
-        social_share: { // inside page_settings copy social_share object and update it with data  from data variable
-          ...item.page_settings?.social_share,
-          ...data.page_settings?.social_share
-        },
-        permissions: { // same here
-          ...item.page_settings?.permissions,
-          ...data.page_settings?.permissions
-        },
-        seo_basics: {
-          ...item.page_settings?.seo_basics,
-          ...data.page_settings?.seo_basics
-        },
-        advanced_seo: {
-          ...item.page_settings?.advanced_seo,
-          ...data.page_settings?.advanced_seo
-        },
+  /**
+   ** updating page url if changed
+   * @param pageUrl 
+   * @param value 
+   */
+  updatePageUrl(pageUrl:string|undefined, value?:string){
+    let routes = this.router.config
+    console.log(routes)
+    console.log(pageUrl)
+    let a = routes.map(route=>{
+      if(route.path===pageUrl) {
+        route.path = value
+      }
+    })
 
-      },
-
-    }
-
+    console.log(a)
   }
-
-
-
   
   deletePage(id: number) {
     let data = this.dataSource.getValue()

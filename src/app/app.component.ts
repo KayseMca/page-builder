@@ -2,10 +2,12 @@ import { DOCUMENT } from '@angular/common';
 import {  ChangeDetectionStrategy, Component, HostBinding, HostListener, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Observable, Subscription, take } from 'rxjs';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter, map, Observable, Subscription, take } from 'rxjs';
 
 import { PageDataService } from './shared/services/page-data-service/page-data.service';
 import { PagePropertyServiceService } from './shared/services/page-property/page-property-service.service';
+import { SeoService } from './shared/services/seo/seo.service';
 
 
 import { TypographyService } from './shared/services/typography/typography.service';
@@ -29,38 +31,39 @@ export class AppComponent implements OnInit, OnDestroy  {
   width:{width:string,position:string, margin?:string} = {width:'inherit',position:'static'}
 
   title = 'page-builder';
+  all_pages!:PageData[]
   page_selected!:PageData
   resize: {width:string,margin?:string}={width:'100%'};
 
   // Update the css variable in typograpies
-  @HostBinding('style')
-  get style(){
+  // @HostBinding('style')
+  // get style(){
    
-    this.page_selected.page_styles?.typography?.map((typo:any)=>{
-      let current;
+  //   this.page_selected.page_styles?.typography?.map((typo:any)=>{
+  //     let current;
       
-      if(typo.name==='heading1'){
-        this.setCssVariableValue(typo,'heading1')
-      }else if(typo.name==='heading2'){
-        this.setCssVariableValue(typo,'heading2')
-      }else if(typo.name==='heading3'){
-        this.setCssVariableValue(typo,'heading3')
-      }else  if(typo.name==='heading4'){
-        this.setCssVariableValue(typo,'heading4')
-      }else  if(typo.name==='heading5'){
-        this.setCssVariableValue(typo,'heading5')
-      }else  if(typo.name==='heading6'){
-        this.setCssVariableValue(typo,'heading6')
-      }else  if(typo.name==='p1'){
-        this.setCssVariableValue(typo,'p1')
-      }else  if(typo.name==='p2'){
-        this.setCssVariableValue(typo,'p2')
-      }else  if(typo.name==='p3'){
-        this.setCssVariableValue(typo,'p3')
-      }
-    }) 
-    return 
-  }
+  //     if(typo.name==='heading1'){
+  //       this.setCssVariableValue(typo,'heading1')
+  //     }else if(typo.name==='heading2'){
+  //       this.setCssVariableValue(typo,'heading2')
+  //     }else if(typo.name==='heading3'){
+  //       this.setCssVariableValue(typo,'heading3')
+  //     }else  if(typo.name==='heading4'){
+  //       this.setCssVariableValue(typo,'heading4')
+  //     }else  if(typo.name==='heading5'){
+  //       this.setCssVariableValue(typo,'heading5')
+  //     }else  if(typo.name==='heading6'){
+  //       this.setCssVariableValue(typo,'heading6')
+  //     }else  if(typo.name==='p1'){
+  //       this.setCssVariableValue(typo,'p1')
+  //     }else  if(typo.name==='p2'){
+  //       this.setCssVariableValue(typo,'p2')
+  //     }else  if(typo.name==='p3'){
+  //       this.setCssVariableValue(typo,'p3')
+  //     }
+  //   }) 
+  //   return 
+  // }
 
 
   // constructor
@@ -69,19 +72,16 @@ export class AppComponent implements OnInit, OnDestroy  {
     private typography:TypographyService,
     private pageService:PageDataService,
     private propertyService:PagePropertyServiceService,
-    private sanitizer: DomSanitizer,
+    private router:Router,
+    private activatedRoute:ActivatedRoute,
+    private seo:SeoService
 
     ){
 
    // handle this it causes some "Violation changes"
    this.subscribe.add(this.pageService.allPagesData.subscribe(res=>{
-    // waiting until first value initiliazed to use and change then (from style.css)
-    //setTimeout(() => {
-      this.page_selected = res[0]
-      this.backgroundColor = res[0].page_styles?.background_color;
-      // this.updateTypographyClasses()
-   // }, 0);
-    
+
+    this.all_pages = res
   }))
 
   }
@@ -89,13 +89,46 @@ export class AppComponent implements OnInit, OnDestroy  {
   ngOnInit(): void {
    
     console.log("############resizing window")
-    // this.resizeObservable$ = fromEvent(window, 'resize')
-    // this.resizeSubscription$ = this.resizeObservable$.subscribe( evt => {
-    //   console.log('event: ', evt)
-    // })
-    // 
+    // adding active page title and description
+    
+    // const appTitle = this.seo.getTitle();
+    const page_meta:{title?:string, description?:string}= {}
+    
+    this.router
+      .events.pipe(
+        filter(event => event instanceof NavigationEnd),
+        map(() => {
+          let child = this.activatedRoute.firstChild;
+          
+          while (child?.firstChild) {
+            child = child.firstChild;
+          }
+          if (child?.snapshot.data['title']) {
+          // console.log()
+          page_meta.title= child.snapshot.data['title']
+          page_meta.description = child.snapshot.data['description']
+            // return child.snapshot.data['title'];
+            return page_meta
+            
+          }
+          // return appTitle;
+          let active_page = child?.snapshot.routeConfig?.path
+          return this.getPage(active_page)
+        })
+      ).subscribe((page:any)=> {
+        this.seo.addTitle(page['title'])
+        // this.seo.addTitle(ttl);
+      });
   }
   
+  getPage(url:string|undefined){
+    let page_meta:any = {}
+    let page_index = this.all_pages.findIndex(page=> page.page_url===url)
+    page_meta['title'] = this.all_pages[page_index].page_settings.seo_basics?.page_title
+    page_meta['description'] = this.all_pages[page_index].page_settings.seo_basics?.meta_description
+    if(page_index !==-1) return page_meta
+    return
+  }
 
   setCssVariableValue(typo:any,title:any){
     let stylesArray:any = {}

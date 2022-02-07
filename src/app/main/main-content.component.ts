@@ -14,21 +14,21 @@ export class MainContentComponent implements OnInit, OnDestroy {
   subscribtion!:Subscription
   data!:PageData[] 
   constructor(private dataService:PageDataService, private seo:SeoService) { 
-    
-  }
-
-  ngOnInit(): void {
     this.subscribtion.add(this.dataService.allPagesData.subscribe(res=>{
       this.data = res
 
       // add tags
       for (let index = 0; index < this.data.length; index++) {
         const element = this.data[index];
-        this.seo.addMetaTags(element)
+        let page_title = element.page_settings.seo_basics?.page_title
+        this.seo.addTitle(page_title)
+        // this.seo.addMetaTags(element)
       }
     }))
+  }
 
-
+  ngOnInit(): void {
+    
   }
 
   ngOnDestroy(): void {

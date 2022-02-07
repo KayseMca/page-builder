@@ -9,6 +9,10 @@ export class SeoService {
 
   constructor(private title:Title, private meta: Meta) { }
 
+
+  getTitle(){
+    return this.meta.getTag('name=title')
+  }
   addTitle(title:string|undefined){
     let newtitle = title? title: ''
     this.title.setTitle(newtitle)
@@ -23,6 +27,18 @@ export class SeoService {
   //   { charset: 'UTF-8' }
   // ]);
 
+
+  updateRobots(robots:string[]){
+
+  }
+
+  updateDescription(){
+
+  }
+
+  updateSocialTags(){
+    
+  }
   addMetaTags(pageData:PageData){
     
     let seo = {...pageData.page_settings?.seo_basics}

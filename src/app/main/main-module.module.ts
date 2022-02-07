@@ -13,8 +13,8 @@ import { Page2Component } from './pages/page2/page2.component';
 const appRoutes:Routes  = [
 
   {path:'',redirectTo:'/home', pathMatch:'full'},
-  {path:'home', component:HomeComponent},
-  {path:'page2', component:Page2Component}
+  {path:'home', component:HomeComponent,data:{title:'Hompage - PageBuilder'}},
+  {path:'page2', component:Page2Component, data:{title:'Page 2 - PageBuilder'}}
 ]
 
 @NgModule({
