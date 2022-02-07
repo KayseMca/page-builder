@@ -34,9 +34,10 @@ export class SocialShareComponent implements OnInit, OnDestroy {
         this.id = res.page.id
       })
       )
-    this.social_page_title = new FormControl('', Validators.maxLength(200))
-    this.social_meta_description = new FormControl('', Validators.maxLength(500))
-    this.social_url = new FormControl('', Validators.maxLength(20))
+      let selected_meta = this.selected_page.page_settings.social_share
+    this.social_page_title = new FormControl(selected_meta?.og_title, Validators.maxLength(200))
+    this.social_meta_description = new FormControl(selected_meta?.og_description, Validators.maxLength(500))
+    this.social_url = new FormControl(selected_meta?.url, Validators.maxLength(20))
    }
 
   ngOnInit(): void {
@@ -44,10 +45,20 @@ export class SocialShareComponent implements OnInit, OnDestroy {
     this.getDescriptionData()
     
     this.getURL()
+
+    // set the defualt values of this selected page to avoid overwriting undefined values
+    let selected = this.selected_page.page_settings.social_share
+    this.social_share_data = {
+      og_description:selected?.og_description,
+      og_title: selected?.og_title,
+      url:selected?.url
+    }
   }
 
   getTitledata(){
-    this.subscriptions.add(this.social_page_title.statusChanges.pipe(debounceTime(100)).subscribe(res=>{
+    this.subscriptions.add(this.social_page_title.statusChanges.pipe(
+      // debounceTime(100)
+      ).subscribe(res=>{
       if(res==='VALID'){
         let data = this.social_page_title.value
         if(!(data==='') && this.social_page_title.valid)
@@ -60,7 +71,9 @@ export class SocialShareComponent implements OnInit, OnDestroy {
   }
 
   getDescriptionData(){
-    this.subscriptions.add(this.social_meta_description.statusChanges.pipe(debounceTime(100)).subscribe(res=>{
+    this.subscriptions.add(this.social_meta_description.statusChanges.pipe(
+      // debounceTime(100)
+      ).subscribe(res=>{
       if(res==='VALID'){
         let data = this.social_meta_description.value
         if(!(data==='') &&this.social_meta_description.valid )
@@ -75,7 +88,9 @@ export class SocialShareComponent implements OnInit, OnDestroy {
 
   getURL(){
 
-    this.subscriptions.add(this.social_url.statusChanges.pipe(debounceTime(100)).subscribe(res=>{
+    this.subscriptions.add(this.social_url.statusChanges.pipe(
+      // debounceTime(100)
+      ).subscribe(res=>{
       if(res==='VALID'){
         let data = this.social_url.value
         data = data.replace(/\s+/g, '');
@@ -93,10 +108,11 @@ export class SocialShareComponent implements OnInit, OnDestroy {
       
     this.savingData.page_settings = {social_share:this.social_share_data}
     this.savingData.id = this.id
+    this.savingData.base_url = this.selected_page.base_url
     // this.savingData['page_settings']['permissions'] = {...this.permission_data }
 
     // update page seo
-    this.seo.updateMetaTags(this.savingData)
+    this.seo.updateSocialTags(this.savingData)
 
     // save page seo
     this.pageDataService.updatePageData(this.savingData)
