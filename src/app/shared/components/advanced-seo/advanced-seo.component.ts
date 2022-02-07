@@ -83,9 +83,13 @@ onChanges(i:number){
 
   // get the index of element checked
   let index = advanced_data_update?.findIndex((res:any)=>res['type']===changeIndex.type)
-  
+
   //change the value
-  if(index)  advanced_data_update[index] = changeIndex
+  if(index!==-1) {
+   
+     advanced_data_update[index] = changeIndex
+    }
+
   // 
 
   //saving the updated data

@@ -68,12 +68,12 @@ export class SeoService {
 
   addMetaTags(pageData:PageData){
     
-    let seo = {...pageData.page_settings?.seo_basics}
+    // let seo = {...pageData.page_settings?.seo_basics}
     let robots =pageData.page_settings?.advanced_seo?.robots_meta_tags
     let updaterobots = this.checkRobots(robots)
     // for seo
-    this.addTitle(seo.page_title)
-    let desc = seo.meta_description
+    // this.addTitle(seo.page_title)
+    // let desc = seo.meta_description
     let robotTags = {name:'robots', content:this.tags(updaterobots)}
 
     //url
@@ -81,7 +81,7 @@ export class SeoService {
     // social
 
     // add tags
-    this.updateDescription(this.tags(desc))
+    // this.updateDescription(this.tags(desc))
     this.meta.addTag(robotTags)
     
   }
@@ -134,7 +134,7 @@ export class SeoService {
   checkRobots(robot:any[]|undefined){
     let indexs:any[] = []
     let robots = robot?.map((robotIndex:any)=>{
-      if(robotIndex['value']) indexs.push(robotIndex)
+      if(robotIndex['value']) indexs.push(robotIndex['type'])
     })
     console.log(indexs)
     return indexs.join(',')
