@@ -54,9 +54,9 @@ export class SeoBasicsComponent implements OnInit {
       url:this.selected_page.page_url,
     }
 
-    // this.getTitledata()
-    // this.getDescriptionData()
-    // this.getURL()
+    this.getTitledata()
+    this.getDescriptionData()
+    this.getURL()
   }
 
 
