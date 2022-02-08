@@ -128,9 +128,8 @@ export class AppComponent implements OnInit, OnDestroy  {
           return this.getPage(active_page)
         })
       ).subscribe((page:any)=> {
-        console.log(page)
         this.seo.addTitle(page['title'])
-        this.seo.addTitle(page['description'])
+        this.seo.updateDescription(page['description'])
         // this.seo.addTitle(ttl);
       });
   }
@@ -145,11 +144,20 @@ export class AppComponent implements OnInit, OnDestroy  {
   this.pProperty.setPageHTML(htmlContent)
   }
   getPage(url:string|undefined){
+    console.log(this.all_pages)
     let page_meta:any = {}
-    let page_index = this.all_pages.findIndex(page=> page.page_url===url)
-    page_meta['title'] = this.all_pages[page_index]?.page_settings?.seo_basics?.page_title
+    let page_index = this.all_pages.findIndex(page=>{ 
+      console.log(page.page_url)
+      return page.page_url===url
+    })
+    console.log(page_index)
+    
+    console.log(page_meta)
+    if(page_index !==-1){
+      page_meta['title'] = this.all_pages[page_index]?.page_settings?.seo_basics?.page_title
     page_meta['description'] = this.all_pages[page_index]?.page_settings?.seo_basics?.meta_description
-    if(page_index !==-1) return page_meta
+      return page_meta
+    } 
     return
   }
 
