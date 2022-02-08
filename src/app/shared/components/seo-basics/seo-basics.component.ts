@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { debounceTime, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Subscription, switchMap } from 'rxjs';
 import { PageData, SEO } from 'src/app/_interfaces/_page';
 import { PageDataService } from '../../services/page-data-service/page-data.service';
 import { PagePropertyServiceService } from '../../services/page-property/page-property-service.service';
@@ -76,7 +76,11 @@ export class SeoBasicsComponent implements OnInit {
 
   getURL(){
 
-    this.subscriptions.add(this.seo_page_url.statusChanges.pipe(debounceTime(100)).subscribe(res=>{
+    this.subscriptions.add(this.seo_page_url.statusChanges.pipe(
+      // debounceTime(100),
+      // switchMap(value => value),   
+      // distinctUntilChanged()
+      ).subscribe((res:any)=>{
       if(res==='VALID'){
         let data = this.seo_page_url.value
         

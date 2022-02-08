@@ -4,12 +4,12 @@ import { isPlatformBrowser, DOCUMENT } from '@angular/common';
 import {  ChangeDetectionStrategy, Component, HostBinding, HostListener, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute,Event, NavigationEnd, Route, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-// import { filter, map, mergeMap, Observable, Subscription, take } from 'rxjs';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter, map, Observable, Subscription, take } from 'rxjs';
 
 import { PageDataService } from './shared/services/page-data-service/page-data.service';
 import { PagePropertyServiceService } from './shared/services/page-property/page-property-service.service';
+import { SeoService } from './shared/services/seo/seo.service';
 
 
 
@@ -33,7 +33,8 @@ export class AppComponent implements OnInit, OnDestroy  {
   public sidenav!: MatSidenav 
   width:{width:string,position:string, margin?:string} = {width:'inherit',position:'static'}
 
-  //title = 'page-builder';
+  title = 'page-builder';
+  all_pages!:PageData[]
   page_selected!:PageData
   resize: {width:string,margin?:string}={width:'100%'};
 
@@ -82,31 +83,75 @@ export class AppComponent implements OnInit, OnDestroy  {
     @Inject(DOCUMENT) private document: Document,
     @Inject(PLATFORM_ID) private platformId: Object,
     private pageService:PageDataService,
-    // private sanitizer: DomSanitizer,
     private pProperty:PagePropertyServiceService,
-    // private activatedRoute: ActivatedRoute,
-    // private router:Router
+    private router:Router,
+    private activatedRoute:ActivatedRoute,
+    private seo:SeoService
+
     ){
 
-   
+   // handle this it causes some "Violation changes"
+   this.subscribe.add(this.pageService.allPagesData.subscribe(res=>{
+
+    this.all_pages = res
+  }))
 
   }
 
   ngOnInit(): void {
-
+   
+    console.log("############resizing window")
+    // adding active page title and description
     
-}
+    // const appTitle = this.seo.getTitle();
+    const page_meta:{title?:string, description?:string}= {}
+    
+    this.router
+      .events.pipe(
+        filter(event => event instanceof NavigationEnd),
+        map(() => {
+          let child = this.activatedRoute.firstChild;
+          
+          while (child?.firstChild) {
+            child = child.firstChild;
+          }
+          // if (child?.snapshot.data['title']) {
+          // // console.log()
+          // page_meta.title= child.snapshot.data['title']
+          // page_meta.description = child.snapshot.data['description']
+          //   // return child.snapshot.data['title'];
+          //   return page_meta
+            
+          // }
+          // return appTitle;
+          let active_page = child?.snapshot.routeConfig?.path
+          return this.getPage(active_page)
+        })
+      ).subscribe((page:any)=> {
+        console.log(page)
+        this.seo.addTitle(page['title'])
+        this.seo.addTitle(page['description'])
+        // this.seo.addTitle(ttl);
+      });
+  }
   
+  testchange($event:any){
+    let pattern  = /_ngcontent\D+\w+\S+/gim
+    let target = ($event['target'] as HTMLHtmlElement)
+    let htmlContent:string = (target.lastElementChild?.innerHTML as string)
+    htmlContent = htmlContent?.replace(pattern, '')
+    
   
-testchange($event:any){
-  let pattern  = /_ngcontent\D+\w+\S+/gim
-  let target = ($event['target'] as HTMLHtmlElement)
-  let htmlContent:string = (target.lastElementChild?.innerHTML as string)
-  htmlContent = htmlContent?.replace(pattern, '')
-  
-
-this.pProperty.setPageHTML(htmlContent)
-}
+  this.pProperty.setPageHTML(htmlContent)
+  }
+  getPage(url:string|undefined){
+    let page_meta:any = {}
+    let page_index = this.all_pages.findIndex(page=> page.page_url===url)
+    page_meta['title'] = this.all_pages[page_index]?.page_settings?.seo_basics?.page_title
+    page_meta['description'] = this.all_pages[page_index]?.page_settings?.seo_basics?.meta_description
+    if(page_index !==-1) return page_meta
+    return
+  }
 
   setCssVariableValue(typo:any,title:any){
     let stylesArray:any = {}
