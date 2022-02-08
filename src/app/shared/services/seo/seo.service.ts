@@ -50,7 +50,7 @@ export class SeoService {
   }
 
   updateSocialTags(page:PageData){
-    let page_social = page.page_settings.social_share
+    let page_social = page.page_settings?.social_share
     let page_meta = {
       description:page_social?.og_description,
       title:page_social?.og_title,
