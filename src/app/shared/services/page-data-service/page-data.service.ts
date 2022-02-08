@@ -56,8 +56,10 @@ export class PageDataService {
       } else {
         // spreading object data to sourceData
         // and checking which page data modifying
+        let social_url = data.page_settings?.seo_basics?.url 
+        let seo_url = data.page_settings?.social_share?.url
         let pageURl = item.page_url
-        let newURL = data.page_settings?.seo_basics?.url
+        let newURL = seo_url? seo_url:social_url
         if (id) {
           item.page_settings.permissions = { ...item.page_settings?.permissions, ...data?.page_settings?.permissions }
           item.page_settings.seo_basics = { ...item.page_settings.seo_basics, ...data?.page_settings?.seo_basics }
@@ -66,8 +68,8 @@ export class PageDataService {
 
           item.name = this.assign(data.name, item.name)
           item.home_page = this.assign(data.home_page, item.home_page)
-          item.page_url = item.page_settings!.seo_basics.url = data.page_settings?.seo_basics?.url
-          this.updatePageUrl(pageURl, newURL)
+          item.page_url = newURL
+          if(newURL)this.updatePageUrl(pageURl, newURL)
         }
 
         // change all the pages styles background color
@@ -125,15 +127,16 @@ export class PageDataService {
    * @param value 
    */
   updatePageUrl(pageUrl:string|undefined, value?:string){
+    console.log(value)
     if(value){
       let routes = this.router.config
-      let a = routes.map(route=>{
-        if(route.path===pageUrl) {
+      routes.map(route=>{
+        if(route.path===pageUrl){
           return route.path = value
-        }
-        return route
+        } 
+        return 
       })
-      console.log(a)
+      
     }
 
   }
