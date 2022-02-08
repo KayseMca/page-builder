@@ -131,13 +131,16 @@ export class PageDataService {
     console.log(value)
     if(value){
       let routes = this.router.config
-      routes.map(route=>{
+      let a = routes.map(route=>{
         if(route.path===pageUrl){
-          return route.path = value
+          route.path = value
+          console.log(route)
+          // console.log(route)
+          return route
         } 
-        return 
+        return route
       })
-      
+      console.log(a)
     }
 
   }

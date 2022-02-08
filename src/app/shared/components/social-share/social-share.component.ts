@@ -35,26 +35,37 @@ export class SocialShareComponent implements OnInit, OnDestroy {
         this.id = res.page.id
       })
       )
-      let selected_meta = this.selected_page?.page_settings?.social_share
-    this.social_page_title = new FormControl(selected_meta?.og_title, Validators.maxLength(200))
-    this.social_meta_description = new FormControl(selected_meta?.og_description, Validators.maxLength(500))
-    this.social_url = new FormControl(selected_meta?.url, Validators.maxLength(20))
+      
    }
 
   ngOnInit(): void {
+    // let selected:any = this.selected_page?.page_settings?.seo_basics
+    
+
+    // initilize form
+    let selected:any = this.selected_page?.page_settings?.social_share
+    selected = !this.isEmpty(selected)? selected:''
+
+    this.social_page_title = new FormControl(selected?.og_title||'', Validators.maxLength(200))
+    this.social_meta_description = new FormControl(selected?.og_description||'', Validators.maxLength(500))
+    this.social_url = new FormControl(selected?.url||'', Validators.maxLength(20))
     this.getTitledata()
     this.getDescriptionData()
-    
     this.getURL()
 
     // set the defualt values of this selected page to avoid overwriting undefined values
-    let selected = this.selected_page?.page_settings?.social_share
+    
     this.social_share_data = {
       og_description:selected?.og_description,
       og_title: selected?.og_title,
       url:selected?.url
     }
   }
+
+
+  isEmpty(obj:any) {
+    return Object.keys(obj).length === 0;
+}
 
   getTitledata(){
     this.subscriptions.add(this.social_page_title.statusChanges.pipe(

@@ -33,9 +33,9 @@ export  class  CreateDuplicatePageComponent  {
     ) {
     this.subs.add(
       (this.pages.allPagesData.subscribe(res=>{
-        console.log("re calling before created")
+        // console.log("re calling before created")
       this.allPages = res
-      console.log(this.allPages)
+      // console.log(this.allPages)
     })
     ))
 
@@ -93,6 +93,7 @@ export  class  CreateDuplicatePageComponent  {
     let settings = ['Settings','SEO Basics','Social Share','Rename','Duplicate','Edit Page','Hide','Delete']
     //creating new page with some values
     let html = `<div class='${styleClass}'>Hello this a new created dynamic component</div>`
+    let robots_tags = this.allPages[0].page_settings?.advanced_seo?.robots_meta_tags
     newPage = {
       name: 'New Page',
       home_page : false,
@@ -100,7 +101,7 @@ export  class  CreateDuplicatePageComponent  {
       id:len*2,
       hide:false,
       settings:settings,
-      page_settings:{seo_basics:{},advanced_seo:{},page_info:{},social_share:{}},
+      page_settings:{seo_basics:{},advanced_seo:{robots_meta_tags:robots_tags},page_info:{},social_share:{}},
       page_styles : {...this.allPages[0].page_styles, html:html},
       page_url : `newpage${len+1}`
     }

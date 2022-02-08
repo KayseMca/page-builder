@@ -36,25 +36,33 @@ export class SeoBasicsComponent implements OnInit {
         this.id = res.page.id
         this.selected_page = res.page
       }))
-      let selected = this.selected_page?.page_settings?.seo_basics
-    this.seo_page_title = new FormControl(selected?.page_title,Validators.maxLength(200))
-    this.seo_meta_description = new FormControl(selected?.meta_description,Validators.maxLength(500))
-    this.seo_page_url = new FormControl(selected?.url,Validators.maxLength(20))
+      
    }
 
   ngOnInit(): void {
-    this.getTitledata()
-    this.getDescriptionData()
-    this.getURL()
+    
 
+    let selected:any = this.selected_page?.page_settings?.seo_basics
+    selected = !this.isEmpty(selected)? selected:''
+    this.seo_page_title = new FormControl(selected?.page_title||'',Validators.maxLength(200))
+    this.seo_meta_description = new FormControl(selected?.meta_description||'',Validators.maxLength(500))
+    this.seo_page_url = new FormControl(selected?.url||'',Validators.maxLength(20))
     // initiliaze value to avoid overwriting undefined value
     this.seo_data = {
       meta_description:this.selected_page.page_settings?.seo_basics?.meta_description,
       page_title:this.selected_page.page_settings?.seo_basics?.page_title,
       url:this.selected_page.page_url,
     }
+
+    // this.getTitledata()
+    // this.getDescriptionData()
+    // this.getURL()
   }
 
+
+   isEmpty(obj:any) {
+    return Object.keys(obj).length === 0;
+}
   getTitledata(){
     this.subscriptions.add(this.seo_page_title.statusChanges.pipe(debounceTime(200)).subscribe(res=>{
       if(res==='VALID'){

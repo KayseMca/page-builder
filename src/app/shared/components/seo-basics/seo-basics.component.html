@@ -38,7 +38,7 @@
               <mat-error *ngIf="seo_page_title.hasError('maxlength')">
                 the Title can't be more than 200 characters
               </mat-error>
-              <mat-hint style="float: right;" align="end">{{seo_page_title.value.length}} / 200</mat-hint>
+              <mat-hint style="float: right;" align="end">{{seo_page_title?.value.length}} / 200</mat-hint>
         </div>
         <div >
             <label for="title" style="padding: 4px;">What's your page URL?</label>
@@ -51,7 +51,7 @@
             <mat-error *ngIf="seo_page_url.hasError('maxlength')">
                 the url can't be more than 20 characters
               </mat-error>
-              <mat-hint style="float: right;" align="end">{{seo_page_url.value.length}} / 20</mat-hint>
+              <mat-hint style="float: right;" align="end">{{seo_page_url?.value.length}} / 20</mat-hint>
         </div>
 
         <div >
@@ -65,7 +65,7 @@
             <mat-error *ngIf="seo_meta_description.hasError('maxlength')">
                 the page meta description can't be more than 500 characters
               </mat-error>
-              <mat-hint style="float: right;" align="end">{{seo_meta_description.value.length}} / 500</mat-hint>
+              <mat-hint style="float: right;" align="end">{{seo_meta_description?.value.length}} / 500</mat-hint>
         </div>
     </form>
     <hr>
