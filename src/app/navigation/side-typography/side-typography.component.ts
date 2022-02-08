@@ -15,6 +15,7 @@ import { Typograph } from 'src/app/_interfaces/_typograph';
 })
 export class SideTypographyComponent implements OnInit, OnDestroy {
  
+  // color_variable!: string
   subscriptions:Subscription = new Subscription()
   color:string = "#ffffff"
   primaryColor = '#194D33';

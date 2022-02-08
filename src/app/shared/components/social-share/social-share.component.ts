@@ -4,7 +4,7 @@ import { debounceTime, Subscription } from 'rxjs';
 import { AdditionalSEO, PageData, SocialShare } from 'src/app/_interfaces/_page';
 import { PageDataService } from '../../services/page-data-service/page-data.service';
 import { PagePropertyServiceService } from '../../services/page-property/page-property-service.service';
-import { SeoService } from '../../services/seo/seo.service';
+
 
 @Component({
   selector: 'app-social-share',
@@ -26,7 +26,7 @@ export class SocialShareComponent implements OnInit, OnDestroy {
   constructor(
     private pageDataService: PageDataService,
     private pageProperty:PagePropertyServiceService,
-    private seo:SeoService
+
     ) {
 
       this.subscriptions.add(this.pageProperty.selectedPage.subscribe(res=>{
@@ -96,7 +96,7 @@ export class SocialShareComponent implements OnInit, OnDestroy {
     // this.savingData['page_settings']['permissions'] = {...this.permission_data }
 
     // update page seo
-    this.seo.updateMetaTags(this.savingData)
+    // this.seo.updateMetaTags(this.savingData)
 
     // save page seo
     this.pageDataService.updatePageData(this.savingData)

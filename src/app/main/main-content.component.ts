@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PageDataService } from '../shared/services/page-data-service/page-data.service';
-import { SeoService } from '../shared/services/seo/seo.service';
+
 import { PageData } from '../_interfaces/_page';
 
 @Component({
@@ -13,7 +13,7 @@ export class MainContentComponent implements OnInit, OnDestroy {
 
   subscribtion!:Subscription
   data!:PageData[] 
-  constructor(private dataService:PageDataService, private seo:SeoService) { 
+  constructor(private dataService:PageDataService) { 
     
   }
 

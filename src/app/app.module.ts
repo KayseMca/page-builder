@@ -22,11 +22,9 @@ import { NavComponent } from './navigation/nav/nav.component';
 import { SideTypographyComponent } from './navigation/side-typography/side-typography.component';
 import { TypographyListComponent } from './navigation/side-typography/typography-list/typography-list.component';
 import { TypographyItemComponent } from './navigation/side-typography/typography-item/typography-item.component';
-import { BackgroundColorChangeDirective } from './shared/pipe/background-color-change.directive';
+// import { BackgroundColorChangeDirective } from './shared/pipe/background-color-change.directive';
 import { TypographyService } from './shared/services/typography/typography.service';
-import { SeoService } from './shared/services/seo/seo.service';
-import { PageModifyModule } from './create-duplicate-page/page-modify.module';
-import { PageContentDirective } from './shared/directives/page-content.directive';
+
 
 
 
@@ -45,8 +43,8 @@ import { PageContentDirective } from './shared/directives/page-content.directive
     SideTypographyComponent,
     TypographyListComponent,
     TypographyItemComponent,
-    BackgroundColorChangeDirective,
-    PageContentDirective,
+    // BackgroundColorChangeDirective,
+
 
   ],
   imports: [
@@ -58,11 +56,11 @@ import { PageContentDirective } from './shared/directives/page-content.directive
     PagePropertiesModule,
     ColorChromeModule,
     ColorSketchModule, // picker color package
-   PageModifyModule
+   
     
   ],
   // entryComponents:[DeleteDialogComponent],
-  providers: [PagePropertyServiceService,PageDataService, TypographyService, SeoService],
+  providers: [PagePropertyServiceService,PageDataService, TypographyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

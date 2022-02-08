@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service';
 import { PageData } from 'src/app/_interfaces/_page';
 import { PageDataService } from '../../services/page-data-service/page-data.service';
-import { SeoService } from '../../services/seo/seo.service';
+
 
 @Component({
   selector: 'app-advanced-seo',
@@ -27,7 +27,7 @@ export class AdvancedSeoComponent implements OnInit, OnDestroy {
     private pageProperty: PagePropertyServiceService, 
     private _fb:FormBuilder,
     private pageData:PageDataService,
-    private seo:SeoService) {
+    ) {
     this.subscriptions.add(this.pageProperty.selectedPage.subscribe(res => {
 
       this.selected_page = res.page
@@ -95,7 +95,7 @@ onChanges(i:number){
 
 
   // update page seo
-  this.seo.updateMetaTags(this.saving_data)
+  // this.seo.updateMetaTags(this.saving_data)
 
   //save page seo in the server
   this.pageData.updatePageData(this.saving_data)
