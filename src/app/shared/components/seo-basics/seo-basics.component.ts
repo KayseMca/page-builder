@@ -35,15 +35,23 @@ export class SeoBasicsComponent implements OnInit {
         this.id = res.page.id
         this.selected_page = res.page
       }))
-    this.seo_page_title = new FormControl('',Validators.maxLength(200))
-    this.seo_meta_description = new FormControl('',Validators.maxLength(500))
-    this.seo_page_url = new FormControl('',Validators.maxLength(20))
+      let selected = this.selected_page.page_settings.seo_basics
+    this.seo_page_title = new FormControl(selected?.page_title,Validators.maxLength(200))
+    this.seo_meta_description = new FormControl(selected?.meta_description,Validators.maxLength(500))
+    this.seo_page_url = new FormControl(selected?.url,Validators.maxLength(20))
    }
 
   ngOnInit(): void {
     this.getTitledata()
     this.getDescriptionData()
     this.getURL()
+
+    // initiliaze value to avoid overwriting undefined value
+    this.seo_data = {
+      meta_description:this.selected_page.page_settings.seo_basics?.meta_description,
+      page_title:this.selected_page.page_settings.seo_basics?.page_title,
+      url:this.selected_page.page_url,
+    }
   }
 
   getTitledata(){
@@ -53,6 +61,7 @@ export class SeoBasicsComponent implements OnInit {
         
         if(!(data==='') && this.seo_page_title.valid)
         this.seo_data.page_title = data
+        this.seo.addTitle(data)
         this.saveAllData()
         // 
       }
@@ -95,13 +104,18 @@ export class SeoBasicsComponent implements OnInit {
   }
 
   saveAllData(): void{
+
+
+    this.savingData.page_settings = {
       
-    this.savingData.page_settings = {seo_basics:this.seo_data}
+      seo_basics:this.seo_data
+    }
     this.savingData.id = this.id
     // this.savingData['page_settings']['permissions'] = {...this.permission_data }
 
     // update seo
     console.log("seo adding")
+    console.log(this.savingData)
     this.seo.addMetaTags(this.savingData)
 
     // save the page seo data

@@ -14,17 +14,17 @@ export class MainContentComponent implements OnInit, OnDestroy {
   subscribtion!:Subscription
   data!:PageData[] 
   constructor(private dataService:PageDataService, private seo:SeoService) { 
-    this.subscribtion.add(this.dataService.allPagesData.subscribe(res=>{
-      this.data = res
+    // this.subscribtion.add(this.dataService.allPagesData.subscribe(res=>{
+    //   this.data = res
 
-      // add tags
-      for (let index = 0; index < this.data.length; index++) {
-        const element = this.data[index];
-        let page_title = element.page_settings.seo_basics?.page_title
-        this.seo.addTitle(page_title)
-        // this.seo.addMetaTags(element)
-      }
-    }))
+    //   // add tags
+    //   for (let index = 0; index < this.data.length; index++) {
+    //     const element = this.data[index];
+    //     let page_title = element.page_settings?.seo_basics?.page_title
+    //     this.seo.addTitle(page_title)
+    //     // this.seo.addMetaTags(element)
+    //   }
+    // }))
   }
 
   ngOnInit(): void {
