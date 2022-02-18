@@ -21,7 +21,7 @@
     </a>
     <div class="navbar-links" [ngClass]="{'active': active}">
       <ul>
-        <li *ngFor="let page of pages" class="item"><a [routerLink]="['/'+page.page_url]">{{page.name| titlecase}}</a></li>
+        <li *ngFor="let page of pages" class="item active"><a [routerLink]="['/'+page.page_url]">{{page.name| titlecase}}</a></li>
         <!-- <li><a href="#">Home</a></li>
         <li><a href="#">contact</a></li>
         <li><a href="#">about-us</a></li> -->
