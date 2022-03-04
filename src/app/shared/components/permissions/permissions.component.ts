@@ -9,7 +9,7 @@ import { PagePropertyServiceService } from '../../services/page-property/page-pr
 @Component({
   selector: 'app-permissions',
   templateUrl: './permissions.component.html',
-  styleUrls: ['./permissions.component.css']
+  styleUrls: ['./permissions.component.scss']
 })
 export class PermissionsComponent implements OnInit, OnDestroy {
 

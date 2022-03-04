@@ -4,7 +4,7 @@ import { Typograph } from 'src/app/_interfaces/_typograph';
 @Component({
   selector: 'app-typography-list',
   templateUrl: './typography-list.component.html',
-  styleUrls: ['./typography-list.component.css']
+  styleUrls: ['./typography-list.component.scss']
 })
 export class TypographyListComponent implements OnInit {
 

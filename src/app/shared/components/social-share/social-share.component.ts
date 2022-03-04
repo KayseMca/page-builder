@@ -10,7 +10,7 @@ import { SeoService } from '../../services/seo/seo.service';
 @Component({
   selector: 'app-social-share',
   templateUrl: './social-share.component.html',
-  styleUrls: ['./social-share.component.css']
+  styleUrls: ['./social-share.component.scss']
 })
 export class SocialShareComponent implements OnInit, OnDestroy {
 

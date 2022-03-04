@@ -11,7 +11,7 @@ import { Typograph } from 'src/app/_interfaces/_typograph';
 @Component({
   selector: 'app-side-typography',
   templateUrl: './side-typography.component.html',
-  styleUrls: ['./side-typography.component.css']
+  styleUrls: ['./side-typography.component.scss']
 })
 export class SideTypographyComponent implements OnInit, OnDestroy {
  

@@ -8,7 +8,7 @@ import { PagePropertyServiceService } from '../services/page-property/page-prope
 @Component({
   selector: 'app-page-properties',
   templateUrl: './page-properties.component.html',
-  styleUrls: ['./page-properties.component.css']
+  styleUrls: ['./page-properties.component.scss']
 })
 export class PagePropertiesComponent implements OnInit, OnDestroy {
 

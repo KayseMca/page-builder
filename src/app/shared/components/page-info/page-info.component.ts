@@ -10,7 +10,7 @@ import { PagePropertyServiceService } from '../../services/page-property/page-pr
 @Component({
   selector: 'app-page-info',
   templateUrl: './page-info.component.html',
-  styleUrls: ['./page-info.component.css']
+  styleUrls: ['./page-info.component.scss']
 })
 export class PageInfoComponent implements OnInit {
 

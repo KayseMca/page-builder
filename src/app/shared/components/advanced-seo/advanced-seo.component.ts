@@ -9,7 +9,7 @@ import { PageDataService } from '../../services/page-data-service/page-data.serv
 @Component({
   selector: 'app-advanced-seo',
   templateUrl: './advanced-seo.component.html',
-  styleUrls: ['./advanced-seo.component.css']
+  styleUrls: ['./advanced-seo.component.scss']
 })
 export class AdvancedSeoComponent implements OnInit, OnDestroy {
 

@@ -19,7 +19,7 @@ import { PageContentDirective } from 'src/app/shared/directives/page-content.dir
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css'],
+  styleUrls: ['./sidebar.component.scss'],
   changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class SidebarComponent extends CreateDuplicatePageComponent implements OnInit, OnDestroy {

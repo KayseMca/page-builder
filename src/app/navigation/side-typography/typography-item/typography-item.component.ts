@@ -10,7 +10,7 @@ import { Typograph } from 'src/app/_interfaces/_typograph';
 @Component({
   selector: 'app-typography-item',
   templateUrl: './typography-item.component.html',
-  styleUrls: ['./typography-item.component.css'],
+  styleUrls: ['./typography-item.component.scss'],
   changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class TypographyItemComponent implements OnInit {

@@ -10,7 +10,7 @@ import { SeoService } from '../../services/seo/seo.service';
 @Component({
   selector: 'app-seo-basics',
   templateUrl: './seo-basics.component.html',
-  styleUrls: ['./seo-basics.component.css']
+  styleUrls: ['./seo-basics.component.scss']
 })
 export class SeoBasicsComponent implements OnInit {
 
