@@ -2,7 +2,32 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "projects": {
-    
+    "material-module": {
+      "projectType": "library",
+      "root": "libs/material-module",
+      "sourceRoot": "libs/material-module/src",
+      "prefix": "page-builder",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/material-module"],
+          "options": {
+            "jestConfig": "libs/material-module/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/material-module/src/**/*.ts",
+              "libs/material-module/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "page-builder": {
       "projectType": "application",
       "schematics": {
