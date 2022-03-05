@@ -32,9 +32,7 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "apps/page-builder/src/styles.scss"
             ],
-            "scripts": [
-              "./node_modules/jquery/dist/jquery.min.js"
-            ]
+            "scripts": ["./node_modules/jquery/dist/jquery.min.js"]
           },
           "configurations": {
             "production": {
@@ -147,9 +145,7 @@
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "routes": [
-              "/"
-            ]
+            "routes": ["/"]
           },
           "configurations": {
             "production": {
@@ -164,6 +160,32 @@
           "defaultConfiguration": "production"
         }
       }
+    },
+    "test": {
+      "projectType": "library",
+      "root": "libs/test",
+      "sourceRoot": "libs/test/src",
+      "prefix": "page-builder",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/test"],
+          "options": {
+            "jestConfig": "libs/test/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/test/src/**/*.ts",
+              "libs/test/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
     }
   }
 }
