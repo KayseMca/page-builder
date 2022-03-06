@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -19,7 +19,7 @@
     "module": "es2020",
     "lib": ["es2020", "dom"],
     "paths": {
-      "@page-builder/material-module": ["libs/material-module/src/index.ts"]
+      "@sognando-casa/material-module": ["libs/material-module/src/index.ts"]
     },
     "rootDir": "."
   },
