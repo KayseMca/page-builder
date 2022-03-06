@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {  FormControl} from '@angular/forms';
 import { debounce, debounceTime, Subscription } from 'rxjs';
-import { PageData, PageSettings, Permisions } from 'src/app/_interfaces/_page';
+import { PageData, PageSettings, Permisions } from 'apps/page-builder/src/app/_interfaces/_page';
 import { PageDataService } from '../../services/page-data-service/page-data.service';
 import { PagePropertyServiceService } from '../../services/page-property/page-property-service.service';
 

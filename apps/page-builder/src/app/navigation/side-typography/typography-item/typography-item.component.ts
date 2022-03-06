@@ -2,10 +2,10 @@ import { style } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, HostListener, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { PageDataService } from 'src/app/shared/services/page-data-service/page-data.service';
-import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service';
-import { PageData } from 'src/app/_interfaces/_page';
-import { Typograph } from 'src/app/_interfaces/_typograph';
+import { PageDataService } from 'apps/page-builder/src/app/shared/services/page-data-service/page-data.service';
+import { PagePropertyServiceService } from 'apps/page-builder/src/app/shared/services/page-property/page-property-service.service';
+import { PageData } from 'apps/page-builder/src/app/_interfaces/_page';
+import { Typograph } from 'apps/page-builder/src/app/_interfaces/_typograph';
 
 @Component({
   selector: 'app-typography-item',

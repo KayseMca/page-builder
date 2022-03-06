@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Title, Meta } from '@angular/platform-browser';
-import { PageData } from 'src/app/_interfaces/_page';
+import { PageData } from 'apps/page-builder/src/app/_interfaces/_page';
 
 const defaultMetadata = {
   title: 'PageBuilder',

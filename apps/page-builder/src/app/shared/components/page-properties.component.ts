@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
-import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
-import { startWith, Subject, Subscription, take } from 'rxjs';
-import { PageData } from 'src/app/_interfaces/_page';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+import {Subscription } from 'rxjs';
+
 
 import { PagePropertyServiceService } from '../services/page-property/page-property-service.service';
 

@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PageDataService } from 'src/app/shared/services/page-data-service/page-data.service';
-import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service';
-import { PageData } from 'src/app/_interfaces/_page';
+import { PageDataService } from 'apps/page-builder/src/app/shared/services/page-data-service/page-data.service';
+import { PagePropertyServiceService } from 'apps/page-builder/src/app/shared/services/page-property/page-property-service.service';
+import { PageData } from 'apps/page-builder/src/app/_interfaces/_page';
 
 @Component({
   selector: 'app-dynamic-load',

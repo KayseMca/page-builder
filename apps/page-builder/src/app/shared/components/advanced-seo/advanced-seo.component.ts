@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service';
-import { PageData } from 'src/app/_interfaces/_page';
+import { PagePropertyServiceService } from 'apps/page-builder/src/app/shared/services/page-property/page-property-service.service';
+import { PageData } from 'apps/page-builder/src/app/_interfaces/_page';
 import { PageDataService } from '../../services/page-data-service/page-data.service';
 
 
@@ -28,7 +28,7 @@ export class AdvancedSeoComponent implements OnInit, OnDestroy {
     private _fb:FormBuilder,
     private pageData:PageDataService,
     ) {
-    this.subscriptions.add(this.pageProperty.selectedPage.subscribe(res => {
+    this.subscriptions.add(this.pageProperty.selectedPage.subscribe((res:any) => {
 
       this.selected_page = res.page
       this.robotsMetaDataList = this.selected_page?.page_settings?.advanced_seo?.robots_meta_tags

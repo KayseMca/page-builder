@@ -2,7 +2,7 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output, PLATFORM_ID, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service'
+import { PagePropertyServiceService } from 'apps/page-builder/src/app/shared/services/page-property/page-property-service.service'
 
 
 

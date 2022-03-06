@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, from, Observable, of } from 'rxjs';
-import { PageData, Style } from 'src/app/_interfaces/_page';
-import { Typograph } from 'src/app/_interfaces/_typograph';
+import { PageData, Style } from 'apps/page-builder/src/app/_interfaces/_page';
+import { Typograph } from 'apps/page-builder/src/app/_interfaces/_typograph';
 import { data } from '../data';
 
 

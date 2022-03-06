@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, Input, OnInit } from '@angular/core';
-import { Typograph } from 'src/app/_interfaces/_typograph';
+import { Typograph } from 'apps/page-builder/src/app/_interfaces/_typograph';
 
 @Component({
   selector: 'app-typography-list',

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, Subscription, take } from 'rxjs';
-import { PageData } from 'src/app/_interfaces/_page';
+import { PageData } from 'apps/page-builder/src/app/_interfaces/_page';
 import { PageDataService } from '../../services/page-data-service/page-data.service';
 import { PagePropertyServiceService } from '../../services/page-property/page-property-service.service';
 

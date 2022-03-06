@@ -1,4 +1,4 @@
-import {  Typograph } from "src/app/_interfaces/_typograph";
+import {  Typograph } from "apps/page-builder/src/app/_interfaces/_typograph";
 
 // style_type?:string
 // font?: string

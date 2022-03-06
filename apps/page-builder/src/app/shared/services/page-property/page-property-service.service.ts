@@ -1,8 +1,8 @@
 import { ElementRef, Injectable } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
-import {  Typograph } from 'src/app/_interfaces/_typograph';
-import { PageData } from 'src/app/_interfaces/_page';
+import {  Typograph } from 'apps/page-builder/src/app/_interfaces/_typograph';
+import { PageData } from 'apps/page-builder/src/app/_interfaces/_page';
 import { fontList } from './allFonts';
 import { typographs } from './typograph';
 

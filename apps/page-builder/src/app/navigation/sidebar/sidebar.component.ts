@@ -4,15 +4,15 @@ import { MatDialog } from '@angular/material/dialog';
 import { ApplicationRef, ChangeDetectionStrategy, ChangeDetectorRef, Compiler, Component, ComponentFactoryResolver, HostListener, Injector, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription, take } from 'rxjs';
 
-import { PagePropertyServiceService } from 'src/app/shared/services/page-property/page-property-service.service';
-import { PageDataService } from 'src/app/shared/services/page-data-service/page-data.service';
-import { PageData } from 'src/app/_interfaces/_page';
+import { PagePropertyServiceService } from 'apps/page-builder/src/app/shared/services/page-property/page-property-service.service';
+import { PageDataService } from 'apps/page-builder/src/app/shared/services/page-data-service/page-data.service';
+import { PageData } from 'apps/page-builder/src/app/_interfaces/_page';
 import { FormControl } from '@angular/forms';
-import { DeleteDialogComponent } from 'src/app/dialog/delete-dialog.component';
+import { DeleteDialogComponent } from 'apps/page-builder/src/app/dialog/delete-dialog.component';
 
-import { CreateDuplicatePageComponent } from 'src/app/create-duplicate-page/create-duplicate-page/create-duplicate-page.component';
+import { CreateDuplicatePageComponent } from 'apps/page-builder/src/app/create-duplicate-page/create-duplicate-page/create-duplicate-page.component';
 import { Router } from '@angular/router';
-import { PageContentDirective } from 'src/app/shared/directives/page-content.directive';
+
 
 
 
