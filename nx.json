@@ -28,5 +28,7 @@
   },
   "cli": {
     "defaultCollection": "@nrwl/angular"
-  }
+    
+  },
+  "defaultProject": "page-builder"
 }
