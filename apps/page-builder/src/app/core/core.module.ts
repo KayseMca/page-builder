@@ -1,6 +1,8 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 import { TemplateToEditService } from './service/template-to-edit.service';
+import { HttpClientModule } from '@angular/common/http';
 
 export function initTemplate(appInitService: TemplateToEditService) {
   return () => { 
@@ -13,7 +15,8 @@ export function initTemplate(appInitService: TemplateToEditService) {
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   providers:[
     TemplateToEditService,

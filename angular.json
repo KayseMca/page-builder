@@ -1,7 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  
   "projects": {
     "material-module": {
       "projectType": "library",
@@ -49,9 +48,9 @@
               "apps/page-builder/src/favicon.ico",
               "apps/page-builder/src/assets",
               {
+                "input": "libs/shared/assets/src/lib",
                 "glob": "**/*",
-                "input": "./libs/shared-assets/",
-                "output": "./assets"
+                "output": "assets/styles"
               }
             ],
             "styles": [
@@ -205,7 +204,13 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "apps/product/src/favicon.ico",
-              "apps/product/src/assets"
+              "apps/product/src/assets",
+              {
+                "glob": "**/*",
+                "input": "libs/shared/assets/src/lib",
+                "output": "assets"
+              }
+              
             ],
             "styles": ["apps/product/src/styles.scss"],
             "scripts": []
@@ -308,6 +313,29 @@
       },
       "tags": [],
       "implicitDependencies": ["product"]
+    },
+    "shared-assets": {
+      "root": "libs/shared/assets",
+      "sourceRoot": "libs/shared/assets/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/shared/assets/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/assets"],
+          "options": {
+            "jestConfig": "libs/shared/assets/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
     }
   }
 }

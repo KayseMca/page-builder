@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { ColorSketchModule } from 'ngx-color/sketch';
 import { ColorChromeModule } from 'ngx-color/chrome';
 
@@ -28,6 +27,7 @@ import { TypographyItemComponent } from './navigation/side-typography/typography
 import { TypographyService } from './shared/services/typography/typography.service';
 import { SideTypographyComponent } from './navigation/side-typography/side-typography.component';
 import { CoreModule } from './core/core.module';
+
 
 
 
