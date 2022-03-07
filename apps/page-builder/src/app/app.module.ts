@@ -27,8 +27,7 @@ import { TypographyItemComponent } from './navigation/side-typography/typography
 // import { BackgroundColorChangeDirective } from './shared/pipe/background-color-change.directive';
 import { TypographyService } from './shared/services/typography/typography.service';
 import { SideTypographyComponent } from './navigation/side-typography/side-typography.component';
-
-
+import { CoreModule } from './core/core.module';
 
 
 
@@ -54,6 +53,7 @@ import { SideTypographyComponent } from './navigation/side-typography/side-typog
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModuleModule,
+    CoreModule,
     MainModuleModule,
     PagePropertiesModule,
     ColorChromeModule,
