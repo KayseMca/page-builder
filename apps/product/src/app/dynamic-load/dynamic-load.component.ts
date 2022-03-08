@@ -15,8 +15,8 @@ import { map, Observable } from 'rxjs';
   styleUrls: ['./dynamic-load.component.scss'],
 })
 export class DynamicLoadComponent implements OnInit {
-  @HostBinding('class') classes =
-    'heading1 heading2 heading3 heading4 p1 p2 p3';
+  // @HostBinding('class') classes =
+  //   'heading1 heading2 heading3 heading4 p1 p2 p3';
   @ViewChild('tem', { static: true }) template!: ElementRef<any>;
   selected!: any;
   title$!: Observable<string>;
