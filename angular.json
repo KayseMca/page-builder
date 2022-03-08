@@ -46,12 +46,7 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "apps/page-builder/src/favicon.ico",
-              "apps/page-builder/src/assets",
-              {
-                "input": "libs/shared/assets/src/lib",
-                "glob": "**/*",
-                "output": "assets/styles"
-              }
+              "apps/page-builder/src/assets"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
@@ -204,12 +199,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "apps/product/src/favicon.ico",
-              "apps/product/src/assets",
-              {
-                "glob": "**/*",
-                "input": "libs/shared/assets/src/lib",
-                "output": "assets"
-              }
+              "apps/product/src/assets"
+              
               
             ],
             "styles": ["apps/product/src/styles.scss"],
