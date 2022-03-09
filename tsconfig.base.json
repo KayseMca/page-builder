@@ -19,10 +19,10 @@
     "module": "es2020",
     "lib": ["es2020", "dom"],
     "paths": {
+      "@sognando-casa/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@sognando-casa/material-module": ["libs/material-module/src/index.ts"],
       "@sognando-casa/shared/assets": ["libs/shared/assets/src/index.ts"]
     },
-    
     "rootDir": "."
   },
   "angularCompilerOptions": {
