@@ -1,4 +1,4 @@
-import {  Typograph } from "apps/page-builder/src/app/_interfaces/_typograph";
+import {  Typograph } from "@sognando-casa/api-interfaces";
 
 // style_type?:string
 // font?: string

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, from, Observable, of } from 'rxjs';
-import { PageData, Style } from 'apps/page-builder/src/app/_interfaces/_page';
-import { Typograph } from 'apps/page-builder/src/app/_interfaces/_typograph';
+import { BehaviorSubject, from, map, Observable, of } from 'rxjs';
+import { PageData, Style,TemplateApi,Typograph } from '@sognando-casa/api-interfaces';
 import { data } from '../data';
+
 
 
 @Injectable({
@@ -13,7 +13,7 @@ import { data } from '../data';
 export class PageDataService {
 
 
-  private dataSource = new BehaviorSubject<any>([])
+  dataSource = new BehaviorSubject<any>([])
   readonly allPagesData: Observable<any> = this.dataSource.asObservable()
 
 
@@ -22,6 +22,7 @@ export class PageDataService {
   }
 
 
+ 
 
   // return a page values
   getPage(name:string):PageData{
@@ -33,6 +34,7 @@ export class PageDataService {
   // creating new empty page
   creatNewPage(page: PageData) {
     let pages: any[] = [...this.dataSource.value]
+    // let pages: any[] = [...this.getPages().]
     pages.push({...page})
     //
     this.dataSource.next(pages)

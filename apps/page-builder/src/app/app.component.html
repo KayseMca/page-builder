@@ -38,10 +38,11 @@
 
       <!-- Main content -->
       <div class="content"  [ngStyle]="resize" >
-          <app-nav></app-nav>
+          <!-- <app-nav></app-nav> -->
+          
           <div appPageContent (domChange)="testchange($event)">
-            <router-outlet></router-outlet>
-
+            <!-- <router-outlet name="main"></router-outlet> -->
+            <app-main-content></app-main-content>
           </div>
         <!-- <app-main-content></app-main-content> -->
       </div>

@@ -6,7 +6,7 @@ import { Subscription, take } from 'rxjs';
 
 import { PagePropertyServiceService } from 'apps/page-builder/src/app/shared/services/page-property/page-property-service.service';
 import { PageDataService } from 'apps/page-builder/src/app/shared/services/page-data-service/page-data.service';
-import { PageData } from 'apps/page-builder/src/app/_interfaces/_page';
+import { PageData, TemplateApi } from '@sognando-casa/api-interfaces';
 import { FormControl } from '@angular/forms';
 import { DeleteDialogComponent } from 'apps/page-builder/src/app/dialog/delete-dialog.component';
 
@@ -78,8 +78,8 @@ export class SidebarComponent extends CreateDuplicatePageComponent implements On
     this.editPageValue = new FormControl('')
     this.subscriptions.add(this.pageData.allPagesData.pipe(
       //take(1)
-    ).subscribe((res: PageData[]) => {
-      this.allPagesData = res
+    ).subscribe((res: TemplateApi) => {
+      this.allPagesData = res.content.pages
       
     })
     )

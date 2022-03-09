@@ -1,7 +1,11 @@
 import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, Injector, Optional } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { map, of, switchMap, tap } from 'rxjs';
+import { PageDataService } from '../../shared/services/page-data-service/page-data.service';
+import { State } from '../../_interfaces/template_state';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +14,10 @@ export class TemplateToEditService {
   private readonly url = 'http://localhost:3000/users/'
   private  templateID  = ''
   initialized: boolean=false;
-  private data:any
   constructor(@Inject(DOCUMENT) private doc:any, private http:HttpClient,
-  // private page_data:PageDataService
+  private page_data:PageDataService,
+  // @Optional()private injector:Injector,
+  @Optional()private router:Router
   ) {
     
     // even connect another service
@@ -30,15 +35,21 @@ export class TemplateToEditService {
   init(){
     this.template()
     return this.http.get(this.url+this.templateID).pipe(
-      map(res=> of(res)),
+      map((res:any)=> { 
+        this.page_data.dataSource.next(res)
+        
+        console.log("template data")
+        return of(res)
+      }),
       switchMap(res=>{
-        console.log(res)
+        
         return res
       }),
       tap(template=> {
         let is_valid = Boolean(template)
         if(is_valid){
           this.loadFiles(template)
+          this.resetRoutes()
           return template
         } 
         console.log(template)
@@ -60,6 +71,11 @@ export class TemplateToEditService {
     
   }
 
+  resetRoutes(){
+    // const inject = this.injector.get(this.router)
+    let a = this.router.config
+    console.log(a)
+  }
 
   loadFiles(template:any){
     //document also working
@@ -120,9 +136,11 @@ export class TemplateToEditService {
 
 
   template(){
-    const url = new URL(window.location.href);
-    console.log(url)
-    this.templateID = url.search.replace('?','').split('=')[1]
+    const page_url = new URL(window.location.href);
+    console.log(page_url)
+    this.templateID = page_url.search.replace('?','').split('=')[1]
+    // let len = url.pathname.split('/')
+    // this.templateID = len[len.length-1]
   }
 
 

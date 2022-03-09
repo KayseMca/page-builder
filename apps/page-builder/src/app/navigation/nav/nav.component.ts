@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PageDataService } from 'apps/page-builder/src/app/shared/services/page-data-service/page-data.service';
-import { PageData } from 'apps/page-builder/src/app/_interfaces/_page';
+import { PageData } from '@sognando-casa/api-interfaces';
 
 @Component({
   selector: 'app-nav',

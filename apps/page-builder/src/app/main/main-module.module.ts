@@ -7,20 +7,18 @@ import { HomeComponent } from './pages/home/home.component';
 
 import { PagePropertiesModule } from '../shared/components/page-properties.module';
 import { Page2Component } from './pages/page2/page2.component';
-import { PageData } from '../_interfaces/_page';
+import { PageData } from '@sognando-casa/api-interfaces';
 
 
-interface CustomRoute extends Route {
-  data?: PageData;
-}
 
-const appRoutes:CustomRoute[]  = [
 
-  {path:'home', component:HomeComponent},
-  {path:'page2', component:Page2Component},
-  {path:"", loadChildren:()=>import('../create-duplicate-page/page-modify.module').then(m=>m.PageModifyModule)},
-  {path:'', redirectTo:'/home', pathMatch:'full'},
-  {path:'**', redirectTo:'/home', pathMatch:'full'},
+const appRoutes:Route[]  = [
+
+  // {path:'home', component:HomeComponent},
+  // {path:'', component:MainContentComponent, outlet:'templateEdit'},
+  // {path:"", loadChildren:()=>import('../create-duplicate-page/page-modify.module').then(m=>m.PageModifyModule)},
+  // {path:'**', redirectTo:':templateId', pathMatch:'full'},
+  // {path:'**', redirectTo:'/home', pathMatch:'full'},
 ]
 
 @NgModule({

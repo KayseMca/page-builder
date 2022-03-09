@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { PageData } from 'apps/page-builder/src/app/_interfaces/_page';
+import { PageData } from '@sognando-casa/api-interfaces';
 
 @Pipe({
   name: 'searchPage'

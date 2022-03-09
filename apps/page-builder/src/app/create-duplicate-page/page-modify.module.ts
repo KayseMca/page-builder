@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CreateDuplicatePageComponent } from './create-duplicate-page/create-duplicate-page.component';
 import { Route, RouterModule, Routes } from '@angular/router';
 import { DynamicLoadComponent } from './dynamic-load/dynamic-load.component';
-import { PageData } from '../_interfaces/_page';
+import { PageData } from '@sognando-casa/api-interfaces';
 //import { DynamicElementDirective } from './dynamic-element.directive';
 
 
@@ -15,7 +15,7 @@ interface CustomRoute extends Route {
 export const routes: CustomRoute[] = [
   //{path:'', component:CreateDuplicatePageComponent}
   //{path:'/test/:pagename', component:CreateDuplicatePageComponent}
-  {path:'', redirectTo:'/home', pathMatch:'full'},
+  // {path:'', redirectTo:'/home', pathMatch:'full'},
   
 ]
 

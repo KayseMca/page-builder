@@ -16,11 +16,7 @@ import { PagePropertyServiceService } from './shared/services/page-property/page
 import { SeoService } from './shared/services/seo/seo.service';
 
 
-
-import { TypographyService } from './shared/services/typography/typography.service';
-import { PageData } from './_interfaces/_page';
-
-
+import {PageData} from '@sognando-casa/api-interfaces'
 
 
 
@@ -97,6 +93,8 @@ export class AppComponent implements OnInit, OnDestroy  {
    // handle this it causes some "Violation changes"
    this.subscribe.add(this.pageService.allPagesData.subscribe(res=>{
 
+    console.log("all page data")
+    console.log(res)
     this.all_pages = res
   }))
 
@@ -105,6 +103,7 @@ export class AppComponent implements OnInit, OnDestroy  {
   ngOnInit(): void {
    
     console.log("############resizing window")
+    
     // adding active page title and description
     
     // const appTitle = this.seo.getTitle();

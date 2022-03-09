@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { PagePropertyServiceService } from 'apps/page-builder/src/app/shared/services/page-property/page-property-service.service';
-import { PageData } from 'apps/page-builder/src/app/_interfaces/_page';
+import { PageData } from '@sognando-casa/api-interfaces';
 import { PageDataService } from '../../services/page-data-service/page-data.service';
 
 

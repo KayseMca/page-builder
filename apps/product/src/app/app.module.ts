@@ -13,10 +13,11 @@ import { HttpClientModule } from '@angular/common/http';
 import {createCustomElement} from '@angular/elements'
 
 const router:Routes =[
-  {path:'', component:TestComponentComponent, pathMatch:'full'},
   {path:':page', component:DynamicLoadComponent, resolve:{
     data:ResolveService
-  }}
+  },
+  outlet:'template_edit'
+}
 ]
 
 @NgModule({

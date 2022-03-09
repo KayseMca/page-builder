@@ -50,10 +50,10 @@ import { CoreModule } from './core/core.module';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    CoreModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModuleModule,
-    CoreModule,
     MainModuleModule,
     PagePropertiesModule,
     ColorChromeModule,

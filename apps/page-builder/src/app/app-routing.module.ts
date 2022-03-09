@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule, Routes } from '@angular/router';
-import { PageData } from './_interfaces/_page';
 
-interface CustomRoute extends Route {
-  data?: PageData;
-}
 
-const routes: CustomRoute[] = [
-  {path:'', loadChildren: ()=> import('./main/main-module.module').then(m => m.MainModuleModule)},
+// interface CustomRoute extends Route {
+//   data?: PageData;
+// }
+
+const routes: Route[] = [
+  {path:'edit', loadChildren: ()=> import('./main/main-module.module').then(m => m.MainModuleModule), outlet:'main'},
   //{path:"", loadChildren:()=>import('./create-duplicate-page/page-modify.module').then(m=>m.PageModifyModule)},
   //{path}
+  // {path:'', redirectTo:'edit/:id', pathMatch:'full'}
 ];
 
 @NgModule({

@@ -5,8 +5,7 @@ import { filter, Observable, of, Subscription, take } from 'rxjs';
 import { PageDataService } from 'apps/page-builder/src/app/shared/services/page-data-service/page-data.service';
 
 import { PagePropertyServiceService } from 'apps/page-builder/src/app/shared/services/page-property/page-property-service.service';
-import { PageData } from 'apps/page-builder/src/app/_interfaces/_page';
-import { Typograph } from 'apps/page-builder/src/app/_interfaces/_typograph';
+import { PageData, Typograph } from '@sognando-casa/api-interfaces';
 
 @Component({
   selector: 'app-side-typography',

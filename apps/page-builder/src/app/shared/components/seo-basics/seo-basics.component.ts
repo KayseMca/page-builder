@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Subscription, switchMap } from 'rxjs';
-import { PageData, SEO } from 'apps/page-builder/src/app/_interfaces/_page';
+import { PageData, SEO } from '@sognando-casa/api-interfaces';
 import { PageDataService } from '../../services/page-data-service/page-data.service';
 import { PagePropertyServiceService } from '../../services/page-property/page-property-service.service';
 import { SeoService } from '../../services/seo/seo.service';
