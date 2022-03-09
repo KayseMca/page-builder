@@ -13,8 +13,8 @@ import { data } from '../data';
 export class PageDataService {
 
 
-  private dataSource = new BehaviorSubject<PageData[]>(data)
-  readonly allPagesData: Observable<PageData[]> = this.dataSource.asObservable()
+  private dataSource = new BehaviorSubject<any>([])
+  readonly allPagesData: Observable<any> = this.dataSource.asObservable()
 
 
   constructor( private router:Router) {
@@ -148,7 +148,7 @@ export class PageDataService {
   deletePage(id: number) {
     let data = this.dataSource.getValue()
 
-    let pageId = data.findIndex(res => res.id === id)
+    let pageId = data.findIndex((res:any) => res.id === id)
     data.splice(pageId, 1)
 
     this.dataSource.next(data)

@@ -18,6 +18,12 @@
  * BROWSER POLYFILLS
  */
 
+// if you are compiling to ES5 (check tsconfig.json) then you need this
+// import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js';
+
+// for browser not supporting custom elements
+// import '@webcomponents/custom-elements/custom-elements.min.js';
+
 /**
  * By default, zone.js will patch all possible macroTask and DomEvents
  * user can disable parts of macroTask/DomEvents patch by setting following flags

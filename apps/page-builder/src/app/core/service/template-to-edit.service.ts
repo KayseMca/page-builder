@@ -69,7 +69,7 @@ export class TemplateToEditService {
     // const stylehead = this.doc.createElement('link');
     // stylehead.setAttribute('href','http://127.0.0.1:8080/styles.css')
     // stylehead.setAttribute('rel', 'styesheet')
-    script.src =`${template.template_url}angular-elements.js`
+    script.src =`${template.template_url}product.js`
     script.defer = true
     // this.doc.head.append(stylehead)
     this.doc.head.append(script)

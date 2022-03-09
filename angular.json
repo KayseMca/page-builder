@@ -204,7 +204,9 @@
               
             ],
             "styles": ["apps/product/src/styles.scss"],
-            "scripts": []
+            "scripts": [
+              
+            ]
           },
           "configurations": {
             "production": {
