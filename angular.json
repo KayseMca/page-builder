@@ -25,6 +25,32 @@
       },
       "tags": []
     },
+    "data-access": {
+      "projectType": "library",
+      "root": "libs/data-access",
+      "sourceRoot": "libs/data-access/src",
+      "prefix": "sognando-casa",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/data-access"],
+          "options": {
+            "jestConfig": "libs/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-access/src/**/*.ts",
+              "libs/data-access/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "material-module": {
       "projectType": "library",
       "root": "libs/material-module",
@@ -326,6 +352,32 @@
       "tags": [],
       "implicitDependencies": ["product"]
     },
+    "product-product-feature": {
+      "projectType": "library",
+      "root": "libs/product/product-feature",
+      "sourceRoot": "libs/product/product-feature/src",
+      "prefix": "sognando-casa",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/product/product-feature"],
+          "options": {
+            "jestConfig": "libs/product/product-feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/product/product-feature/src/**/*.ts",
+              "libs/product/product-feature/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "shared-assets": {
       "root": "libs/shared/assets",
       "sourceRoot": "libs/shared/assets/src",
@@ -348,7 +400,32 @@
         }
       },
       "tags": []
+    },
+    "ui-nav": {
+      "projectType": "library",
+      "root": "libs/ui-nav",
+      "sourceRoot": "libs/ui-nav/src",
+      "prefix": "sognando-casa",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui-nav"],
+          "options": {
+            "jestConfig": "libs/ui-nav/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ui-nav/src/**/*.ts",
+              "libs/ui-nav/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
     }
-    
   }
 }

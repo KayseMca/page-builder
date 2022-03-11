@@ -1,43 +1,46 @@
 import { ApplicationRef, CUSTOM_ELEMENTS_SCHEMA, DoBootstrap, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+// import { NxModule } from '@nrwl/angular';
 import { AppComponent } from './app.component';
 
-import {  RouterModule, Routes } from '@angular/router';
-import { TestComponentComponent } from './test-component/test-component.component';
-import { DynamicLoadComponent } from './dynamic-load/dynamic-load.component';
-import { ResolveService } from './resolve.service';
-import { PageDataService } from './page-data.service';
-import { HttpClientModule } from '@angular/common/http';
+import {  RouterModule } from '@angular/router';
 
+import { HttpClientModule } from '@angular/common/http';
+import {productProductFeatureRoutes,ProductProductFeatureModule} from '@sognando-casa/product/product-feature'
 import {createCustomElement} from '@angular/elements'
 
-const router:Routes =[
-  {path:':page', component:DynamicLoadComponent, resolve:{
-    data:ResolveService
-  },
-  outlet:'template_edit'
-}
-]
+// const router:Routes =[
+//   {path:':page', component:DynamicLoadComponent, resolve:{
+//     data:ResolveService
+//   },
+//   outlet:'template_edit'
+// }
+// ]
 
 @NgModule({
-  declarations: [AppComponent, TestComponentComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(router, { initialNavigation: 'enabledBlocking' }),
+    // NxModule,
+    RouterModule.forRoot([
+      {path:'',
+      children:productProductFeatureRoutes 
+    }
+  ]),
+  ProductProductFeatureModule,
   ],
   exports:[RouterModule],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
-  providers: [PageDataService, ResolveService],
-  // bootstrap: [AppComponent],
+  // providers: [PageDataService, ResolveService],
+  bootstrap: [AppComponent],
 })
-export class AppModule implements DoBootstrap{
-  constructor(private injector:Injector){
+export class AppModule {
+  // constructor(private injector:Injector){
     
-  }
-  ngDoBootstrap(): void {
-    const webComponent = createCustomElement(AppComponent, {injector:this.injector});
-    customElements.define('page-builder-root', webComponent);
-  }
+  // }
+  // ngDoBootstrap(): void {
+  //   const webComponent = createCustomElement(AppComponent, {injector:this.injector});
+  //   customElements.define('page-builder-root', webComponent);
+  // }
 }
