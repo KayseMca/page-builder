@@ -1,7 +1,7 @@
 <!-- <page-builder-nx-welcome></page-builder-nx-welcome> -->
-<div>
-    <a style="margin: 8px;" routerLink="/forum">Forum</a>
-    <a routerLink="/home">Home</a>
+<div *ngFor="let item of pages">
+    <a style="margin: 8px;" routerLink="/{{item.page_url}}">{{item.name}}</a>
+    <!-- <a routerLink="/home">Home</a> -->
 
 </div>
 

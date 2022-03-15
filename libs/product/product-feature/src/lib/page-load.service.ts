@@ -7,14 +7,14 @@ import { Subject } from 'rxjs';
 })
 export class PageLoadService {
 
-  private selected: Subject<any> = new Subject();
+  public selected: Subject<any> = new Subject();
 
   page = this.selected.asObservable();
   private readonly url = 'http://localhost:3000/users/';
   constructor(private http: HttpClient) {}
 
-  getPages() {
-    return this.http.get(this.url + 'all');
+  getTemplates() {
+    return this.http.get(this.url + '1');
   }
 
   getPage(id: any) {
@@ -22,6 +22,7 @@ export class PageLoadService {
   }
 
   selectedPage(s: any) {
+    console.log("slected page")
     this.selected.next(s);
   }
 }

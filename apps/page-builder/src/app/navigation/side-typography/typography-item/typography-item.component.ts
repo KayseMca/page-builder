@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { PageDataService } from 'apps/page-builder/src/app/shared/services/page-data-service/page-data.service';
 import { PagePropertyServiceService } from 'apps/page-builder/src/app/shared/services/page-property/page-property-service.service';
-import { PageData, Typograph } from '@sognando-casa/api-interfaces';
+import { PageData, TemplateApi, Typograph } from '@sognando-casa/api-interfaces';
 
 @Component({
   selector: 'app-typography-item',
@@ -133,6 +133,7 @@ export class TypographyItemComponent implements OnInit {
   onSubmit(){
     //
   
+    let id = this.selected_page.id
     if(this.styleForm.value!==''){
       // hold original typography
       let typography = this.typograph
@@ -146,7 +147,11 @@ export class TypographyItemComponent implements OnInit {
     }
    //this.pageData.updatePageStyle()
    
-   this.pageData.updatePageData(this.selected_page)
+   this.pageData.updatePageData(this.selected_page).subscribe((res:any)=>{
+
+    console.log("refreshing data")
+    this.selected_page = res['content']['pages'].find((page:any)=>page.id===id)
+   })
    //this.selected_page = new PageData()
   //  this.checked_style = false
   //  this.checked_weight = false

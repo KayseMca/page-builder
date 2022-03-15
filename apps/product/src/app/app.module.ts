@@ -7,8 +7,13 @@ import {  RouterModule } from '@angular/router';
 
 import { HttpClientModule } from '@angular/common/http';
 import {productProductFeatureRoutes,ProductProductFeatureModule} from '@sognando-casa/product/product-feature'
+// productProductFeatureRoutes
 import {createCustomElement} from '@angular/elements'
-
+import { HomeComponent } from 'libs/product/product-feature/src/lib/home/home.component';
+// import { productProductFeatureRoutes } from 'libs/product/product-feature/src';
+// import { productProductFeatureRoutes } from 'libs/product/product-feature/src';
+// productProductFeatureRoutes
+// import {productProductFeatureRoutes} from '@sognando-casa/product/product-feature'
 // const router:Routes =[
 //   {path:':page', component:DynamicLoadComponent, resolve:{
 //     data:ResolveService
@@ -25,6 +30,7 @@ import {createCustomElement} from '@angular/elements'
     // NxModule,
     RouterModule.forRoot([
       {path:'',
+      // component:HomeComponent,
       children:productProductFeatureRoutes 
     }
   ]),

@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, from, map, Observable, of } from 'rxjs';
 import { PageData, Style,TemplateApi,Typograph } from '@sognando-casa/api-interfaces';
 import { data } from '../data';
+import { HttpClient } from '@angular/common/http';
 
+export class PagesData extends TemplateApi{}
 
 
 @Injectable({
@@ -12,12 +14,13 @@ import { data } from '../data';
 })
 export class PageDataService {
 
+  url = 'http://localhost:3000/users/'
 
-  dataSource = new BehaviorSubject<any>([])
+  dataSource = new BehaviorSubject<any>(new PagesData())
   readonly allPagesData: Observable<any> = this.dataSource.asObservable()
 
 
-  constructor( private router:Router) {
+  constructor( private router:Router, private http:HttpClient) {
     //this.ppd.singlePageChoose(data[0], '')
   }
 
@@ -33,20 +36,27 @@ export class PageDataService {
 
   // creating new empty page
   creatNewPage(page: PageData) {
-    let pages: any[] = [...this.dataSource.value]
+    let data: TemplateApi= {...this.dataSource.value}
+    let pages = data.content.pages
     // let pages: any[] = [...this.getPages().]
     pages.push({...page})
     //
-    this.dataSource.next(pages)
+    data.content.pages = pages
+    
+
+    this.http.post(this.url, data).subscribe(res=>{
+      this.dataSource.next(res)
+    })
   }
 
 
   // all the updates goes here of page
   updatePageData(data: PageData) {
-    let oldData: any[] = [...this.dataSource.value]
+    let oldData: TemplateApi = {...this.dataSource.value}
+    let pages = oldData['content']['pages']
     let id;
 
-    oldData.forEach((item: PageData) => {
+    pages.forEach((item: PageData) => {
       id = item.id === data.id ? true : false
       
       // check and change  the other items home_page value 
@@ -90,8 +100,9 @@ export class PageDataService {
 
 
     //saving data
-    
+    oldData.content.pages = pages
     this.dataSource.next(oldData)
+   return this.http.post('http://localhost:3000/users/', oldData)
   }
 
 

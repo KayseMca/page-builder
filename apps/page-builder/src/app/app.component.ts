@@ -142,6 +142,8 @@ export class AppComponent implements OnInit, OnDestroy  {
     let target = ($event['target'] as HTMLHtmlElement)
     let htmlContent:string = (target.lastElementChild?.innerHTML as string)
     htmlContent = htmlContent?.replace(pattern, '')
+    console.log(htmlContent)
+    console.log("html contet £3#################")
     
   
   this.pProperty.setPageHTML(htmlContent)

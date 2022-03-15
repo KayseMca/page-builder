@@ -8,6 +8,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { PagePropertiesModule } from '../shared/components/page-properties.module';
 import { Page2Component } from './pages/page2/page2.component';
 import { PageData } from '@sognando-casa/api-interfaces';
+import { productProductFeatureRoutes , ProductProductFeatureModule} from '@sognando-casa/product/product-feature';
+
 
 
 
@@ -25,7 +27,10 @@ const appRoutes:Route[]  = [
   declarations: [MainContentComponent, HomeComponent, Page2Component],
   imports: [
     CommonModule,
-    RouterModule.forChild(appRoutes),
+    // RouterModule.forChild(apRoutes),
+    RouterModule.forRoot([
+      {path:'', children:productProductFeatureRoutes}
+    ]),
     PagePropertiesModule,
     
   ],

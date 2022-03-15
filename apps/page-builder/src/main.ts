@@ -12,6 +12,7 @@ function bootstrap() {
      platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err =>{ 
     console.error(err)
+    console.log("Console.log got an errro ###########")
     const errorMsgElement = document.querySelector('#errorMsgElement');
     let message:any = 'Application initialization failed';
     if (err) {

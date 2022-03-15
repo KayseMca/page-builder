@@ -41,7 +41,7 @@ export class SideTypographyComponent implements OnInit, OnDestroy {
     ) {
 
       this.subscriptions.add(pageDataService.allPagesData.subscribe(res=>{
-        this.page_selected.page_styles = res[0].page_styles
+        this.page_selected.page_styles = res['content']['pages'][0].page_styles
         this.typograp_list = this.page_selected.page_styles?.typography
       })
       )

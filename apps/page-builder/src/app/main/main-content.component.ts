@@ -29,7 +29,7 @@ export class MainContentComponent implements OnInit, OnDestroy {
 ngAfterContentInit(): void {
   //Called after ngOnInit when the component's or directive's content has been initialized.
   //Add 'implements AfterContentInit' to the class.
-  this.template.nativeElement.innerHTML = `${this.data.template_element}`
+  // this.template.nativeElement.innerHTML = `${this.data.template_element}`
 }
 
   ngOnDestroy(): void {

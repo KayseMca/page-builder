@@ -67,6 +67,7 @@ export class AppComponent {
           // set the typography to the document
           
         }
+        console.log(stylesArray)
         return stylesArray
       }
 }

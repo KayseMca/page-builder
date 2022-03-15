@@ -34,7 +34,7 @@ export  class  CreateDuplicatePageComponent  {
     this.subs.add(
       (this.pages.allPagesData.subscribe(res=>{
         // console.log("re calling before created")
-      this.allPages = res
+      this.allPages = res['content']['pages']
       // console.log(this.allPages)
     })
     ))
