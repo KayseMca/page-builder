@@ -79,6 +79,7 @@ function bootstrap() {
         }
     }
     errorMsgElement!.innerHTML = html(message);
+
   });
    };
 
