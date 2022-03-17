@@ -115,11 +115,15 @@ export class PageDataService {
     return old
   }
 
-  updatePageStyles(itemTypo:any, newTypo:any):Typograph[]{
-    
-    let newElement = newTypo[0]
-    
 
+  /**
+   * to save every page styles making some configuration here; to not overwrite the exist page style if just updated one element
+   * @param itemTypo 
+   * @param newTypo 
+   * @returns 
+   */
+  updatePageStyles(itemTypo:any, newTypo:any):Typograph[]{
+    let newElement = newTypo[0]
     for (let index = 0; index < itemTypo.length; index++) {
       const element = itemTypo[index]['style_type'];
       if(element === newElement['style_type']){

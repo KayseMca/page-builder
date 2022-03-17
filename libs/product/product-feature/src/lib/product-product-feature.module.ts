@@ -5,8 +5,9 @@ import { RouterModule, Route } from '@angular/router';
 import { ForumComponent } from './forum/forum.component';
 import { HomeComponent } from './home/home.component';
 import { LoadPageComponent } from './load-page/load-page.component';
-import { PageLoadService } from './page-load.service';
 import { ResolverService } from './resolver.service';
+import { SharedDataAccessModule } from '@sognando-casa/shared/data-access';
+
 
 export const productProductFeatureRoutes: Route[] = [
   {path:'',component:HomeComponent},
@@ -19,12 +20,12 @@ export const productProductFeatureRoutes: Route[] = [
 
 
 @NgModule({
-  imports: [CommonModule, RouterModule, HttpClientModule],
+  imports: [CommonModule, RouterModule, HttpClientModule, SharedDataAccessModule],
   declarations: [
     ForumComponent,
     HomeComponent,
     LoadPageComponent
   ],
-  providers:[PageLoadService, ResolverService]
+  providers:[ResolverService]
 })
 export class ProductProductFeatureModule {}

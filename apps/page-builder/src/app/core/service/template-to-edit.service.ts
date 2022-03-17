@@ -53,7 +53,9 @@ export class TemplateToEditService {
           return template
         } 
         console.log(template)
-        throw new Error("server eror, this is INVALId template ID please be sure the template to edit")
+        throw new Error(
+          `<span style='color:red;'>server eror, this is INVALId template ID</span> please be sure the template ID to edit`
+          )
       })
     )
     // const inject = this.injector.get(ActivatedRoute)

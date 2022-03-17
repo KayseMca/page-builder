@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PageLoadService } from './page-load.service';
+import { SharedDataService } from './shared-data-service';
 
-describe('PageLoadService', () => {
-  let service: PageLoadService;
+describe('SharedDataServiceService', () => {
+  let service: SharedDataService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PageLoadService);
+    service = TestBed.inject(SharedDataService);
   });
 
   it('should be created', () => {

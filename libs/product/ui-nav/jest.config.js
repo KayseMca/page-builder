@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'ui-nav',
-  preset: '../../jest.preset.js',
+  displayName: 'product-ui-nav',
+  preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -8,7 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../coverage/libs/ui-nav',
+  coverageDirectory: '../../../coverage/libs/product/ui-nav',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

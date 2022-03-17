@@ -1,10 +1,33 @@
+
 <!-- <page-builder-nx-welcome></page-builder-nx-welcome> -->
-<div *ngFor="let item of pages">
-    <a style="margin: 8px;" routerLink="/{{item.page_url}}">{{item.name}}</a>
-    <!-- <a routerLink="/home">Home</a> -->
+<!-- <nav>
+    <ul class="menu">
+      <li class="logo" ><a style="width: 130px;" href="#">Page Builder</a></li>
 
-</div>
+        <li *ngFor="let page of pages" class="item"><a [routerLink]="['/'+page.page_url]">{{page.name| titlecase}}</a></li>
+    
+      <li class="toggle">
+        <a href="#" data-toggle="collapse" data-target=''>
+          <i class="fa fa-bars"></i>
+        </a>
+      </li>
+    </ul>
+  </nav> -->
 
-<ng-content ></ng-content>
-
+  <nav class="navbar">
+    <div class="brand-title">Page Builder</div>
+    <a (click)="toggleNav()" #toggle class="toggle-button">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </a>
+    <div class="navbar-links" [ngClass]="{'active': active}">
+      <ul>
+        <li *ngFor="let page of pages" class="item active"><a [routerLink]="['/'+page.page_url]">{{page.name| titlecase}}</a></li>
+        <!-- <li><a href="#">Home</a></li>
+        <li><a href="#">contact</a></li>
+        <li><a href="#">about-us</a></li> -->
+      </ul>
+    </div>
+  </nav>
 <router-outlet name="temp" ></router-outlet>

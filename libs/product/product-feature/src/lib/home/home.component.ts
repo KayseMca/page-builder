@@ -1,5 +1,5 @@
 import { Component, HostBinding, OnInit, ViewEncapsulation } from '@angular/core';
-import { PageLoadService } from '../page-load.service';
+import { SharedDataService } from '@sognando-casa/shared/data-access';
 
 @Component({
   selector: 'sognando-casa-home',
@@ -9,11 +9,16 @@ import { PageLoadService } from '../page-load.service';
 })
 export class HomeComponent  {
   pages!:any
-  constructor(private data:PageLoadService){
+  active = false
+  constructor(private data:SharedDataService){
    this.data.getTemplates().subscribe((res:any)=>{
      console.log(res)
     this.pages = res['content']['pages']
    })
   }
   
+
+  toggleNav(){
+    this.active = !this.active
+  }
 }

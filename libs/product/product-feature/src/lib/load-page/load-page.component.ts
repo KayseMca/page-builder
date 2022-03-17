@@ -3,8 +3,8 @@ import { AfterViewInit, Component, ElementRef, HostBinding, OnInit, Renderer2, V
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
-import { PageLoadService } from '../page-load.service';
-import { Typograph } from '@sognando-casa/api-interfaces';
+import { PageData, Typograph } from '@sognando-casa/api-interfaces';
+import { SharedDataService } from '@sognando-casa/shared/data-access';
 
 @Component({
   selector: 'sognando-casa-load-page',
@@ -12,18 +12,18 @@ import { Typograph } from '@sognando-casa/api-interfaces';
   styleUrls: ['./load-page.component.scss'],
   encapsulation:ViewEncapsulation.Emulated
 })
-export class LoadPageComponent implements OnInit, AfterViewInit {
-  pages!:any
+export class LoadPageComponent implements OnInit {
+ 
   
   
   @ViewChild('tem', { static: true }) template!: ElementRef<HTMLElement>;
-  selected!: any;
+  selected_page!: PageData;
   title$!: Observable<string>;
 
   @HostBinding('style')
   get style(){
     // console.log("herererere")
-    const page = this.pages?.page_styles?.typography
+    const page = this.selected_page?.page_styles?.typography
     // console.log(this.pages)
     if(page){
       // console.log("hererhe again")
@@ -91,40 +91,24 @@ export class LoadPageComponent implements OnInit, AfterViewInit {
   constructor(
     private sanitizer: DomSanitizer,
     private active: ActivatedRoute,
-    private service:PageLoadService,
+    private service:SharedDataService,
     private render:Renderer2
   ) {
-    // get page data from url
-    this.active.data.subscribe((res: any) => {
-      this.pages = res['data']
+    this.service.current_page.subscribe((res:PageData)=>{
+      this.selected_page = res
+  
     })
   }
 
   ngOnInit(): void {
    // set this page a seo data
-   let data: string
+   console.log("loading this page")
+   const tem = this.template['nativeElement'];
+  this.render.setProperty(tem,'innerHTML', this.selected_page.page_styles?.html)
+   
   }
 
-  ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-
-    const tem = this.template['nativeElement'];
-
-    this.active.data.subscribe((res: any) => {
-      console.log(res);
-      const page = res['data'];
-      // console.log(page);
-
-      //  tem.innerHTML= res['page_styles']['html']+`<strong>${res.name}</strong> `
-
-      // tem.innerHTML = page.page_styles?.html;
-      // tem.textContent = page.page_styles?.html
-      this.render.setProperty(tem,'innerHTML', page.page_styles?.html)
-      // tem.nativeElement = this.makeSanitize(res.page_styles?.html)
-    });
-  }
-  makeSanitize(str: any) {
+  makeSanitize(str: string) {
     return this.sanitizer.bypassSecurityTrustHtml(str);
   }
 
