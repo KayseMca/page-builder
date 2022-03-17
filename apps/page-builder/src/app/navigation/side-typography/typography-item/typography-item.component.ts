@@ -147,11 +147,7 @@ export class TypographyItemComponent implements OnInit {
     }
    //this.pageData.updatePageStyle()
    
-   this.pageData.updatePageData(this.selected_page).subscribe((res:any)=>{
-
-    console.log("refreshing data")
-    this.selected_page = res['content']['pages'].find((page:any)=>page.id===id)
-   })
+   this.pageData.updatePageData(this.selected_page)
    //this.selected_page = new PageData()
   //  this.checked_style = false
   //  this.checked_weight = false

@@ -15,13 +15,15 @@ export class SharedDataService{
   // just to access the pages data to not modify
   readonly allTemplates!: Observable<PagesData>
   private selectedPage = new BehaviorSubject(new PageData());
+  // selected page accessing outside
+  current_page = this.selectedPage.asObservable();
 
   /**
    * set true or false publish variable depending on  the  project  using this service
    */
   pub = new publish()
-  // selected page accessing outside
-  current_page = this.selectedPage.asObservable();
+
+  // current template that editing or publishing
   current_template:Observable<PagesData> = new BehaviorSubject(new PagesData())
   // the backend url
   private readonly url = 'http://localhost:3000/users/';

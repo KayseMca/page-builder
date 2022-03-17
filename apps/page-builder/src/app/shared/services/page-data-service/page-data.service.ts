@@ -15,9 +15,10 @@ export class PagesData extends TemplateApi{}
 })
 export class PageDataService {
 
-  url = 'http://localhost:3000/users/'
+  // url = 'http://localhost:3000/users/'
 
-  dataSource = new BehaviorSubject<any>(new PagesData())
+  dataSource = new BehaviorSubject<any>(this.sharedData.current_template)
+  // dataSource = new BehaviorSubject<any>(new PagesData())
   readonly allPagesData: Observable<any> = this.dataSource.asObservable()
 
 
@@ -38,7 +39,7 @@ export class PageDataService {
 
   // creating new empty page
   creatNewPage(page: PageData) {
-    let data: TemplateApi= {...this.dataSource.value}
+    let data: PagesData= {...this.dataSource.value}
     let pages = data.content.pages
     // let pages: any[] = [...this.getPages().]
     pages.push({...page})
@@ -46,9 +47,10 @@ export class PageDataService {
     data.content.pages = pages
     
 
-    this.http.post(this.url, data).subscribe(res=>{
-      this.dataSource.next(res)
-    })
+    // this.http.post(this.url, data).subscribe(res=>{
+    //   this.dataSource.next(res)
+    // })
+    this.sharedData.current_template =of(data)
   }
 
 
@@ -104,7 +106,8 @@ export class PageDataService {
     //saving data
     oldData.content.pages = pages
     this.dataSource.next(oldData)
-   return this.http.post('http://localhost:3000/users/', oldData)
+  //  return this.http.post('http://localhost:3000/users/', oldData)
+  this.sharedData.current_template = of(oldData)
   }
 
 
@@ -170,6 +173,7 @@ export class PageDataService {
     let pageId = data.findIndex((res:any) => res.id === id)
     data.splice(pageId, 1)
 
-    this.dataSource.next(data)
+    // this.dataSource.next(data)
+    this.sharedData.current_template = of(data)
   }
 }
