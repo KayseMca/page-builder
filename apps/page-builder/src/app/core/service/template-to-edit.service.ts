@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, Injector, Optional } from '@angular/core';
 import { Router } from '@angular/router';
+import { SharedDataService } from '@sognando-casa/shared/data-access';
 
 import { map, of, switchMap, tap } from 'rxjs';
 import { PageDataService } from '../../shared/services/page-data-service/page-data.service';
@@ -16,6 +17,7 @@ export class TemplateToEditService {
   initialized: boolean=false;
   constructor(@Inject(DOCUMENT) private doc:any, private http:HttpClient,
   private page_data:PageDataService,
+  private shared_data:SharedDataService,
   // @Optional()private injector:Injector,
   @Optional()private router:Router
   ) {
@@ -34,7 +36,7 @@ export class TemplateToEditService {
 
   init(){
     this.template()
-    return this.http.get(this.url+this.templateID).pipe(
+    return this.shared_data.getTemplate(this.templateID).pipe(
       map((res:any)=> { 
         this.page_data.dataSource.next(res)
         

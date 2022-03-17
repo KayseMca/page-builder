@@ -3,7 +3,7 @@ import {PageData} from './_page'
 export class TemplateApi{
     id!:number
     template_name!:string
-    published?:Boolean
+    published?:boolean
     template_url?:string
     template_element?:string
     content!:Pages
@@ -13,4 +13,8 @@ export class TemplateApi{
 
 interface Pages{
     pages:PageData[]
+}
+
+export class publish{
+    public published = false
 }

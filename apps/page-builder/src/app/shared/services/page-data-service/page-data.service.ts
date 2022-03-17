@@ -4,6 +4,7 @@ import { BehaviorSubject, from, map, Observable, of } from 'rxjs';
 import { PageData, Style,TemplateApi,Typograph } from '@sognando-casa/api-interfaces';
 import { data } from '../data';
 import { HttpClient } from '@angular/common/http';
+import { SharedDataService } from '@sognando-casa/shared/data-access';
 
 export class PagesData extends TemplateApi{}
 
@@ -20,8 +21,9 @@ export class PageDataService {
   readonly allPagesData: Observable<any> = this.dataSource.asObservable()
 
 
-  constructor( private router:Router, private http:HttpClient) {
+  constructor( private router:Router, private http:HttpClient, private sharedData:SharedDataService) {
     //this.ppd.singlePageChoose(data[0], '')
+    this.sharedData.pub.published = false
   }
 
 

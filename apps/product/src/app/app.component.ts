@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SharedDataService } from '@sognando-casa/shared/data-access';
 
 
 @Component({
@@ -9,4 +10,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'product';
   
+  constructor(private sharedData:SharedDataService){
+    this.sharedData.pub.published = true
+  }
 }

@@ -1,5 +1,5 @@
 /* eslint-disable @angular-eslint/use-lifecycle-interface */
-import { AfterViewInit, Component, ElementRef, HostBinding, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostBinding, OnInit, Renderer2, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
@@ -94,20 +94,28 @@ export class LoadPageComponent implements OnInit {
     private service:SharedDataService,
     private render:Renderer2
   ) {
-    this.service.current_page.subscribe((res:PageData)=>{
-      this.selected_page = res
-  
-    })
+    
   }
 
+  
   ngOnInit(): void {
    // set this page a seo data
-   console.log("loading this page")
-   const tem = this.template['nativeElement'];
-  this.render.setProperty(tem,'innerHTML', this.selected_page.page_styles?.html)
+   console.log("loading...")
+   this.service.current_page.subscribe((res:PageData)=>{
+    console.log("loading page")
+    this.selected_page = res
+    this.loadPage()
+
+  })
    
   }
 
+
+  loadPage(){
+    console.log("loading this page")
+   const tem = this.template['nativeElement'];
+  this.render.setProperty(tem,'innerHTML', this.selected_page.page_styles?.html)
+  }
   makeSanitize(str: string) {
     return this.sanitizer.bypassSecurityTrustHtml(str);
   }
