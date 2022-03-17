@@ -8,7 +8,7 @@ import {ProductProductFeatureModule, productProductFeatureRoutes} from '@sognand
 // }
 
 const routes: Route[] = [
-  {path:'edit', loadChildren: ()=> import('./main/main-module.module').then(m => m.MainModuleModule), outlet:'main'},
+  // {path:'edit', loadChildren: ()=> import('./main/main-module.module').then(m => m.MainModuleModule), outlet:'main'},
   //{path:"", loadChildren:()=>import('./create-duplicate-page/page-modify.module').then(m=>m.PageModifyModule)},
   //{path}
   // {path:'', redirectTo:'edit/:id', pathMatch:'full'}

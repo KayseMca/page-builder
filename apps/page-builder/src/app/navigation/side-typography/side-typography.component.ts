@@ -80,16 +80,26 @@ export class SideTypographyComponent implements OnInit, OnDestroy {
 
   }
 
+
+  /**
+   * 
+   * @param event => which event should show in (Backgrpund Colors or Typography list)
+   */
   toggletypography(event:string){
     if(event==='color'){
       this.toggleList['typo'] = false
       this.toggleList['color']=true
     } else{
-      this.toggleList['color']=false
       this.toggleList['typo'] = true
+      this.toggleList['color']=false
     }
   }
 
+
+  /**
+   * 
+   * @param event => background color to set selected page
+   */
   handleChange(event:ColorEvent){
     //this.page_selected.id = NaN
     this.color = event.color.hex

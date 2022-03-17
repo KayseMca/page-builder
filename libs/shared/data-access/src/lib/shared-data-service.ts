@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {  PageData, publish, TemplateApi } from '@sognando-casa/api-interfaces';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, map, Observable, of, Subject, switchMap } from 'rxjs';
 
 export class PagesData extends TemplateApi{}
 @Injectable({
@@ -24,7 +24,10 @@ export class SharedDataService{
   pub = new publish()
 
   // current template that editing or publishing
-  current_template:Observable<PagesData> = new BehaviorSubject(new PagesData())
+  templateDataSource = new BehaviorSubject(new PagesData())
+
+  // to access
+  current_template = this.templateDataSource.asObservable()
   // the backend url
   private readonly url = 'http://localhost:3000/users/';
   constructor(private http: HttpClient) {
@@ -47,10 +50,15 @@ export class SharedDataService{
    * @param id 
    * @returns 
    */
-  getTemplate(id: string) {
-    const template = this.http.get<PagesData>(this.url + id);
-    this.current_template = template
-    return this.current_template
+  getTemplate(id: string):Observable<PagesData>{
+  return this.http.get<PagesData>(this.url + id).pipe(
+      switchMap(res=>of(res)),
+      map(res=> {
+        this.templateDataSource.next(res)
+        return res
+      })
+    )
+    //return this.current_template
   }
 
 

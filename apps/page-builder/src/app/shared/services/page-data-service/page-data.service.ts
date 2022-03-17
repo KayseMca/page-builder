@@ -50,7 +50,7 @@ export class PageDataService {
     // this.http.post(this.url, data).subscribe(res=>{
     //   this.dataSource.next(res)
     // })
-    this.sharedData.current_template =of(data)
+    this.sharedData.templateDataSource.next(data)
   }
 
 
@@ -174,6 +174,6 @@ export class PageDataService {
     data.splice(pageId, 1)
 
     // this.dataSource.next(data)
-    this.sharedData.current_template = of(data)
+    this.sharedData.templateDataSource.next(data)
   }
 }

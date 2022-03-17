@@ -22,8 +22,8 @@ export class SEO{
     url?:string
 }
 export class AdditionalSEO{
-    robots_meta_tags?:Array<Object>
-    additional_tags?:Array<Object>
+    robots_meta_tags?:Array<any>
+    additional_tags?:Array<any>
 
 }
 
@@ -63,8 +63,8 @@ export interface Style{
 export class PageData{
     id!:number
     name!:string 
-    home_page?:Boolean
-    hide!:Boolean
+    home_page?:boolean
+    hide!:boolean
     page_styles?:Style
     page_url?:string
     base_url?:string
