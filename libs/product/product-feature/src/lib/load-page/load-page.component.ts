@@ -14,6 +14,8 @@ import { Typograph } from '@sognando-casa/api-interfaces';
 })
 export class LoadPageComponent implements OnInit, AfterViewInit {
   pages!:any
+  
+  
   @ViewChild('tem', { static: true }) template!: ElementRef<HTMLElement>;
   selected!: any;
   title$!: Observable<string>;
@@ -55,6 +57,12 @@ export class LoadPageComponent implements OnInit, AfterViewInit {
 
 
 
+    /**
+     * for every page setting its styles that recently added from page-builder or from api
+     * @param typo 
+     * @param title 
+     * @returns 
+     */
   setCssVariableValue(typo:any,title:string){
         const stylesArray:any = {}
         const style = ['size','font','style','color']
