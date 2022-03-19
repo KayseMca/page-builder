@@ -17,7 +17,7 @@ export class PageDataService {
 
   // url = 'http://localhost:3000/users/'
 
-  dataSource = new BehaviorSubject<any>(this.sharedData.current_template)
+  private dataSource = new BehaviorSubject<any>(new PagesData())
   // dataSource = new BehaviorSubject<any>(new PagesData())
   readonly allPagesData: Observable<any> = this.dataSource.asObservable()
 
@@ -37,6 +37,16 @@ export class PageDataService {
     return page[0]
   }
 
+  
+  /**
+   * updating the template data to initiliaze everytime we rendered new template
+   * @param templateData 
+   */
+  updateDataSoruce(templateData:PagesData){
+    this.dataSource.next(templateData)
+  }
+
+  
   // creating new empty page
   creatNewPage(page: PageData) {
     let data: PagesData= {...this.dataSource.value}
@@ -46,11 +56,10 @@ export class PageDataService {
     //
     data.content.pages = pages
     
-
     // this.http.post(this.url, data).subscribe(res=>{
     //   this.dataSource.next(res)
     // })
-    this.sharedData.templateDataSource.next(data)
+    this.sharedData.updateTemplateDataSource(data)
   }
 
 
@@ -107,7 +116,7 @@ export class PageDataService {
     oldData.content.pages = pages
     this.dataSource.next(oldData)
   //  return this.http.post('http://localhost:3000/users/', oldData)
-  this.sharedData.current_template = of(oldData)
+  this.sharedData.updateTemplateDataSource(oldData)
   }
 
 
@@ -150,19 +159,19 @@ export class PageDataService {
    * @param value 
    */
   updatePageUrl(pageUrl:string|undefined, value?:string){
-    console.log(value)
+    ''
     if(value){
       let routes = this.router.config
       let a = routes.map(route=>{
         if(route.path===pageUrl){
           route.path = value
-          console.log(route)
-          // console.log(route)
+          ''
+          // ''
           return route
         } 
         return route
       })
-      console.log(a)
+      ''
     }
 
   }
@@ -174,6 +183,6 @@ export class PageDataService {
     data.splice(pageId, 1)
 
     // this.dataSource.next(data)
-    this.sharedData.templateDataSource.next(data)
+    this.sharedData.updateTemplateDataSource(data)
   }
 }

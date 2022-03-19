@@ -1,49 +1,52 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { TemplateApi, publish } from '@sognando-casa/api-interfaces';
+import { TemplateApi } from '@sognando-casa/api-interfaces';
 import { SharedDataService } from '@sognando-casa/shared/data-access';
 
-import { map, Observable, of, switchMap } from 'rxjs';
+import {  map, Observable } from 'rxjs';
 
 
+export class PagesData extends TemplateApi{}
 @Injectable({
   providedIn: 'root'
 })
 export class ResolverService {
 
-  template!:Observable<TemplateApi>
+  template!:Observable<undefined|PagesData>
   constructor(private page: SharedDataService) {
     // for this product render first the template from the backend
+    console.log("resolve construtor")
     
-    if(this.page.pub.published){
-      // console.log("## from reseolve of product")
-      // console.log(this.page.pub.published)
-     this.template  = this.page.getTemplate('1')
-    }else{
-      // console.log("## from reseolve of product and not published")
-      // console.log(this.page.pub.published)
-      this.template = this.page.current_template
-  }
 }
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> {
     const r = route.paramMap.get('page');
-    return this.template.pipe(
+    
+    return this.getTemplate().pipe(
       map((res: any) => {
-        console.log('in resolve');
-        // console.log(res)
         const r = route.paramMap.get('page');
-        console.log('the ulr', r);
         const all: any[] = res['content']['pages'];
-        // console.log(all)
+        // ''
         const findPage = all.find((page) => page['page_url'] === r);
-        // console.log(findPage)
+        ''
         this.page.setSelectedPage(findPage);
         return findPage;
       })
     );
     // return this.page.getPage(r)
+  }
+
+  getTemplate(){
+    console.log("Get template#########")
+    let template:Observable<TemplateApi|undefined>;
+    if(this.page.pub.published){
+      template= this.page.getTemplate('1')
+     }else{
+       console.log("### resolve for not published")
+       template = this.page.updateTemplateData()
+   }
+   return template
   }
 }

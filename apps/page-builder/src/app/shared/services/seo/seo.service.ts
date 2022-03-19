@@ -56,7 +56,7 @@ export class SeoService {
       title:page_social?.og_title,
       url:`${page.base_url}${page_social?.url}`
     }
-    console.log(page_meta)
+    ''
 
     this.meta.updateTag({ property: 'og:title', content: this.tags(page_meta.title) })
     this.meta.updateTag({ property: 'og:description', content: this.tags(page_meta.description ) })
@@ -136,7 +136,7 @@ export class SeoService {
     let robots = robot?.map((robotIndex:any)=>{
       if(robotIndex['value']) indexs.push(robotIndex['type'])
     })
-    console.log(indexs)
+    ''
     return indexs.join(',')
   }
 

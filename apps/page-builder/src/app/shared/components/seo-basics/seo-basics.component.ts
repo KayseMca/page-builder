@@ -123,8 +123,8 @@ export class SeoBasicsComponent implements OnInit {
     // this.savingData['page_settings']['permissions'] = {...this.permission_data }
 
     // update seo
-    console.log("seo adding")
-    console.log(this.savingData)
+    ''
+    ''
     this.seo.addMetaTags(this.savingData)
 
     // save the page seo data

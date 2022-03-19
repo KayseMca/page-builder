@@ -38,7 +38,7 @@ export class DynamicLoadComponent implements OnInit {
     
     this.active.data.subscribe((res:any)=>{
     
-      console.log(res)
+      ''
     // let res = this.selected
       
     //  tem.innerHTML= res['page_styles']['html']+`<strong>${res.name}</strong> `

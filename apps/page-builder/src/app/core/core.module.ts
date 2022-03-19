@@ -8,7 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 export function initTemplate(appInitService: TemplateToEditService) {
   return () => { 
-    console.log("initliazing the template")
     return appInitService.init();
   }
 }

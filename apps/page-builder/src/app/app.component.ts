@@ -93,16 +93,14 @@ export class AppComponent implements OnInit, OnDestroy  {
    // handle this it causes some "Violation changes"
    this.subscribe.add(this.pageService.allPagesData.subscribe(res=>{
 
-    console.log("all page data")
-    console.log(res)
-    this.all_pages = res
+    this.all_pages = res['content']['pages']
   }))
 
   }
 
   ngOnInit(): void {
    
-    console.log("############resizing window")
+    ''
     
     // adding active page title and description
     
@@ -119,7 +117,7 @@ export class AppComponent implements OnInit, OnDestroy  {
             child = child.firstChild;
           }
           // if (child?.snapshot.data['title']) {
-          // // console.log()
+          // // ''
           // page_meta.title= child.snapshot.data['title']
           // page_meta.description = child.snapshot.data['description']
           //   // return child.snapshot.data['title'];
@@ -142,22 +140,22 @@ export class AppComponent implements OnInit, OnDestroy  {
     let target = ($event['target'] as HTMLHtmlElement)
     let htmlContent:string = (target.lastElementChild?.innerHTML as string)
     htmlContent = htmlContent?.replace(pattern, '')
-    console.log(htmlContent)
-    console.log("html contet £3#################")
+    ''
+    ''
     
   
   this.pProperty.setPageHTML(htmlContent)
   }
   getPage(url:string|undefined){
-    console.log(this.all_pages)
+    ''
     let page_meta:any = {}
     let page_index = this.all_pages.findIndex(page=>{ 
-      console.log(page.page_url)
+      ''
       return page.page_url===url
     })
-    console.log(page_index)
+    ''
     
-    console.log(page_meta)
+    ''
     if(page_index !==-1){
       page_meta['title'] = this.all_pages[page_index]?.page_settings?.seo_basics?.page_title
     page_meta['description'] = this.all_pages[page_index]?.page_settings?.seo_basics?.meta_description

@@ -36,25 +36,18 @@ export class TemplateToEditService {
 
   init(){
     this.template()
+    console.log("....initializing template data")
     return this.shared_data.getTemplate(this.templateID).pipe(
-      map((res:any)=> { 
-        this.page_data.dataSource.next(res)
-        
-        console.log("template data")
-        return of(res)
-      }),
-      switchMap(res=>{
-        
-        return res
-      }),
       tap(template=> {
         let is_valid = Boolean(template)
         if(is_valid){
           this.loadFiles(template)
+          // initiliazing the template data to our allPagesData variable in PagesDataService
+          this.page_data.updateDataSoruce(template)
           this.resetRoutes()
           return template
         } 
-        console.log(template)
+      
         throw new Error(
           `<span style='color:red;'>server eror, this is INVALId template ID</span> please be sure the template ID to edit`
           )
@@ -63,10 +56,10 @@ export class TemplateToEditService {
     // const inject = this.injector.get(ActivatedRoute)
     // const inject2 = this.injector.get(Router)
     // return new Promise<void>((resolve, reject) => {
-    //   console.log("AppInitService.init() called");
+    //   ''
     //   ////do your initialisation stuff here  
     //   setTimeout(() => {
-    //       console.log('AppInitService Finished');
+    //       ''
     //       resolve();
     //   }, 6000);
 
@@ -78,13 +71,13 @@ export class TemplateToEditService {
   resetRoutes(){
     // const inject = this.injector.get(this.router)
     let a = this.router.config
-    console.log(a)
+    // console.log(a)
   }
 
   loadFiles(template:any){
     //document also working
 
-    
+    // console.log(template)
     const script = document.createElement('script');
     // const stylehead = this.doc.createElement('link');
     // stylehead.setAttribute('href','http://127.0.0.1:8080/styles.css')
@@ -123,7 +116,7 @@ export class TemplateToEditService {
 //         return res
 //       }),
 //       tap(response=>{
-//         console.log(response)
+//         ''
 //         if(response) return resolve()
 //         // return  throwError('Server error');
 //         return reject(
@@ -141,7 +134,7 @@ export class TemplateToEditService {
 
   template(){
     const page_url = new URL(window.location.href);
-    console.log(page_url)
+    ''
     this.templateID = page_url.search.replace('?','').split('=')[1]
     // let len = url.pathname.split('/')
     // this.templateID = len[len.length-1]

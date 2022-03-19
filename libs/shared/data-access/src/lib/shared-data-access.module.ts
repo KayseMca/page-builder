@@ -5,7 +5,7 @@ import { SharedDataService } from './shared-data-service';
 
 
 // testing to export this service for other libs and apps
-export {SharedDataService} from './shared-data-service'
+// export {SharedDataService} from './shared-data-service'
 @NgModule({
 
 imports: [CommonModule, HttpClientModule],

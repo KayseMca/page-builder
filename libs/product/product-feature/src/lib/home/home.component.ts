@@ -21,12 +21,13 @@ export class HomeComponent  {
   constructor(private data:ResolverService, private shared:SharedDataService){
     if(this.shared.pub.published){
       this.data.template.subscribe((res:any)=>{
-        console.log("### template data from home page of product lib published")
+        ''
        this.pages = res['content']['pages']
       })
     }else{
-      console.log("### template data from home page of product inside page-builder using this lib and yet not published")
-      this.shared.current_template.subscribe(res=>{
+      ''
+      this.shared.current_template.subscribe((res:any)=>{
+        console.log(res)
         this.pages = res['content']['pages']
       })
     }

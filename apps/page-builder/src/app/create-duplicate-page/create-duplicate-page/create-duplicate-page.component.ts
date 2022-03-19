@@ -33,14 +33,14 @@ export  class  CreateDuplicatePageComponent  {
     ) {
     this.subs.add(
       (this.pages.allPagesData.subscribe(res=>{
-        // console.log("re calling before created")
+        // ''
       this.allPages = res['content']['pages']
-      // console.log(this.allPages)
+      // ''
     })
     ))
 
     this.subs.add(this.property.selectedPageHTML.subscribe(res=>{
-      console.log(res)
+      ''
       this.pageHTML =res
     })
     )
@@ -64,7 +64,7 @@ export  class  CreateDuplicatePageComponent  {
     this.pages.creatNewPage(page_data)
 
     // generate the component of this and the route url
-    this.createComponent(page_data)
+    // this.createComponent(page_data)
   }
 
    duplicatePage(page:PageData){
@@ -78,15 +78,15 @@ export  class  CreateDuplicatePageComponent  {
     this.pages.creatNewPage(page_data)
 
     // generate the component of this and the route url
-    this.createComponent(page_data)
+    // this.createComponent(page_data)
   }
 
 
   // intiliazing page data for some static data and id
   private newPageData():PageData{
     let random = Math.floor(Math.random() * (3 - 1 + 1) + 1)
-    console.log("###creaeing new page data")
-    console.log(this.allPages)
+    ''
+    ''
     let len = this.allPages.length+1
     let styleClass = 'p'+random
     let newPage: PageData = new PageData()
@@ -141,8 +141,8 @@ export  class  CreateDuplicatePageComponent  {
 
 
   private createComponent(page:PageData){
-    console.log("########### creating component")
-    console.log(page)
+    ''
+    ''
     let newPageData = this.allPages.find(pages=>pages.id===page.id)
     let componentFactory = this.resolver.
     resolveComponentFactory(DynamicLoadComponent)

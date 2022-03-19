@@ -8,7 +8,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { PagePropertiesModule } from '../shared/components/page-properties.module';
 import { Page2Component } from './pages/page2/page2.component';
 import { PageData } from '@sognando-casa/api-interfaces';
-import { productProductFeatureRoutes , ProductProductFeatureModule} from '@sognando-casa/product/product-feature';
+// import { productProductFeatureRoutes , ProductProductFeatureModule} from '@sognando-casa/product/product-feature';
 
 
 
@@ -21,6 +21,7 @@ const appRoutes:Route[]  = [
   // {path:"", loadChildren:()=>import('../create-duplicate-page/page-modify.module').then(m=>m.PageModifyModule)},
   // {path:'**', redirectTo:':templateId', pathMatch:'full'},
   // {path:'**', redirectTo:'/home', pathMatch:'full'},
+  // {path:'', children:productProductFeatureRoutes}
 ]
 
 @NgModule({
@@ -28,9 +29,11 @@ const appRoutes:Route[]  = [
   imports: [
     CommonModule,
     // RouterModule.forChild(apRoutes),
-    RouterModule.forRoot([
-      {path:'', children:productProductFeatureRoutes}
-    ]),
+    // ProductProductFeatureModule,
+    // RouterModule.forChild([
+    //   {path:'', children:productProductFeatureRoutes}
+    // ]),
+    RouterModule.forChild([]),
     PagePropertiesModule,
     
   ],

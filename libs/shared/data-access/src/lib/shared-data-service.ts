@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {  PageData, publish, TemplateApi } from '@sognando-casa/api-interfaces';
-import { BehaviorSubject, map, Observable, of, Subject, switchMap } from 'rxjs';
+import { BehaviorSubject, map, Observable} from 'rxjs';
 
 export class PagesData extends TemplateApi{}
 @Injectable({
@@ -11,9 +11,9 @@ export class SharedDataService{
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   // all the data of pages from the backend
-  dataSource!:Observable<PagesData>
+  // dataSource!:Observable<PagesData>
   // just to access the pages data to not modify
-  readonly allTemplates!: Observable<PagesData>
+  // readonly allTemplates!: Observable<PagesData>
   private selectedPage = new BehaviorSubject(new PageData());
   // selected page accessing outside
   current_page = this.selectedPage.asObservable();
@@ -24,15 +24,17 @@ export class SharedDataService{
   pub = new publish()
 
   // current template that editing or publishing
-  templateDataSource = new BehaviorSubject(new PagesData())
+  private templateDataSource = new BehaviorSubject<PagesData|undefined>(new  PagesData())
 
   // to access
-  current_template = this.templateDataSource.asObservable()
+  // current_template = this.templateDataSource.asObservable()
+
   // the backend url
   private readonly url = 'http://localhost:3000/users/';
   constructor(private http: HttpClient) {
-    this.dataSource = this.getTemplates()
-    this.allTemplates = this.dataSource
+    // this.dataSource = this.getTemplates()
+    // this.allTemplates = this.dataSource
+
   }
 
 
@@ -51,23 +53,30 @@ export class SharedDataService{
    * @returns 
    */
   getTemplate(id: string):Observable<PagesData>{
-  return this.http.get<PagesData>(this.url + id).pipe(
-      switchMap(res=>of(res)),
-      map(res=> {
-        this.templateDataSource.next(res)
-        return res
-      })
-    )
-    //return this.current_template
+    const template = this.http.get<PagesData>(this.url + id).pipe(
+    map(res=>{
+      this.updateTemplateDataSource(res)
+      return res
+    })
+  )
+  return template
   }
 
+
+  updateTemplateDataSource(data?:PagesData){
+
+    if(data) {
+      this.templateDataSource.next(data)
+    }
+    return this.templateDataSource
+  }
 
   /**
    * set a selected page 
    * @param page
    */
   setSelectedPage(page: PageData) {
-    console.log("slected page")
+    ''
     this.selectedPage.next(page);
   }
 

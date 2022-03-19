@@ -80,8 +80,8 @@ export class SidebarComponent extends CreateDuplicatePageComponent implements On
       //take(1)
     ).subscribe((res: TemplateApi) => {
       this.allPagesData = res.content.pages
-      console.log(this.allPagesData)
-      console.log("###########all pages")
+      ''
+      ''
       
     })
     )
@@ -104,7 +104,7 @@ export class SidebarComponent extends CreateDuplicatePageComponent implements On
     this.openComponentTabs = false
     this.hoverPage[index] = true
     this.subscriptions.add(this.pageProperties.closeComponentsTab(this.openComponentTabs).subscribe(res => {
-      console.log(res)
+      ''
       this.openComponentTabs = res
 
     })
@@ -118,8 +118,8 @@ export class SidebarComponent extends CreateDuplicatePageComponent implements On
 
       // get all setting of this page 
       this.settingType = this.allPagesData[index].settings
-      console.log(this.settingType, this.allPagesData, index)
-      console.log("############## setttings")
+      ''
+      ''
       if (this.allPagesData[this.index].hide) {
         this.settingType[6] = 'Show'
       }
@@ -177,10 +177,10 @@ export class SidebarComponent extends CreateDuplicatePageComponent implements On
       
 
     } else if (settingType === 'Duplicate') {
-      console.log("here")
+      ''
       // * duplicate the page its html to set this html to new page html
       let selected_page = {...this.allPagesData[this.index]}
-      console.log(selected_page)
+      ''
      this.duplicatePage(selected_page)
       // clear the id
       this.index = NaN

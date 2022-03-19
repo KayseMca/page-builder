@@ -22,11 +22,11 @@ export class LoadPageComponent implements OnInit {
 
   @HostBinding('style')
   get style(){
-    // console.log("herererere")
+    // ''
     const page = this.selected_page?.page_styles?.typography
-    // console.log(this.pages)
+    // ''
     if(page){
-      // console.log("hererhe again")
+      // ''
       page?.map((typo:Typograph)=>{
             let current;
             
@@ -82,8 +82,8 @@ export class LoadPageComponent implements OnInit {
           // set the typography to the document
           
         }
-        // console.log("styling")
-        // console.log(stylesArray)
+        // ''
+        // ''
         return stylesArray
       }
 
@@ -100,9 +100,9 @@ export class LoadPageComponent implements OnInit {
   
   ngOnInit(): void {
    // set this page a seo data
-   console.log("loading...")
+   ''
    this.service.current_page.subscribe((res:PageData)=>{
-    console.log("loading page")
+    ''
     this.selected_page = res
     this.loadPage()
 
@@ -112,7 +112,7 @@ export class LoadPageComponent implements OnInit {
 
 
   loadPage(){
-    console.log("loading this page")
+    ''
    const tem = this.template['nativeElement'];
   this.render.setProperty(tem,'innerHTML', this.selected_page.page_styles?.html)
   }
